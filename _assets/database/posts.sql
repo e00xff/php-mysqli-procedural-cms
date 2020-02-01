@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 02, 2020 at 12:24 AM
+-- Generation Time: Feb 02, 2020 at 12:30 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -34,7 +34,7 @@ CREATE TABLE `posts` (
   `title` varchar(255) NOT NULL,
   `status` varchar(50) NOT NULL DEFAULT 'draft',
   `tags` int(255) NOT NULL,
-  `comment_count` varchar(50) NOT NULL,
+  `comment_count` int(11) NOT NULL,
   `author` varchar(50) NOT NULL,
   `date` date NOT NULL,
   `photo` text NOT NULL,
