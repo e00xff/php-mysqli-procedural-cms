@@ -2793,7 +2793,7 @@ var exports$1 = {
 		ctx.beginPath();
 
 		switch (style) {
-		// Default includes circle
+		// Default inc circle
 		default:
 			ctx.arc(x, y, radius, 0, DOUBLE_PI);
 			ctx.closePath();

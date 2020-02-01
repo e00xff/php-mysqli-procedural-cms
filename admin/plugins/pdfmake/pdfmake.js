@@ -7473,7 +7473,7 @@ module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // false -> Array#indexOf
-// true  -> Array#includes
+// true  -> Array#inc
 var toIObject = __webpack_require__(43);
 var toLength = __webpack_require__(16);
 var toAbsoluteIndex = __webpack_require__(53);
@@ -7483,13 +7483,13 @@ module.exports = function (IS_INCLUDES) {
     var length = toLength(O.length);
     var index = toAbsoluteIndex(fromIndex, length);
     var value;
-    // Array#includes uses SameValueZero equality algorithm
+    // Array#inc uses SameValueZero equality algorithm
     // eslint-disable-next-line no-self-compare
     if (IS_INCLUDES && el != el) while (length > index) {
       value = O[index++];
       // eslint-disable-next-line no-self-compare
       if (value != value) return true;
-    // Array#indexOf ignores holes, Array#includes - not
+    // Array#indexOf ignores holes, Array#inc - not
     } else for (;length > index; index++) if (IS_INCLUDES || index in O) {
       if (O[index] === el) return IS_INCLUDES || index || 0;
     } return !IS_INCLUDES && -1;
@@ -26536,7 +26536,7 @@ __webpack_require__(90)('includes');
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-// 21.1.3.7 String.prototype.includes(searchString, position = 0)
+// 21.1.3.7 String.prototype.inc(searchString, position = 0)
 
 var $export = __webpack_require__(5);
 var context = __webpack_require__(241);
@@ -26554,7 +26554,7 @@ $export($export.P + $export.F * __webpack_require__(242)(INCLUDES), 'String', {
 /* 241 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// helper for String#{startsWith, endsWith, includes}
+// helper for String#{startsWith, endsWith, inc}
 var isRegExp = __webpack_require__(153);
 var defined = __webpack_require__(30);
 
@@ -26850,7 +26850,7 @@ var meta = module.exports = {
 /* 253 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// all enumerable object keys, includes symbols
+// all enumerable object keys, inc symbols
 var getKeys = __webpack_require__(42);
 var gOPS = __webpack_require__(88);
 var pIE = __webpack_require__(62);
@@ -30564,7 +30564,7 @@ function build_bl_tree(s) {
 
   /* Build the bit length tree: */
   build_tree(s, s.bl_desc);
-  /* opt_len now includes the length of the tree representations, except
+  /* opt_len now inc the length of the tree representations, except
    * the lengths of the bit lengths codes and the 5+5+4 bits for the counts.
    */
 
@@ -38808,7 +38808,7 @@ var ImageTable = new r.Struct({
 });
 
 // This is the Apple sbix table, used by the "Apple Color Emoji" font.
-// It includes several image tables with images for each bitmap glyph
+// It inc several image tables with images for each bitmap glyph
 // of several different sizes.
 var sbix = new r.Struct({
   version: r.uint16,
@@ -47189,7 +47189,7 @@ var Path = function () {
 
   /**
    * Gets the "control box" of a path.
-   * This is like the bounding box, but it includes all points including
+   * This is like the bounding box, but it inc all points including
    * control points of bezier segments and is much faster to compute than
    * the real bounding box.
    * @type {BBox}
@@ -50285,7 +50285,7 @@ var TTFFont = (_class = function () {
   };
 
   /**
-   * Returns a GlyphRun object, which includes an array of Glyphs and GlyphPositions for the given string.
+   * Returns a GlyphRun object, which inc an array of Glyphs and GlyphPositions for the given string.
    *
    * @param {string} string
    * @param {string[]} [userFeatures]
@@ -55110,7 +55110,7 @@ module.exports = function (Constructor, NAME, next) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // false -> Array#indexOf
-// true  -> Array#includes
+// true  -> Array#inc
 var toIObject = __webpack_require__(35);
 var toLength = __webpack_require__(77);
 var toAbsoluteIndex = __webpack_require__(184);
@@ -55120,13 +55120,13 @@ module.exports = function (IS_INCLUDES) {
     var length = toLength(O.length);
     var index = toAbsoluteIndex(fromIndex, length);
     var value;
-    // Array#includes uses SameValueZero equality algorithm
+    // Array#inc uses SameValueZero equality algorithm
     // eslint-disable-next-line no-self-compare
     if (IS_INCLUDES && el != el) while (length > index) {
       value = O[index++];
       // eslint-disable-next-line no-self-compare
       if (value != value) return true;
-    // Array#indexOf ignores holes, Array#includes - not
+    // Array#indexOf ignores holes, Array#inc - not
     } else for (;length > index; index++) if (IS_INCLUDES || index in O) {
       if (O[index] === el) return IS_INCLUDES || index || 0;
     } return !IS_INCLUDES && -1;
@@ -55515,7 +55515,7 @@ setToStringTag(global.JSON, 'JSON', true);
 /* 353 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// all enumerable object keys, includes symbols
+// all enumerable object keys, inc symbols
 var getKeys = __webpack_require__(59);
 var gOPS = __webpack_require__(124);
 var pIE = __webpack_require__(73);
@@ -62407,7 +62407,7 @@ var nfullbits = function (ver) {
 };
 
 // returns the number of bits available for data portions (i.e. excludes ECC
-// bits but includes mode and length bits) in this version and ECC level.
+// bits but inc mode and length bits) in this version and ECC level.
 var ndatabits = function (ver, ecclevel) {
 	var nbits = nfullbits(ver) & ~7; // no sub-octet code words
 	var v = VERSIONS[ver];

@@ -5327,7 +5327,7 @@ Docs & License: https://fullcalendar.io/
                 // will be `null` if no dates accept events
                 activeRange: activeRange,
                 // date range with a rendered skeleton
-                // includes not-active days that need some sort of DOM
+                // inc not-active days that need some sort of DOM
                 renderRange: renderRange,
                 // Duration object that denotes the first visible time of any given day
                 minTime: minTime,
@@ -8214,7 +8214,7 @@ Docs & License: https://fullcalendar.io/
         // if only one row of days, the classNames on the header can represent the specific days beneath
         if (datesRepDistinctDays) {
             classNames = classNames.concat(
-            // includes the day-of-week class
+            // inc the day-of-week class
             // noThemeHighlight=true (don't highlight the header)
             getDayClasses(dateMarker, dateProfile, context, true));
         }
