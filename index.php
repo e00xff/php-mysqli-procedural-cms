@@ -1,110 +1,24 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="PHP Procedural CMS with MySQLi">
-    <meta name="author" content="e00xff">
-    <title>CMS - Content Management System</title>
-
-    <link rel="icon" type="image/png" href="dist/img/favicon.png">
-    <link rel="stylesheet" href="dist/css/font-awesome.min.css">
-    <link rel="stylesheet" href="dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="dist/css/style.css">
+    <?php include 'inc/head.php'; ?>
 </head>
 <body>
 
-<header>
-    <nav class="navbar navbar-expand-md navbar-dark bg-danger fixed-top">
-        <a class="navbar-brand" href="index.html">CMS</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbar">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="index.html">Home <span class="sr-only">(Current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contact.html">Contact</a>
-                </li>
-            </ul>
-
-            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="registration.html">Registration</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="login.html">Login</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-</header>
+<?php include 'inc/header.php'; ?>
 
 <main role="main" class="wrapper">
     <section class="container">
         <div class="row">
             <div class="col-md-3">
-
-                <form method="get" action="search.html" class="mb-3">
-                    <div class="input-group">
-                        <input class="form-control py-2" type="search" id="search-input" placeholder="Search article">
-                        <span class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="submit">
-                                <i class="fa fa-search"></i>
-                            </button>
-                        </span>
-                    </div>
-                </form>
-
-                <div class="card mb-3 shadow-sm">
-                    <div class="card-body">
-                        <ul class="list-unstyled mb-0">
-                            <li><a href="category.html">News</a></li>
-                            <li><a href="#">Health</a></li>
-                            <li><a href="#">Planet Earth</a></li>
-                            <li><a href="#">Strange News</a></li>
-                            <li><a href="#">Space & Physics</a></li>
-                            <li><a href="#">Animals</a></li>
-                            <li><a href="#">History</a></li>
-                            <li><a href="#">Tech</a></li>
-                            <li><a href="#">Culture</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="card mb-3 shadow-sm">
-                    <div class="card-header">Recent Posts</div>
-                    <table class="table table-hover table-sm mb-0">
-                        <tbody>
-                        <tr>
-                            <td style="width: 50px"><img src="https://via.placeholder.com/25" alt=""></td>
-                            <td>
-                                <a href="#"><small>Post 1</small></a>
-                                <small class="d-block">By: Author</small>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><img src="https://via.placeholder.com/25" alt=""></td>
-                            <td>
-                                <a href="#"><small>Post 2</small></a>
-                                <small class="d-block">By: Author</small>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-
+                <?php include 'inc/sidebar.php'; ?>
             </div>
             <div class="col-md-9">
-
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">Home</li>
                     </ol>
                 </nav>
-
                 <div class="row">
                     <div class="col-md-6">
                         <div class="card mb-3 shadow-sm">
@@ -147,7 +61,6 @@
                         </div>
                     </div>
                 </div>
-
                 <nav aria-label="Page navigation example">
                     <ul class="pagination pagination-sm">
                         <li class="page-item"><a class="page-link" href="#">Previous</a></li>
@@ -157,20 +70,12 @@
                         <li class="page-item"><a class="page-link" href="#">Next</a></li>
                     </ul>
                 </nav>
-
             </div>
         </div>
     </section>
 </main>
 
-<footer>
-    <div class="text-muted text-center">
-        <small>&copy; 2020 All Rights Reserved.</small>
-    </div>
-</footer>
-
-<script src="dist/js/jquery.min.js"></script>
-<script src="dist/js/bootstrap.bundle.min.js"></script>
+<?php include 'inc/footer.php'; ?>
 
 </body>
 </html>
