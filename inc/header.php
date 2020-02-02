@@ -16,6 +16,9 @@
 
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                 <li class="nav-item">
+                    <a class="nav-link" href="admin/index.php">Admin</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="registration.php">Registration</a>
                 </li>
                 <li class="nav-item">

@@ -2,14 +2,12 @@
     <div class="card-body">
         <ul class="list-unstyled mb-0">
             <?php
-            $categoryQuery = "SELECT * FROM categories";
+            $categoryQuery = "SELECT * FROM categories LIMIT 10";
             $categoryResult = mysqli_query($connection, $categoryQuery);
 
             while ($categoryRow = mysqli_fetch_assoc($categoryResult)) {
                 ?>
-                <li>
-                    <a href="#"><?php echo $categoryRow['title']; ?></a>
-                </li>
+                <li><a href="#"><?php echo $categoryRow['title']; ?></a></li>
                 <?php
             }
             ?>
