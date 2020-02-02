@@ -121,7 +121,7 @@
                                             <td><?php echo $categoryRow['slug']; ?></td>
                                             <td class="text-center">
                                                 <a href="#" class="btn btn-primary btn-xs btn-flat">Edit</a>
-                                                <a href="#" class="btn btn-danger btn-xs btn-flat">Delete</a>
+                                                <a href="categories.php?delete=<?php echo $categoryRow['id']; ?>" class="btn btn-danger btn-xs btn-flat">Delete</a>
                                             </td>
                                         </tr>
                                         <?php
@@ -132,6 +132,20 @@
                             </div>
                         </div>
                     </form>
+                    <?php
+                    if (isset($_GET['delete'])) {
+                        $categoryID = $_GET['delete'];
+
+                        $deleteQuery = "DELETE FROM categories WHERE id = {$categoryID}";
+                        $deleteResult = mysqli_query($connection, $deleteQuery);
+
+                        if ($deleteResult) {
+                            header("Location: categories.php");
+                        } else {
+                            die('Query Failed: ' . mysqli_error($connection));
+                        }
+                    }
+                    ?>
                 </div>
                 <div class="col-lg-4 col-4">
                     <form method="post" action="#" role="form">
