@@ -92,7 +92,7 @@
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary btn-sm btn-flat">Apply</button>
+                                <button type="submit" name="submit" class="btn btn-primary btn-sm btn-flat">Apply</button>
                             </div>
                         </div>
                         <div class="card card-danger">
@@ -120,7 +120,7 @@
                                             <td><?php echo $categoryRow['title']; ?></td>
                                             <td><?php echo $categoryRow['slug']; ?></td>
                                             <td class="text-center">
-                                                <a href="#" class="btn btn-primary btn-xs btn-flat">Edit</a>
+                                                <a href="categories.php?edit=<?php echo $categoryRow['id']; ?>" class="btn btn-primary btn-xs btn-flat">Edit</a>
                                                 <a href="categories.php?delete=<?php echo $categoryRow['id']; ?>" class="btn btn-danger btn-xs btn-flat">Delete</a>
                                             </td>
                                         </tr>
@@ -148,21 +148,48 @@
                     ?>
                 </div>
                 <div class="col-lg-4 col-4">
-                    <form method="post" action="#" role="form">
-                        <div class="card card-danger">
-                            <div class="card-header">
-                                <h3 class="card-title">Edit Category</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="form-group mb-0">
-                                    <input type="text" class="form-control" name="title" required>
+                    <?php
+                    if (isset($_GET['edit'])) {
+                        $categoryID = $_GET['edit'];
+
+                        $selectQuery = "SELECT * FROM categories WHERE id = {$categoryID}";
+                        $selectResult = mysqli_query($connection, $selectQuery);
+                        $selectRow = mysqli_fetch_assoc($selectResult);
+                        ?>
+                        <form method="post" action="#" role="form">
+                            <div class="card card-danger">
+                                <div class="card-header">
+                                    <h3 class="card-title">Edit Category</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group mb-0">
+                                        <input type="text" class="form-control" name="title" value="<?php if(isset($selectRow['title'])) { echo $selectRow['title']; } ?>">
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <button type="submit" name="updateCategory" class="btn btn-primary btn-sm btn-flat">Update</button>
                                 </div>
                             </div>
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-primary btn-sm btn-flat">Update</button>
-                            </div>
-                        </div>
-                    </form>
+                        </form>
+                        <?php
+
+                        if (isset($_POST['updateCategory'])) {
+                            $title = $_POST['title'];
+
+                            $updateQuery = "UPDATE categories SET title='$title' ";
+                            $updateQuery .= "WHERE id={$categoryID}";
+                            $updateResult = mysqli_query($connection, $updateQuery);
+
+                            if (!$updateResult) {
+                                die('Query Failed: ' . mysqli_error($connection));
+                            } else {
+                                header("Location: categories.php");
+                            }
+                        }
+
+                    }
+                    ?>
+
                 </div>
             </div>
         </div>
