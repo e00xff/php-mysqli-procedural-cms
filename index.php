@@ -22,26 +22,26 @@
                 </nav>
                 <div class="row">
                     <?php
-                    $query = "SELECT * FROM posts";
-                    $result = mysqli_query($connection, $query);
-                    while($row = mysqli_fetch_assoc($result)) {
+                    $postQuery = "SELECT * FROM posts";
+                    $postResult = mysqli_query($connection, $postQuery);
+                    while($postRow = mysqli_fetch_assoc($postResult)) {
                     ?>
                         <div class="col-md-6">
                             <div class="card mb-3 shadow-sm">
-                                <img class="card-img-top" src="dist/img/posts/<?php echo $row['photo']; ?>" width="350" height="250" alt="">
+                                <img class="card-img-top" src="dist/img/posts/<?php echo $postRow['photo']; ?>" width="350" height="250" alt="">
                                 <div class="card-body">
                                     <p class="card-text">
-                                        <a href="post.html"><?php echo $row['title']; ?></a>
-                                        <small class="d-block">By <a href="author.html"><?php echo $row['author']; ?></a></small>
+                                        <a href="post.html"><?php echo $postRow['title']; ?></a>
+                                        <small class="d-block">By <a href="author.html"><?php echo $postRow['author']; ?></a></small>
                                     </p>
                                     <div class="card-text small">
-                                        <?php echo $row['excerpt']; ?>
+                                        <?php echo $postRow['excerpt']; ?>
                                     </div>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
                                             <a href="post.html" class="btn btn-sm btn-outline-secondary">Read more</a>
                                         </div>
-                                        <small class="text-muted"><?php echo $row['date']; ?></small>
+                                        <small class="text-muted"><?php echo $postRow['date']; ?></small>
                                     </div>
                                 </div>
                             </div>

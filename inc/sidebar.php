@@ -2,15 +2,13 @@
     <div class="card-body">
         <ul class="list-unstyled mb-0">
             <?php
-            $query = "SELECT * FROM categories";
-            $result = mysqli_query($connection, $query);
+            $categoryQuery = "SELECT * FROM categories";
+            $categoryResult = mysqli_query($connection, $categoryQuery);
 
-            while ($row = mysqli_fetch_assoc($result)) {
-                $title = $row['title'];
-                $slug = $row['slug'];
+            while ($categoryRow = mysqli_fetch_assoc($categoryResult)) {
                 ?>
                 <li>
-                    <a href="#"><?php echo $title; ?></a>
+                    <a href="#"><?php echo $categoryRow['title']; ?></a>
                 </li>
                 <?php
             }
@@ -19,11 +17,11 @@
     </div>
 </div>
 
-<form method="get" action="search.html" class="mb-3">
+<form action="search.php" method="post" class="mb-3">
     <div class="input-group">
-        <input class="form-control py-2" type="search" id="search-input" placeholder="Search article">
+        <input type="search" name="search" placeholder="Search keyword" class="form-control py-2">
         <span class="input-group-append">
-            <button class="btn btn-outline-secondary" type="submit">
+            <button type="submit" name="submit" class="btn btn-outline-secondary">
                 <i class="fa fa-search"></i>
             </button>
         </span>
