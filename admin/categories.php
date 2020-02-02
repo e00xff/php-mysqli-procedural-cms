@@ -39,15 +39,46 @@
                                 <h3 class="card-title">Add Category</h3>
                             </div>
                             <div class="card-body">
-                                <div class="form-group mb-0">
-                                    <input type="text" class="form-control" name="title" required>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-0">
+                                            <label for="title">Title</label>
+                                            <input type="text" class="form-control" name="title">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-0">
+                                            <label for="slug">Slug</label>
+                                            <input type="text" class="form-control" name="slug">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <button type="submit" name="submit" class="btn btn-primary btn-sm btn-flat">Add</button>
+                                <button type="submit" name="addCategory" class="btn btn-primary btn-sm btn-flat">Add</button>
                             </div>
                         </div>
                     </form>
+                    <?php
+                    if (isset($_POST['addCategory'])) {
+
+                        $categoryTitle = $_POST['title'];
+                        $categorySlug = $_POST['slug'];
+
+                        if (empty($categoryTitle) && empty($categorySlug)) {
+                            echo "<p>This field should not be empty</p>";
+                        } else {
+                            $addCategoryQuery = "INSERT INTO categories(title, slug) VALUES('$categoryTitle','$categorySlug')";
+                            $addCategoryResult = mysqli_query($connection, $addCategoryQuery);
+
+                            if (!$addCategoryResult) {
+                                die('Query Failed: ' . mysqli_error($connection));
+                            }
+                        }
+
+                    }
+                    ?>
+
                     <form method="post" action="#" role="form">
                         <div class="card card-danger">
                             <div class="card-body">
