@@ -1,4 +1,8 @@
-<?php include 'inc/connection.php'; ?>
+<?php
+include '../inc/db.php';
+include 'inc/functions.php';
+ob_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
