@@ -21,7 +21,8 @@
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item active">Dashboard</li>
+                  <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
+                  <li class="breadcrumb-item active">Categories</li>
               </ol>
             </div>
           </div>
@@ -78,87 +79,23 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td><input type="checkbox"></td>
-                                        <td>News</td>
-                                        <td>news</td>
-                                        <td class="text-center">
-                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-xs btn-flat">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox"></td>
-                                        <td>Health</td>
-                                        <td>health</td>
-                                        <td class="text-center">
-                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-xs btn-flat">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox"></td>
-                                        <td>Planet Earth</td>
-                                        <td>planet-earth</td>
-                                        <td class="text-center">
-                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-xs btn-flat">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox"></td>
-                                        <td>Strange News</td>
-                                        <td>strange-news</td>
-                                        <td class="text-center">
-                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-xs btn-flat">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox"></td>
-                                        <td>Space & Physics</td>
-                                        <td>space-and-physics</td>
-                                        <td class="text-center">
-                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-xs btn-flat">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox"></td>
-                                        <td>Animals</td>
-                                        <td>animals</td>
-                                        <td class="text-center">
-                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-xs btn-flat">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox"></td>
-                                        <td>History</td>
-                                        <td>history</td>
-                                        <td class="text-center">
-                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-xs btn-flat">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox"></td>
-                                        <td>Tech</td>
-                                        <td>tech</td>
-                                        <td class="text-center">
-                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-xs btn-flat">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox"></td>
-                                        <td>Culture</td>
-                                        <td>culture</td>
-                                        <td class="text-center">
-                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-xs btn-flat">Delete</a>
-                                        </td>
-                                    </tr>
+                                    <?php
+                                    $categoryQuery = "SELECT * FROM categories";
+                                    $categoryResult = mysqli_query($connection, $categoryQuery);
+                                    while ($categoryRow = mysqli_fetch_assoc($categoryResult)) {
+                                        ?>
+                                        <tr>
+                                            <td><input type="checkbox"></td>
+                                            <td><?php echo $categoryRow['title']; ?></td>
+                                            <td><?php echo $categoryRow['slug']; ?></td>
+                                            <td class="text-center">
+                                                <a href="#" class="btn btn-primary btn-xs btn-flat">Edit</a>
+                                                <a href="#" class="btn btn-danger btn-xs btn-flat">Delete</a>
+                                            </td>
+                                        </tr>
+                                        <?php
+                                    }
+                                    ?>
                                     </tbody>
                                 </table>
                             </div>

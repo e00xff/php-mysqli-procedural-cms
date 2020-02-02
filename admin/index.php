@@ -40,7 +40,7 @@
                 <div class="icon">
                   <i class="far fa-list-alt"></i>
                 </div>
-                <a href="view-categories.html" class="small-box-footer">View Details <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="categories.php" class="small-box-footer">View Details <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <div class="col-lg-3 col-6">
