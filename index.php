@@ -21,46 +21,34 @@
                     </ol>
                 </nav>
                 <div class="row">
-                    <div class="col-md-6">
-                        <div class="card mb-3 shadow-sm">
-                            <img class="card-img-top" src="https://via.placeholder.com/350x150" alt="">
-                            <div class="card-body">
-                                <p class="card-text">
-                                    <a href="post.html">The 11 Biggest Unanswered Questions About Dark Matter</a>
-                                    <small class="d-block">By <a href="author.html">Adam Mann</a></small>
-                                </p>
-                                <p class="card-text small">
-                                    Live Science Contributor
-                                </p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <a href="post.html" class="btn btn-sm btn-outline-secondary">View</a>
+                    <?php
+                    $query = "SELECT * FROM posts";
+                    $result = mysqli_query($connection, $query);
+                    while($row = mysqli_fetch_assoc($result)) {
+                    ?>
+                        <div class="col-md-6">
+                            <div class="card mb-3 shadow-sm">
+                                <img class="card-img-top" src="dist/img/posts/<?php echo $row['photo']; ?>" width="350" height="250" alt="">
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        <a href="post.html"><?php echo $row['title']; ?></a>
+                                        <small class="d-block">By <a href="author.html"><?php echo $row['author']; ?></a></small>
+                                    </p>
+                                    <div class="card-text small">
+                                        <?php echo $row['excerpt']; ?>
                                     </div>
-                                    <small class="text-muted">01/01/2020</small>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <a href="post.html" class="btn btn-sm btn-outline-secondary">Read more</a>
+                                        </div>
+                                        <small class="text-muted"><?php echo $row['date']; ?></small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card mb-3 shadow-sm">
-                            <img class="card-img-top" src="https://via.placeholder.com/350x150" alt="">
-                            <div class="card-body">
-                                <p class="card-text">
-                                    <a href="post.html">Coronavirus death toll Up To 213: Live updates on 2019-nCoV</a>
-                                    <small class="d-block">By: <a href="#">Ana</a></small>
-                                </p>
-                                <p class="card-text small">
-                                    Here's everything you need to know about the new coronavirus from China, including how lethal it is, how you can catch it and what is being done to prevent widespread infections.
-                                </p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <a href="post.html" class="btn btn-sm btn-outline-secondary">View</a>
-                                    </div>
-                                    <small class="text-muted">01/01/2020</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php
+                    }
+                    ?>
                 </div>
                 <nav aria-label="Page navigation example">
                     <ul class="pagination pagination-sm">
