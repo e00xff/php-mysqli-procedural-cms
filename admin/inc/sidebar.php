@@ -17,7 +17,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column nav-flat nav-compact nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
 
                 <li class="nav-item">
-                    <a href="index.php" class="nav-link active">
+                    <a href="index.php" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
@@ -26,7 +26,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="view-categories.html" class="nav-link">
+                    <a href="categories.php" class="nav-link">
                         <i class="nav-icon far fa-list-alt"></i>
                         <p>
                             Categories
