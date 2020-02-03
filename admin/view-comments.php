@@ -65,8 +65,7 @@ ob_start();
                                     <table class="table table-hover table-sm projects mb-0">
                                         <thead>
                                         <tr>
-                                            <th><input type="checkbox"></th>
-                                            <th>ID</th>
+                                            <th style="width: 60px;"><input type="checkbox"></th>
                                             <th>Author</th>
                                             <th>Comment</th>
                                             <th>E-Mail</th>
@@ -78,7 +77,6 @@ ob_start();
                                         <tbody>
                                         <tr>
                                             <td><input type="checkbox"></td>
-                                            <td>1</td>
                                             <td>John Smith</td>
                                             <td>Hello from Georgia</td>
                                             <td>john@gmail.com</td>

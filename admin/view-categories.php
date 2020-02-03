@@ -93,7 +93,7 @@ ob_start();
                                     <table class="table table-hover table-sm mb-0">
                                         <thead>
                                         <tr>
-                                            <th><input type="checkbox"></th>
+                                            <th style="width: 60px;"><input type="checkbox"></th>
                                             <th>Title</th>
                                             <th>Slug</th>
                                             <th style="width: 200px;" class="text-center">Action</th>

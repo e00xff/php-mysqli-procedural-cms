@@ -66,8 +66,7 @@ ob_start();
                             <table class="table table-hover table-sm mb-0">
                                 <thead>
                                 <tr>
-                                    <th><input type="checkbox"></th>
-                                    <th class="text-center">ID</th>
+                                    <th style="width: 60px;"><input type="checkbox"></th>
                                     <th>Author</th>
                                     <th>Title</th>
                                     <th>Category</th>
@@ -82,7 +81,6 @@ ob_start();
                                 <tbody>
                                 <tr>
                                     <td><input type="checkbox"></td>
-                                    <td class="text-center">1</td>
                                     <td>John Smith</td>
                                     <td><a href="edit-post.php">Lorem ipsum dolor sit amet.</a></td>
                                     <td>News</td>

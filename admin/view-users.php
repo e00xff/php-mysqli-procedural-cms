@@ -66,7 +66,7 @@ ob_start();
                                 <table class="table table-hover table-sm projects mb-0">
                                     <thead>
                                     <tr>
-                                        <th><input type="checkbox" name="" id=""></th>
+                                        <th style="width: 60px;"><input type="checkbox" name="" id=""></th>
                                         <th>Photo</th>
                                         <th>First Name</th>
                                         <th>Last Name</th>
@@ -92,10 +92,410 @@ ob_start();
                                     </tr>
                                     <tr>
                                         <td><input type="checkbox" name="" id=""></td>
-                                        <td><img alt="Avatar" class="table-avatar" src="dist/img/user4-128x128.jpg"></td>
-                                        <td>Ann</td>
-                                        <td>Miller</td>
-                                        <td>ann@gmail.com</td>
+                                        <td><img alt="Avatar" class="table-avatar" src="dist/img/users/giorgi_dvaladze.png"></td>
+                                        <td>Giorgi</td>
+                                        <td>Dvaladze</td>
+                                        <td>giorgi_dvaladze@gmail.com</td>
+                                        <td>0</td>
+                                        <td><span class="badge badge-danger">Denied</span></td>
+                                        <td class="text-center">
+                                            <a href="#" class="btn btn-info btn-xs btn-flat">View</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Approve</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Deny</a>
+                                            <a href="edit-profile.html" class="btn btn-primary btn-xs btn-flat">Edit</a>
+                                            <a href="#" class="btn btn-danger btn-xs btn-flat">Delete</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" name="" id=""></td>
+                                        <td><img alt="Avatar" class="table-avatar" src="dist/img/users/giorgi_ortavidze.png"></td>
+                                        <td>Giorgi</td>
+                                        <td>Irtavidze</td>
+                                        <td>giorgi_ortavidze@gmail.com</td>
+                                        <td>0</td>
+                                        <td><span class="badge badge-danger">Denied</span></td>
+                                        <td class="text-center">
+                                            <a href="#" class="btn btn-info btn-xs btn-flat">View</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Approve</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Deny</a>
+                                            <a href="edit-profile.html" class="btn btn-primary btn-xs btn-flat">Edit</a>
+                                            <a href="#" class="btn btn-danger btn-xs btn-flat">Delete</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" name="" id=""></td>
+                                        <td><img alt="Avatar" class="table-avatar" src="dist/img/users/irakli_gabaidze.png"></td>
+                                        <td>Irakli</td>
+                                        <td>Gabaidze</td>
+                                        <td>irakli_gabaidze@gmail.com</td>
+                                        <td>0</td>
+                                        <td><span class="badge badge-danger">Denied</span></td>
+                                        <td class="text-center">
+                                            <a href="#" class="btn btn-info btn-xs btn-flat">View</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Approve</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Deny</a>
+                                            <a href="edit-profile.html" class="btn btn-primary btn-xs btn-flat">Edit</a>
+                                            <a href="#" class="btn btn-danger btn-xs btn-flat">Delete</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" name="" id=""></td>
+                                        <td><img alt="Avatar" class="table-avatar" src="dist/img/users/irakli_korpashvili.png"></td>
+                                        <td>Irakli</td>
+                                        <td>Korpashvili</td>
+                                        <td>irakli_korpashvili@gmail.com</td>
+                                        <td>0</td>
+                                        <td><span class="badge badge-danger">Denied</span></td>
+                                        <td class="text-center">
+                                            <a href="#" class="btn btn-info btn-xs btn-flat">View</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Approve</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Deny</a>
+                                            <a href="edit-profile.html" class="btn btn-primary btn-xs btn-flat">Edit</a>
+                                            <a href="#" class="btn btn-danger btn-xs btn-flat">Delete</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" name="" id=""></td>
+                                        <td><img alt="Avatar" class="table-avatar" src="dist/img/users/irakli_kvachrelishvili.png"></td>
+                                        <td>Irakli</td>
+                                        <td>Kvachrelishvili</td>
+                                        <td>irakli_kvachrelishvili@gmail.com</td>
+                                        <td>0</td>
+                                        <td><span class="badge badge-danger">Denied</span></td>
+                                        <td class="text-center">
+                                            <a href="#" class="btn btn-info btn-xs btn-flat">View</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Approve</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Deny</a>
+                                            <a href="edit-profile.html" class="btn btn-primary btn-xs btn-flat">Edit</a>
+                                            <a href="#" class="btn btn-danger btn-xs btn-flat">Delete</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" name="" id=""></td>
+                                        <td><img alt="Avatar" class="table-avatar" src="dist/img/users/lado_javakhishvili.png"></td>
+                                        <td>Lado</td>
+                                        <td>Javakhishvili</td>
+                                        <td>lado_javakhishvili@gmail.com</td>
+                                        <td>0</td>
+                                        <td><span class="badge badge-danger">Denied</span></td>
+                                        <td class="text-center">
+                                            <a href="#" class="btn btn-info btn-xs btn-flat">View</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Approve</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Deny</a>
+                                            <a href="edit-profile.html" class="btn btn-primary btn-xs btn-flat">Edit</a>
+                                            <a href="#" class="btn btn-danger btn-xs btn-flat">Delete</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" name="" id=""></td>
+                                        <td><img alt="Avatar" class="table-avatar" src="dist/img/users/lazare_gugushvili.png"></td>
+                                        <td>Lazare</td>
+                                        <td>Gugushvili</td>
+                                        <td>lazare_gugushvili@gmail.com</td>
+                                        <td>0</td>
+                                        <td><span class="badge badge-danger">Denied</span></td>
+                                        <td class="text-center">
+                                            <a href="#" class="btn btn-info btn-xs btn-flat">View</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Approve</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Deny</a>
+                                            <a href="edit-profile.html" class="btn btn-primary btn-xs btn-flat">Edit</a>
+                                            <a href="#" class="btn btn-danger btn-xs btn-flat">Delete</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" name="" id=""></td>
+                                        <td><img alt="Avatar" class="table-avatar" src="dist/img/users/liana_kvantaliani.png"></td>
+                                        <td>Liana</td>
+                                        <td>Kvantaliani</td>
+                                        <td>liana_kvantaliani@gmail.com</td>
+                                        <td>0</td>
+                                        <td><span class="badge badge-danger">Denied</span></td>
+                                        <td class="text-center">
+                                            <a href="#" class="btn btn-info btn-xs btn-flat">View</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Approve</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Deny</a>
+                                            <a href="edit-profile.html" class="btn btn-primary btn-xs btn-flat">Edit</a>
+                                            <a href="#" class="btn btn-danger btn-xs btn-flat">Delete</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" name="" id=""></td>
+                                        <td><img alt="Avatar" class="table-avatar" src="dist/img/users/lika_jijieshvili.png"></td>
+                                        <td>Lika</td>
+                                        <td>Jijieshvili</td>
+                                        <td>lika_jijieshvili@gmail.com</td>
+                                        <td>0</td>
+                                        <td><span class="badge badge-danger">Denied</span></td>
+                                        <td class="text-center">
+                                            <a href="#" class="btn btn-info btn-xs btn-flat">View</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Approve</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Deny</a>
+                                            <a href="edit-profile.html" class="btn btn-primary btn-xs btn-flat">Edit</a>
+                                            <a href="#" class="btn btn-danger btn-xs btn-flat">Delete</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" name="" id=""></td>
+                                        <td><img alt="Avatar" class="table-avatar" src="dist/img/users/maia_tsitsilashvili.png"></td>
+                                        <td>Maia</td>
+                                        <td>Tsitsilashvili</td>
+                                        <td>maia_tsitsilashvili@gmail.com</td>
+                                        <td>0</td>
+                                        <td><span class="badge badge-danger">Denied</span></td>
+                                        <td class="text-center">
+                                            <a href="#" class="btn btn-info btn-xs btn-flat">View</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Approve</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Deny</a>
+                                            <a href="edit-profile.html" class="btn btn-primary btn-xs btn-flat">Edit</a>
+                                            <a href="#" class="btn btn-danger btn-xs btn-flat">Delete</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" name="" id=""></td>
+                                        <td><img alt="Avatar" class="table-avatar" src="dist/img/users/mariam_mxatvari.png"></td>
+                                        <td>Mariam</td>
+                                        <td>Mxatvari</td>
+                                        <td>mariam_mxatvari@gmail.com</td>
+                                        <td>0</td>
+                                        <td><span class="badge badge-danger">Denied</span></td>
+                                        <td class="text-center">
+                                            <a href="#" class="btn btn-info btn-xs btn-flat">View</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Approve</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Deny</a>
+                                            <a href="edit-profile.html" class="btn btn-primary btn-xs btn-flat">Edit</a>
+                                            <a href="#" class="btn btn-danger btn-xs btn-flat">Delete</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" name="" id=""></td>
+                                        <td><img alt="Avatar" class="table-avatar" src="dist/img/users/mixeil_chemia.png"></td>
+                                        <td>Mixeil</td>
+                                        <td>Chemia</td>
+                                        <td>mixeil_chemia@gmail.com</td>
+                                        <td>0</td>
+                                        <td><span class="badge badge-danger">Denied</span></td>
+                                        <td class="text-center">
+                                            <a href="#" class="btn btn-info btn-xs btn-flat">View</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Approve</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Deny</a>
+                                            <a href="edit-profile.html" class="btn btn-primary btn-xs btn-flat">Edit</a>
+                                            <a href="#" class="btn btn-danger btn-xs btn-flat">Delete</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" name="" id=""></td>
+                                        <td><img alt="Avatar" class="table-avatar" src="dist/img/users/nana_kortua.png"></td>
+                                        <td>Nana</td>
+                                        <td>Kortua</td>
+                                        <td>nana_kortua@gmail.com</td>
+                                        <td>0</td>
+                                        <td><span class="badge badge-danger">Denied</span></td>
+                                        <td class="text-center">
+                                            <a href="#" class="btn btn-info btn-xs btn-flat">View</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Approve</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Deny</a>
+                                            <a href="edit-profile.html" class="btn btn-primary btn-xs btn-flat">Edit</a>
+                                            <a href="#" class="btn btn-danger btn-xs btn-flat">Delete</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" name="" id=""></td>
+                                        <td><img alt="Avatar" class="table-avatar" src="dist/img/users/nana_tsiklauri.png"></td>
+                                        <td>Nana</td>
+                                        <td>Tsiklauri</td>
+                                        <td>nana_tsiklauri@gmail.com</td>
+                                        <td>0</td>
+                                        <td><span class="badge badge-danger">Denied</span></td>
+                                        <td class="text-center">
+                                            <a href="#" class="btn btn-info btn-xs btn-flat">View</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Approve</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Deny</a>
+                                            <a href="edit-profile.html" class="btn btn-primary btn-xs btn-flat">Edit</a>
+                                            <a href="#" class="btn btn-danger btn-xs btn-flat">Delete</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" name="" id=""></td>
+                                        <td><img alt="Avatar" class="table-avatar" src="dist/img/users/nika_akhalbedashvili.png"></td>
+                                        <td>Nika</td>
+                                        <td>Akhalbedashvili</td>
+                                        <td>nika_akhalbedashvili@gmail.com</td>
+                                        <td>0</td>
+                                        <td><span class="badge badge-danger">Denied</span></td>
+                                        <td class="text-center">
+                                            <a href="#" class="btn btn-info btn-xs btn-flat">View</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Approve</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Deny</a>
+                                            <a href="edit-profile.html" class="btn btn-primary btn-xs btn-flat">Edit</a>
+                                            <a href="#" class="btn btn-danger btn-xs btn-flat">Delete</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" name="" id=""></td>
+                                        <td><img alt="Avatar" class="table-avatar" src="dist/img/users/nino_akhalbedashvili.png"></td>
+                                        <td>Nino</td>
+                                        <td>Akhalbedashvili</td>
+                                        <td>nino_akhalbedashvili@gmail.com</td>
+                                        <td>0</td>
+                                        <td><span class="badge badge-danger">Denied</span></td>
+                                        <td class="text-center">
+                                            <a href="#" class="btn btn-info btn-xs btn-flat">View</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Approve</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Deny</a>
+                                            <a href="edit-profile.html" class="btn btn-primary btn-xs btn-flat">Edit</a>
+                                            <a href="#" class="btn btn-danger btn-xs btn-flat">Delete</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" name="" id=""></td>
+                                        <td><img alt="Avatar" class="table-avatar" src="dist/img/users/qeti_kendelakishvili.png"></td>
+                                        <td>Qeti</td>
+                                        <td>Kendelakishvili</td>
+                                        <td>qeti_kendelakishvili@gmail.com</td>
+                                        <td>0</td>
+                                        <td><span class="badge badge-danger">Denied</span></td>
+                                        <td class="text-center">
+                                            <a href="#" class="btn btn-info btn-xs btn-flat">View</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Approve</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Deny</a>
+                                            <a href="edit-profile.html" class="btn btn-primary btn-xs btn-flat">Edit</a>
+                                            <a href="#" class="btn btn-danger btn-xs btn-flat">Delete</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" name="" id=""></td>
+                                        <td><img alt="Avatar" class="table-avatar" src="dist/img/users/qristine_chapidze.png"></td>
+                                        <td>Kristine</td>
+                                        <td>Chapidze</td>
+                                        <td>qristine_chapidze@gmail.com</td>
+                                        <td>0</td>
+                                        <td><span class="badge badge-danger">Denied</span></td>
+                                        <td class="text-center">
+                                            <a href="#" class="btn btn-info btn-xs btn-flat">View</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Approve</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Deny</a>
+                                            <a href="edit-profile.html" class="btn btn-primary btn-xs btn-flat">Edit</a>
+                                            <a href="#" class="btn btn-danger btn-xs btn-flat">Delete</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" name="" id=""></td>
+                                        <td><img alt="Avatar" class="table-avatar" src="dist/img/users/salome_chelidze.png"></td>
+                                        <td>Salome</td>
+                                        <td>Chelidze</td>
+                                        <td>salome_chelidze@gmail.com</td>
+                                        <td>0</td>
+                                        <td><span class="badge badge-danger">Denied</span></td>
+                                        <td class="text-center">
+                                            <a href="#" class="btn btn-info btn-xs btn-flat">View</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Approve</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Deny</a>
+                                            <a href="edit-profile.html" class="btn btn-primary btn-xs btn-flat">Edit</a>
+                                            <a href="#" class="btn btn-danger btn-xs btn-flat">Delete</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" name="" id=""></td>
+                                        <td><img alt="Avatar" class="table-avatar" src="dist/img/users/salome_tarkhnishvili.png"></td>
+                                        <td>Salome</td>
+                                        <td>Sarkhnishvili</td>
+                                        <td>salome_tarkhnishvili@gmail.com</td>
+                                        <td>0</td>
+                                        <td><span class="badge badge-danger">Denied</span></td>
+                                        <td class="text-center">
+                                            <a href="#" class="btn btn-info btn-xs btn-flat">View</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Approve</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Deny</a>
+                                            <a href="edit-profile.html" class="btn btn-primary btn-xs btn-flat">Edit</a>
+                                            <a href="#" class="btn btn-danger btn-xs btn-flat">Delete</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" name="" id=""></td>
+                                        <td><img alt="Avatar" class="table-avatar" src="dist/img/users/tamta_tsotskahalshvili.png"></td>
+                                        <td>Tamta</td>
+                                        <td>Tsotskahalshvili</td>
+                                        <td>tamta_tsotskahalshvili@gmail.com</td>
+                                        <td>0</td>
+                                        <td><span class="badge badge-danger">Denied</span></td>
+                                        <td class="text-center">
+                                            <a href="#" class="btn btn-info btn-xs btn-flat">View</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Approve</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Deny</a>
+                                            <a href="edit-profile.html" class="btn btn-primary btn-xs btn-flat">Edit</a>
+                                            <a href="#" class="btn btn-danger btn-xs btn-flat">Delete</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" name="" id=""></td>
+                                        <td><img alt="Avatar" class="table-avatar" src="dist/img/users/teona_geradze.png"></td>
+                                        <td>Teona</td>
+                                        <td>Geradze</td>
+                                        <td>teona_geradze@gmail.com</td>
+                                        <td>0</td>
+                                        <td><span class="badge badge-danger">Denied</span></td>
+                                        <td class="text-center">
+                                            <a href="#" class="btn btn-info btn-xs btn-flat">View</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Approve</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Deny</a>
+                                            <a href="edit-profile.html" class="btn btn-primary btn-xs btn-flat">Edit</a>
+                                            <a href="#" class="btn btn-danger btn-xs btn-flat">Delete</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" name="" id=""></td>
+                                        <td><img alt="Avatar" class="table-avatar" src="dist/img/users/teona_verulashvili.png"></td>
+                                        <td>Teona</td>
+                                        <td>Verulashvili</td>
+                                        <td>teona_verulashvili@gmail.com</td>
+                                        <td>0</td>
+                                        <td><span class="badge badge-danger">Denied</span></td>
+                                        <td class="text-center">
+                                            <a href="#" class="btn btn-info btn-xs btn-flat">View</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Approve</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Deny</a>
+                                            <a href="edit-profile.html" class="btn btn-primary btn-xs btn-flat">Edit</a>
+                                            <a href="#" class="btn btn-danger btn-xs btn-flat">Delete</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" name="" id=""></td>
+                                        <td><img alt="Avatar" class="table-avatar" src="dist/img/users/tinatin_khachvani.png"></td>
+                                        <td>Tinatin</td>
+                                        <td>Khachvani</td>
+                                        <td>tinatin_khachvani@gmail.com</td>
+                                        <td>0</td>
+                                        <td><span class="badge badge-danger">Denied</span></td>
+                                        <td class="text-center">
+                                            <a href="#" class="btn btn-info btn-xs btn-flat">View</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Approve</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Deny</a>
+                                            <a href="edit-profile.html" class="btn btn-primary btn-xs btn-flat">Edit</a>
+                                            <a href="#" class="btn btn-danger btn-xs btn-flat">Delete</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" name="" id=""></td>
+                                        <td><img alt="Avatar" class="table-avatar" src="dist/img/users/tornike_tsiklauri.png"></td>
+                                        <td>Tornike</td>
+                                        <td>Tsiklauri</td>
+                                        <td>tornike_tsiklauri@gmail.com</td>
+                                        <td>0</td>
+                                        <td><span class="badge badge-danger">Denied</span></td>
+                                        <td class="text-center">
+                                            <a href="#" class="btn btn-info btn-xs btn-flat">View</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Approve</a>
+                                            <a href="#" class="btn btn-primary btn-xs btn-flat">Deny</a>
+                                            <a href="edit-profile.html" class="btn btn-primary btn-xs btn-flat">Edit</a>
+                                            <a href="#" class="btn btn-danger btn-xs btn-flat">Delete</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" name="" id=""></td>
+                                        <td><img alt="Avatar" class="table-avatar" src="dist/img/users/vasil_iremadze.png"></td>
+                                        <td>Vasil</td>
+                                        <td>Iremadze</td>
+                                        <td>vasil_iremadze@gmail.com</td>
                                         <td>0</td>
                                         <td><span class="badge badge-danger">Denied</span></td>
                                         <td class="text-center">
