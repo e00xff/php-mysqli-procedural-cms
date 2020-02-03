@@ -10,7 +10,7 @@
                 <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="edit-profile.html" class="d-block">John Smith</a>
+                <a href="edit-my-profile.php" class="d-block">John Smith</a>
             </div>
         </div>
         <nav class="mt-2">
@@ -26,7 +26,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="categories.php" class="nav-link">
+                    <a href="view-categories.php" class="nav-link">
                         <i class="nav-icon far fa-list-alt"></i>
                         <p>
                             Categories
@@ -44,26 +44,50 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="create-post.html" class="nav-link">
+                            <a href="view-posts.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Create Post</p>
+                                <p>View Posts</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="view-posts.html" class="nav-link">
+                            <a href="new-post.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>View Posts</p>
+                                <p>New Post</p>
                             </a>
                         </li>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="view-comments.html" class="nav-link">
+                    <a href="view-comments.php" class="nav-link">
                         <i class="nav-icon far fa-comments"></i>
                         <p>
                             Comments
                         </p>
                     </a>
+                </li>
+
+                <li class="nav-item has-treeview">
+                    <a href="javascript:void(0)" class="nav-link">
+                        <i class="nav-icon fab fa-slideshare"></i>
+                        <p>
+                            Slider
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="view-slides.php" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>View Photos</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="new-slide.php" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>New Photo</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
                 <li class="nav-item has-treeview">
@@ -76,15 +100,15 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="create-user.html" class="nav-link">
+                            <a href="view-users.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Create User</p>
+                                <p>View Users</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="view-users.html" class="nav-link">
+                            <a href="new-user.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>View Users</p>
+                                <p>New User</p>
                             </a>
                         </li>
                     </ul>

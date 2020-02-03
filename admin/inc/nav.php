@@ -10,7 +10,7 @@
 
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-            <a class="nav-link" href="../sign-in.php">
+            <a class="nav-link" href="../index.php">
                 <i class="fas fa-sign-out-alt"></i>
             </a>
         </li>
