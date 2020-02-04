@@ -12,8 +12,8 @@ function getAllCategories() {
             <td><?php echo $categoryRow['title']; ?></td>
             <td><?php echo $categoryRow['slug']; ?></td>
             <td class="text-center">
-                <a href="categories.php?edit=<?php echo $categoryRow['id']; ?>" class="btn btn-primary btn-xs btn-flat">Edit</a>
-                <a href="categories.php?delete=<?php echo $categoryRow['id']; ?>" class="btn btn-danger btn-xs btn-flat">Delete</a>
+                <a href="view-categories.php?edit=<?php echo $categoryRow['id']; ?>" class="btn btn-primary btn-xs btn-flat">Edit</a>
+                <a href="view-categories.php?delete=<?php echo $categoryRow['id']; ?>" class="btn btn-danger btn-xs btn-flat">Delete</a>
             </td>
         </tr>
         <?php
@@ -79,7 +79,7 @@ function editCategory() {
             if (!$updateResult) {
                 die('Query Failed: ' . mysqli_error($connection));
             } else {
-                header("Location: categories.php");
+                header("Location: view-categories.php");
             }
         }
     }
@@ -95,7 +95,7 @@ function deleteCategories() {
         $deleteResult = mysqli_query($connection, $deleteQuery);
 
         if ($deleteResult) {
-            header("Location: categories.php");
+            header("Location: view-categories.php");
         } else {
             die('Query Failed: ' . mysqli_error($connection));
         }

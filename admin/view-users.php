@@ -21,7 +21,7 @@ ob_start();
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Dashboard</h1>
+                        <h1 class="m-0 text-dark">Users</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -79,10 +79,10 @@ ob_start();
                                     <tbody>
                                     <tr>
                                         <td><input type="checkbox" name="" id=""></td>
-                                        <td><img alt="Avatar" class="table-avatar" src="dist/img/user2-160x160.jpg"></td>
-                                        <td>John</td>
-                                        <td>Smith</td>
-                                        <td>john@gmail.com</td>
+                                        <td><img alt="Avatar" class="table-avatar" src="dist/img/users/levan_eradze.png"></td>
+                                        <td>Levan</td>
+                                        <td>Eradze</td>
+                                        <td>levan.eradze@gmail.com</td>
                                         <td>0</td>
                                         <td><span class="badge badge-success">Granted</span></td>
                                         <td class="text-center">
@@ -113,7 +113,7 @@ ob_start();
                                         <td>Irtavidze</td>
                                         <td>giorgi_ortavidze@gmail.com</td>
                                         <td>0</td>
-                                        <td><span class="badge badge-danger">Denied</span></td>
+                                        <td><span class="badge badge-success">Granted</span></td>
                                         <td class="text-center">
                                             <a href="#" class="btn btn-info btn-xs btn-flat">View</a>
                                             <a href="#" class="btn btn-primary btn-xs btn-flat">Approve</a>
@@ -129,7 +129,7 @@ ob_start();
                                         <td>Gabaidze</td>
                                         <td>irakli_gabaidze@gmail.com</td>
                                         <td>0</td>
-                                        <td><span class="badge badge-danger">Denied</span></td>
+                                        <td><span class="badge badge-success">Granted</span></td>
                                         <td class="text-center">
                                             <a href="#" class="btn btn-info btn-xs btn-flat">View</a>
                                             <a href="#" class="btn btn-primary btn-xs btn-flat">Approve</a>
@@ -145,7 +145,7 @@ ob_start();
                                         <td>Korpashvili</td>
                                         <td>irakli_korpashvili@gmail.com</td>
                                         <td>0</td>
-                                        <td><span class="badge badge-danger">Denied</span></td>
+                                        <td><span class="badge badge-success">Granted</span></td>
                                         <td class="text-center">
                                             <a href="#" class="btn btn-info btn-xs btn-flat">View</a>
                                             <a href="#" class="btn btn-primary btn-xs btn-flat">Approve</a>
@@ -241,7 +241,7 @@ ob_start();
                                         <td>Tsitsilashvili</td>
                                         <td>maia_tsitsilashvili@gmail.com</td>
                                         <td>0</td>
-                                        <td><span class="badge badge-danger">Denied</span></td>
+                                        <td><span class="badge badge-success">Granted</span></td>
                                         <td class="text-center">
                                             <a href="#" class="btn btn-info btn-xs btn-flat">View</a>
                                             <a href="#" class="btn btn-primary btn-xs btn-flat">Approve</a>
@@ -257,7 +257,7 @@ ob_start();
                                         <td>Mxatvari</td>
                                         <td>mariam_mxatvari@gmail.com</td>
                                         <td>0</td>
-                                        <td><span class="badge badge-danger">Denied</span></td>
+                                        <td><span class="badge badge-success">Granted</span></td>
                                         <td class="text-center">
                                             <a href="#" class="btn btn-info btn-xs btn-flat">View</a>
                                             <a href="#" class="btn btn-primary btn-xs btn-flat">Approve</a>
@@ -401,7 +401,7 @@ ob_start();
                                         <td>Sarkhnishvili</td>
                                         <td>salome_tarkhnishvili@gmail.com</td>
                                         <td>0</td>
-                                        <td><span class="badge badge-danger">Denied</span></td>
+                                        <td><span class="badge badge-success">Granted</span></td>
                                         <td class="text-center">
                                             <a href="#" class="btn btn-info btn-xs btn-flat">View</a>
                                             <a href="#" class="btn btn-primary btn-xs btn-flat">Approve</a>
@@ -481,7 +481,7 @@ ob_start();
                                         <td>Tsiklauri</td>
                                         <td>tornike_tsiklauri@gmail.com</td>
                                         <td>0</td>
-                                        <td><span class="badge badge-danger">Denied</span></td>
+                                        <td><span class="badge badge-success">Granted</span></td>
                                         <td class="text-center">
                                             <a href="#" class="btn btn-info btn-xs btn-flat">View</a>
                                             <a href="#" class="btn btn-primary btn-xs btn-flat">Approve</a>

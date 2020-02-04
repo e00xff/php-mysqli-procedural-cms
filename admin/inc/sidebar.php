@@ -7,10 +7,10 @@
     <div class="sidebar">
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                <img src="dist/img/users/levan_eradze.png" class="img-circle elevation-2" alt="Levan Eradze">
             </div>
             <div class="info">
-                <a href="edit-my-profile.php" class="d-block">John Smith</a>
+                <a href="edit-my-profile.php" class="d-block">Levan Eradze</a>
             </div>
         </div>
         <nav class="mt-2">
