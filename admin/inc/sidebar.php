@@ -44,13 +44,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="view-posts.php" class="nav-link">
+                            <a href="posts.php?source=view-posts" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>View Posts</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="new-post.php" class="nav-link">
+                            <a href="posts.php?source=new-post" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>New Post</p>
                             </a>
