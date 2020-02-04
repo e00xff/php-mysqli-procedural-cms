@@ -25,7 +25,7 @@
                         <div class="card-header">
                             <h3 class="card-title">New Post</h3>
                         </div>
-                        <form action="posts.php?source=new-post" method="post" role="form">
+                        <form action="posts.php?source=new-post" method="post" enctype="multipart/form-data" role="form">
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="title">Title</label>
@@ -51,14 +51,14 @@
                                     <label for="category">Category</label>
                                     <select name="category" id="category" class="form-control">
                                         <option selected disabled>- Select Category -</option>
-                                        <option value="health">Health</option>
-                                        <option value="planet-earth">Planet Earth</option>
-                                        <option value="strange-news">Strange News</option>
-                                        <option value="space-and-physics">Space & Physics</option>
-                                        <option value="animals">Animals</option>
-                                        <option value="history">History</option>
-                                        <option value="tech">Tech</option>
-                                        <option value="culture">Culture</option>
+                                        <option value="1">Health</option>
+                                        <option value="2">Planet Earth</option>
+                                        <option value="3">Strange News</option>
+                                        <option value="4">Space & Physics</option>
+                                        <option value="5">Animals</option>
+                                        <option value="6">History</option>
+                                        <option value="7">Tech</option>
+                                        <option value="8">Culture</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -91,13 +91,16 @@
                         $postTags = $_POST['tags'];
                         $postCommentCount = NULL;
                         $postAuthor = $_POST['author'];
-                        $postDate = date("Y/m/d");
-                        $postPhoto = NULL;
+                        $postDate = date("d-m-y");
                         $postExcerpt = $_POST['excerpt'];
                         $postContent = $_POST['content'];
 
+                        $postPhoto = $_FILES['photo']['name'];
+                        $postPhotoTemp = $_FILES['photo']['tmp_name'];
+                        move_uploaded_file($postPhotoTemp, "../dist/img/posts/$postPhoto");
+
                         $query = "INSERT INTO posts(`category_id`, `title`, `status`, `tags`, `comment_count`, `author`, `date`, `photo`, `excerpt`, `content`) ";
-                        $query .= "VALUES('$postCategory', '$postTitle', '$postStatus', '$postTags', '$postCommentCount', '$postAuthor', '$postDate', '$postPhoto', '$postExcerpt', '$postContent')";
+                        $query .= "VALUES($postCategory, '$postTitle', '$postStatus', '$postTags', '$postCommentCount', '$postAuthor', '$postDate', '$postPhoto', '$postExcerpt', '$postContent')";
                         $result = mysqli_query($connection, $query) or die('Query Error: '.mysqli_error($connection));
 
                         if ($result) {
