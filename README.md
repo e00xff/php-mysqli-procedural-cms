@@ -1,1 +1,1 @@
-# php-mysqli-procedural-cms
+# PHP MySQLi Procedural CMS
