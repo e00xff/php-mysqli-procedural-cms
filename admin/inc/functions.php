@@ -3,42 +3,50 @@
 function getAllCategories() {
     global $connection;
 
-    $categoryQuery = "SELECT * FROM categories";
-    $categoryResult = mysqli_query($connection, $categoryQuery);
-    while ($categoryRow = mysqli_fetch_assoc($categoryResult)) {
+    $query = "SELECT * FROM categories";
+    $result = mysqli_query($connection, $query) or die('Query Failed: ' . mysqli_error($connection));
+    $count = mysqli_num_rows($result);
+
+    if ($count > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $categoryID = $row['id'];
+            $categoryTitle = $row['title'];
+            $categorySlug = $row['slug'];
+            ?>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td><?php echo $categoryTitle; ?></td>
+                <td><?php echo $categorySlug; ?></td>
+                <td class="text-center">
+                    <a href="view-categories.php?edit=<?php echo $categoryID; ?>" class="btn btn-primary btn-xs btn-flat">Edit</a>
+                    <a href="view-categories.php?delete=<?php echo $categoryID; ?>" class="btn btn-danger btn-xs btn-flat">Delete</a>
+                </td>
+            </tr>
+            <?php
+        }
+    } else {
         ?>
         <tr>
-            <td><input type="checkbox"></td>
-            <td><?php echo $categoryRow['title']; ?></td>
-            <td><?php echo $categoryRow['slug']; ?></td>
-            <td class="text-center">
-                <a href="view-categories.php?edit=<?php echo $categoryRow['id']; ?>" class="btn btn-primary btn-xs btn-flat">Edit</a>
-                <a href="view-categories.php?delete=<?php echo $categoryRow['id']; ?>" class="btn btn-danger btn-xs btn-flat">Delete</a>
-            </td>
+            <td colspan="4">No records found</td>
         </tr>
         <?php
     }
+
 }
 
 function insertCategories() {
     global $connection;
 
     if (isset($_POST['addCategory'])) {
-
         $categoryTitle = $_POST['title'];
         $categorySlug = $_POST['slug'];
 
-        if (empty($categoryTitle) && empty($categorySlug)) {
-            echo "<p>This field should not be empty</p>";
+        if (!empty($categoryTitle) && !empty($categorySlug)) {
+            $query = "INSERT INTO categories(title, slug) VALUES('$categoryTitle','$categorySlug')";
+            $result = mysqli_query($connection, $query) or die('Query Failed: '.mysqli_error($connection));
         } else {
-            $addCategoryQuery = "INSERT INTO categories(title, slug) VALUES('$categoryTitle','$categorySlug')";
-            $addCategoryResult = mysqli_query($connection, $addCategoryQuery);
-
-            if (!$addCategoryResult) {
-                die('Query Failed: ' . mysqli_error($connection));
-            }
+            echo "<p>This field should not be empty.</p>";
         }
-
     }
 }
 
@@ -48,9 +56,9 @@ function editCategory() {
 
         $categoryID = $_GET['edit'];
 
-        $selectQuery = "SELECT * FROM categories WHERE id = {$categoryID}";
-        $selectResult = mysqli_query($connection, $selectQuery);
-        $selectRow = mysqli_fetch_assoc($selectResult);
+        $query = "SELECT * FROM categories WHERE id = {$categoryID}";
+        $result = mysqli_query($connection, $query) or die('Query Failed: ' . mysqli_error($connection));
+        $row = mysqli_fetch_assoc($result);
         ?>
         <form method="post" action="#" role="form">
             <div class="card card-danger">
@@ -59,7 +67,7 @@ function editCategory() {
                 </div>
                 <div class="card-body">
                     <div class="form-group mb-0">
-                        <input type="text" class="form-control" name="title" value="<?php if(isset($selectRow['title'])) { echo $selectRow['title']; } ?>">
+                        <input type="text" class="form-control" name="title" value="<?php if(isset($row['title'])) { echo $row['title']; } ?>">
                     </div>
                 </div>
                 <div class="card-footer">
@@ -72,15 +80,10 @@ function editCategory() {
         if (isset($_POST['updateCategory'])) {
             $title = $_POST['title'];
 
-            $updateQuery = "UPDATE categories SET title='$title' ";
-            $updateQuery .= "WHERE id={$categoryID}";
-            $updateResult = mysqli_query($connection, $updateQuery);
+            $query = "UPDATE categories SET title='$title' WHERE id={$categoryID}";
+            $result = mysqli_query($connection, $query) or die('Query Failed: ' . mysqli_error($connection));
 
-            if (!$updateResult) {
-                die('Query Failed: ' . mysqli_error($connection));
-            } else {
-                header("Location: view-categories.php");
-            }
+            header("Location: view-categories.php");
         }
     }
 }
@@ -91,14 +94,10 @@ function deleteCategories() {
     if (isset($_GET['delete'])) {
         $categoryID = $_GET['delete'];
 
-        $deleteQuery = "DELETE FROM categories WHERE id = {$categoryID}";
-        $deleteResult = mysqli_query($connection, $deleteQuery);
+        $query = "DELETE FROM categories WHERE id = {$categoryID}";
+        $result = mysqli_query($connection, $query) or die('Query Failed: ' . mysqli_error($connection));
 
-        if ($deleteResult) {
-            header("Location: view-categories.php");
-        } else {
-            die('Query Failed: ' . mysqli_error($connection));
-        }
+        header("Location: view-categories.php");
     }
 }
 
