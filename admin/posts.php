@@ -16,15 +16,14 @@ ob_start();
     <?php include 'inc/sidebar.php'; ?>
 
     <?php
-        if (isset($_GET['source'])) {
-            $source = $_GET['source'];
-        } else {
-            $source = '';
-        }
+        $source = isset($_GET['source']) ? $source = $_GET['source'] : $source = '';
 
         switch ($source) {
-            case '100';
-                echo 'nice 100';
+            case 'new-post';
+                include "new-post.php";
+                break;
+            case 'edit-post';
+                include "edit-post.php";
                 break;
             default:
                 include "view-posts.php";
