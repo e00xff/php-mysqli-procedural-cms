@@ -87,8 +87,7 @@
                                             <td><?php echo $postStatus; ?></td>
                                             <td><img src="<?php echo $postImage ?>" width="150" height="50" alt="<?php echo $postTitle; ?>" title="<?php echo $postTitle; ?>"></td>
                                             <td><?php echo $postTags; ?></td>
-                                            <td><a href="view-comments.php"><?php echo $postCommentCount; ?></a>
-                                            </td>
+                                            <td><a href="view-comments.php"><?php echo $postCommentCount; ?></a></td>
                                             <td><?php echo $postDate; ?></td>
                                             <td class="text-center">
                                                 <a href="posts.php?source=view-post" class="btn btn-info btn-xs btn-flat"><i class="far fa-eye"></i></a>

@@ -16,19 +16,19 @@ ob_start();
     <?php include 'inc/sidebar.php'; ?>
 
     <?php
-    $source = isset($_GET['source']) ? $source = $_GET['source'] : $source = '';
+        $source = isset($_GET['source']) ? $source = $_GET['source'] : $source = '';
 
-    switch ($source) {
-        case 'new-post':
-            include 'new-post.php';
-            break;
-        case 'edit-post':
-            include 'edit-post.php';
-            break;
-        default:
-            include 'view-posts.php';
-            break;
-    }
+        switch ($source) {
+            case 'new-post';
+                include "new-post.php";
+                break;
+            case 'edit-post';
+                include "edit-post.php";
+                break;
+            default:
+                include "view-posts.php";
+                break;
+        }
     ?>
 
     <?php include 'inc/footer.php'; ?>
