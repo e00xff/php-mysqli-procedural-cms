@@ -70,6 +70,7 @@
 
                                 if ($count > 0) {
                                     while ($row = mysqli_fetch_assoc($result)) {
+                                        $postID = $row['id'];
                                         $postAuthor = $row['author'];
                                         $postTitle = $row['title'];
                                         $postCategory = $row['category_id'];
@@ -92,7 +93,7 @@
                                             <td class="text-center">
                                                 <a href="posts.php?source=view-post" class="btn btn-info btn-xs btn-flat"><i class="far fa-eye"></i></a>
                                                 <a href="posts.php?source=edit-post" class="btn btn-primary btn-xs btn-flat"><i class="far fa-edit"></i></a>
-                                                <a href="#" class="btn btn-danger btn-xs btn-flat"><i class="far fa-trash-alt"></i></a>
+                                                <a href="posts.php?delete=<?php echo $postID; ?>" class="btn btn-danger btn-xs btn-flat"><i class="far fa-trash-alt"></i></a>
                                             </td>
                                         </tr>
                                         <?php
@@ -112,6 +113,16 @@
                             <a href="posts.php?source=new-post" class="btn btn-success btn-sm btn-flat">New Post</a>
                         </div>
                     </div>
+
+                    <?php
+                    if (isset($_GET['delete'])) {
+                        $postID = (int)$_GET['delete'];
+                        $query = "DELETE FROM posts WHERE id = '{$postID}'";
+                        $result = mysqli_query($connection, $query) or die('Query Error: '.mysqli_error($connection));
+
+                        header("Location: posts.php?source=view-post");
+                    }
+                    ?>
 
                     <nav aria-label="...">
                         <ul class="pagination pagination-sm">
