@@ -25,7 +25,7 @@
                     if (isset($_GET['postID'])) {
                         $postID = (int)$_GET['postID'];
 
-                        $query = "SELECT * FROM posts WHERE id = '{$postID}'";
+                        $query = "SELECT * FROM posts WHERE id = $postID";
                         $result = mysqli_query($connection, $query) or die('Query Error: ' . mysqli_error($connection));
                         $count = mysqli_num_rows($result);
 
@@ -36,8 +36,7 @@
                                     <div class="card-header">
                                         <h3 class="card-title">Edit Post</h3>
                                     </div>
-                                    <form action="posts.php?source=edit-post" method="post"
-                                          enctype="multipart/form-data" role="form">
+                                    <form action="posts.php?source=edit-post&postID=<?php echo $postID; ?>" method="post" enctype="multipart/form-data" role="form">
                                         <div class="card-body">
                                             <div class="form-group">
                                                 <label for="title">Title</label>
@@ -64,27 +63,19 @@
                                                 <select name="category" id="category" class="form-control">
                                                     <option selected disabled>- Select Category -</option>
                                                     <?php
-                                                    $query = "SELECT * FROM categories";
-                                                    $result = mysqli_query($connection, $query) or die('Error Query: '.mysqli_error($connection));
-                                                    $count = mysqli_num_rows($result);
+                                                    $categoryQuery = "SELECT * FROM categories";
+                                                    $categoryResult = mysqli_query($connection, $categoryQuery) or die('Query Error: '.mysqli_error($connection));
 
-                                                    while($row = mysqli_fetch_assoc($result)) {
+                                                    while ($categoryRow = mysqli_fetch_assoc($categoryResult)) {
+                                                        $categoryID = $categoryRow['id'];
+                                                        $categoryTitle = $categoryRow['title'];
                                                         ?>
-                                                        <option value="<?php echo $row['id']; ?>">
-                                                            <?php echo $row['title'] ?>
+                                                        <option value="<?php echo $categoryID; ?>">
+                                                            <?php echo $categoryTitle; ?>
                                                         </option>
                                                         <?php
                                                     }
                                                     ?>
-
-<!--                                                    <option value="1">Health</option>-->
-<!--                                                    <option value="2">Planet Earth</option>-->
-<!--                                                    <option value="3">Strange News</option>-->
-<!--                                                    <option value="4">Space & Physics</option>-->
-<!--                                                    <option value="5">Animals</option>-->
-<!--                                                    <option value="6">History</option>-->
-<!--                                                    <option value="7">Tech</option>-->
-<!--                                                    <option value="8">Culture</option>-->
                                                 </select>
                                             </div>
                                             <p>
@@ -100,22 +91,64 @@
                                             </div>
                                             <div class="form-group mb-0">
                                                 <label for="excerpt">Excerpt</label>
-                                                <textarea class="form-control textarea" id="excerpt" name="excerpt"
-                                                          rows="3"><?php echo $row['excerpt']; ?></textarea>
+                                                <textarea class="form-control textarea" id="excerpt" name="excerpt" rows="3"><?php echo $row['excerpt']; ?></textarea>
                                             </div>
                                             <div class="form-group mb-0">
                                                 <label for="content">Description</label>
-                                                <textarea class="form-control textarea" id="content" name="content"
-                                                          rows="5"><?php echo $row['content']; ?></textarea>
+                                                <textarea class="form-control textarea" id="content" name="content" rows="5"><?php echo $row['content']; ?></textarea>
                                             </div>
                                         </div>
                                         <div class="card-footer">
-                                            <button type="submit" name="submit" class="btn btn-primary btn-sm btn-flat">
+                                            <button type="submit" name="update_post" class="btn btn-primary btn-sm btn-flat">
                                                 Update
                                             </button>
                                             <button type="reset" class="btn btn-info btn-sm btn-flat">Cancel</button>
                                         </div>
                                     </form>
+
+                                    <?php
+                                    if (isset($_POST['update_post'])) {
+                                        $author = $_POST['author'];
+                                        $title = $_POST['title'];
+                                        $category = $_POST['category'];
+                                        $status = $_POST['status'];
+                                        $photo      =  $_FILES['photo']['name'];
+                                        $photo_temp =  $_FILES['photo']['tmp_name'];
+                                        $tags = $_POST['tags'];
+                                        $excerpt = $_POST['excerpt'];
+                                        $content = $_POST['content'];
+
+                                        move_uploaded_file($photo_temp, "../dist/img/posts/$photo");
+
+                                        if (empty($photo)) {
+                                            $photoQuery = "SELECT * FROM posts WHERE id = $postID ";
+                                            $photoResult = mysqli_query($connection, $photoQuery) or die('Query Error: ' . mysqli_error($connection));
+
+                                            while($photoRow = mysqli_fetch_array($photoResult)) {
+                                                $photo = $photoRow['photo'];
+                                            }
+                                        }
+
+                                        $query = "UPDATE posts SET ";
+                                        $query .="title  = '{$title}', ";
+                                        $query .="category_id = '{$category}', ";
+                                        $query .="date   =  now(), ";
+                                        $query .="status = '{$status}', ";
+                                        $query .="tags   = '{$tags}', ";
+                                        $query .="excerpt= '{$excerpt}', ";
+                                        $query .="content= '{$content}', ";
+                                        $query .="photo  = '{$photo}' ";
+                                        $query .= "WHERE id = {$postID} ";
+
+                                        $updatePost = mysqli_query($connection, $query);
+
+                                        confirmQuery($updatePost);
+
+                                        echo "<p>Post Updated. <a href='../post.php?postID={$postID}'>View Post </a> or <a href='posts.php'>Edit More Posts</a></p>";
+                                    }
+                                    ?>
+
+                                    </div>
                                 </div>
                                 <?php
                             }
