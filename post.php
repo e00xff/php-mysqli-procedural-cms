@@ -1,182 +1,104 @@
+<?php include 'inc/db.php'; ?>
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="PHP Procedural CMS with MySQLi">
-    <meta name="author" content="e00xff">
-    <title>CMS - Content Management System</title>
-
-    <link rel="icon" type="image/png" href="dist/img/favicon.png">
-    <link rel="stylesheet" href="dist/css/font-awesome.min.css">
-    <link rel="stylesheet" href="dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="dist/css/style.css">
+    <?php include 'inc/head.php'; ?>
 </head>
 <body>
 
-<header>
-    <nav class="navbar navbar-expand-md navbar-dark bg-danger fixed-top">
-        <a class="navbar-brand" href="index.html">CMS</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbar">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="index.html">Home <span class="sr-only">(Current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contact.html">Contact</a>
-                </li>
-            </ul>
-
-            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="registration.html">Registration</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="login.html">Login</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-</header>
+<?php include 'inc/header.php'; ?>
 
 <main role="main" class="wrapper">
     <section class="container">
         <div class="row">
             <div class="col-md-3">
-
-                <form method="get" action="search.html" class="mb-3">
-                    <div class="input-group">
-                        <input class="form-control py-2" type="search" id="search-input" placeholder="Search article">
-                        <span class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="submit">
-                                <i class="fa fa-search"></i>
-                            </button>
-                        </span>
-                    </div>
-                </form>
-
-                <div class="card mb-3 shadow-sm">
-                    <div class="card-body">
-                        <ul class="list-unstyled mb-0">
-                            <li><a href="#">News</a></li>
-                            <li><a href="#">Health</a></li>
-                            <li><a href="#">Planet Earth</a></li>
-                            <li><a href="#">Strange News</a></li>
-                            <li><a href="#">Space & Physics</a></li>
-                            <li><a href="#">Animals</a></li>
-                            <li><a href="#">History</a></li>
-                            <li><a href="#">Tech</a></li>
-                            <li><a href="#">Culture</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="card mb-3 shadow-sm">
-                    <div class="card-header">Recent Posts</div>
-                    <table class="table table-hover table-sm mb-0">
-                        <tbody>
-                        <tr>
-                            <td style="width: 50px"><img src="https://via.placeholder.com/25" alt=""></td>
-                            <td>
-                                <a href="#"><small>Post 1</small></a>
-                                <small class="d-block">By: Author</small>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><img src="https://via.placeholder.com/25" alt=""></td>
-                            <td>
-                                <a href="#"><small>Post 2</small></a>
-                                <small class="d-block">By: Author</small>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-
+                <?php include 'inc/sidebar.php'; ?>
             </div>
             <div class="col-md-9">
 
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page"><a href="index.html">News</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">The 11 Biggest Unanswered Questions About Dark Matter</li>
-                    </ol>
-                </nav>
+                <?php
+                if (isset($_GET['postID'])) {
+                    $postID = (int)$_GET['postID'];
 
-                <div class="card mb-3 shadow-sm">
-                    <img class="card-img-top" src="//placehold.it/1000x250" alt="">
-                    <div class="card-body">
-                        <h5 class="card-text">The 11 Biggest Unanswered Questions About Dark Matter</h5>
-                        <hr>
+                    $postQuery = "SELECT * FROM posts WHERE id = {$postID}";
+                    $postResult = mysqli_query($connection, $postQuery) or die('Query Error: '.mysqli_error($connection));
+                    $postCount = mysqli_num_rows($postResult);
 
-                        <ul class="list-unstyled">
-                            <li><strong>Date:</strong> 23/01/2020</li>
-                            <li><strong>Category:</strong> News</li>
-                            <li><strong>Author:</strong> <a href="author.html">Adam Mann</a></li>
-                        </ul>
+                    $postRow = mysqli_fetch_assoc($postResult);
+                    $postPhoto = !empty($postRow['photo']) ? 'dist/img/posts/'.$postRow['photo'] : '//placehold.it/1000x250';
+                    ?>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                            <li class="breadcrumb-item" aria-current="page"><a href="index.php">News</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"><?php echo $postRow['title']; ?></li>
+                        </ol>
+                    </nav>
 
-                        <p>
-                            In the 1930s, a Swiss astronomer named Fritz Zwicky noticed that galaxies in a distant cluster were orbiting one another much faster than they should have been given the amount of visible mass they had. He proposed than an unseen substance, which he called dark matter, might be tugging gravitationally on these galaxies.
-                        </p>
+                    <div class="card mb-3 shadow-sm">
+                        <img class="card-img-top" src="<?php echo $postPhoto; ?>" width="1000" height="250" alt="">
+                        <div class="card-body">
+                            <h5 class="card-text"><?php echo $postRow['title']; ?></h5>
+                            <hr>
 
-                        <p>
-                            Since then, researchers have confirmed that this mysterious material can be found throughout the cosmos, and that it is six times more abundant than the normal matter that makes up ordinary things like stars and people. Yet despite seeing dark matter throughout the universe, scientists are mostly still scratching their heads over it. Here are the 11 biggest unanswered questions about dark matter.
-                        </p>
+                            <ul class="list-unstyled">
+                                <li><strong>Date:</strong> <?php echo $postRow['date']; ?></li>
+                                <li><strong>Category:</strong> <?php echo $postRow['category_id']; ?></li>
+                                <li><strong>Author:</strong> <a href="author.html"><?php echo $postRow['author']; ?></a></li>
+                            </ul>
 
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <a href="#" class="btn btn-sm btn-outline-info">Post a comment</a>
+                            <?php echo $postRow['content']; ?>
+
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a href="#" class="btn btn-sm btn-outline-info">Post a comment</a>
+                                </div>
+                                <small class="text-muted">Views 0</small>
                             </div>
-                            <small class="text-muted">Views 55</small>
                         </div>
                     </div>
-                </div>
 
-                <div class="card mb-3">
-                    <div class="card-header">
-                        Your comment
-                    </div>
-                    <div class="card-body">
-
-                        <div class="alert alert-primary" role="alert">
-                            Message
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            Your comment
                         </div>
+                        <div class="card-body">
 
-                        <form method="post" action="#">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="name">Name</label>
-                                        <input type="text" class="form-control" id="name" name="name">
+                            <div class="alert alert-primary" role="alert">
+                                Message
+                            </div>
+
+                            <form method="post" action="#">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="name">Name</label>
+                                            <input type="text" class="form-control" id="name" name="name">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="email">E-Mail</label>
+                                            <input type="email" class="form-control" id="email" name="email">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="email">E-Mail</label>
-                                        <input type="email" class="form-control" id="email" name="email">
-                                    </div>
+                                <div class="form-group">
+                                    <label for="message">Message</label>
+                                    <textarea name="message" id="message" rows="3" class="form-control"></textarea>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="message">Message</label>
-                                <textarea name="message" id="message" rows="3" class="form-control"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-sm">Submit</button>
-                        </form>
+                                <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                            </form>
+                        </div>
                     </div>
-                </div>
 
-                <div class="card mb-3">
-                    <div class="card-header">
-                        Your comment
-                    </div>
-                    <div class="card-body p-0">
-                        <table class="table table-borderless mb-0">
-                            <tbody>
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            Your comment
+                        </div>
+                        <div class="card-body p-0">
+                            <table class="table table-borderless mb-0">
+                                <tbody>
                                 <tr>
                                     <td style="width: 100px;">
                                         <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
@@ -193,24 +115,43 @@
                                         </p>
                                     </td>
                                 </tr>
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
 
+                    <div class="col-md-6">
+                        <div class="card mb-3 shadow-sm">
+                            <img class="card-img-top" src="dist/img/posts/<?php echo $postRow['photo']; ?>" width="350" height="250" alt="">
+                            <div class="card-body">
+                                <p class="card-text">
+                                    <a href="post.php"><?php echo $postRow['title']; ?></a>
+                                    <small class="d-block">By <a href="author.php"><?php echo $postRow['author']; ?></a></small>
+                                </p>
+                                <div class="card-text small">
+                                    <?php echo $postRow['excerpt']; ?>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <a href="post.php" class="btn btn-sm btn-outline-secondary">Read more</a>
+                                    </div>
+                                    <small class="text-muted"><?php echo $postRow['date']; ?></small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <?php
+                } else {
+                    echo '<p>No record found.</p>';
+                }
+                ?>
             </div>
         </div>
     </section>
 </main>
 
-<footer>
-    <div class="text-muted text-center">
-        <small>&copy; 2020 All Rights Reserved.</small>
-    </div>
-</footer>
-
-<script src="dist/js/jquery.min.js"></script>
-<script src="dist/js/bootstrap.bundle.min.js"></script>
+<?php include 'inc/footer.php'; ?>
 
 </body>
 </html>
