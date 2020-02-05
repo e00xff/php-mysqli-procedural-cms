@@ -51,14 +51,25 @@
                                     <label for="category">Category</label>
                                     <select name="category" id="category" class="form-control">
                                         <option selected disabled>- Select Category -</option>
-                                        <option value="1">Health</option>
-                                        <option value="2">Planet Earth</option>
-                                        <option value="3">Strange News</option>
-                                        <option value="4">Space & Physics</option>
-                                        <option value="5">Animals</option>
-                                        <option value="6">History</option>
-                                        <option value="7">Tech</option>
-                                        <option value="8">Culture</option>
+                                        <?php
+                                        $categoryQuery = "SELECT * FROM categories";
+                                        $categoryResult = mysqli_query($connection, $categoryQuery) or die('Query Failed: '.mysqli_error($connection));
+                                        $categoryCount = mysqli_num_rows($categoryResult);
+
+                                        if ($categoryCount > 0) {
+                                            while ($categoryRow = mysqli_fetch_assoc($categoryResult)) {
+                                                ?>
+                                                <option value="<?php echo $categoryRow['id']; ?>">
+                                                    <?php echo $categoryRow['title']; ?>
+                                                </option>
+                                                <?php
+                                            }
+                                        } else {
+                                            ?>
+                                                <option>No categories</option>
+                                            <?php
+                                        }
+                                        ?>
                                     </select>
                                 </div>
                                 <div class="form-group">
