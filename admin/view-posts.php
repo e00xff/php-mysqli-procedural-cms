@@ -26,8 +26,7 @@
                         <div class="card-body">
                             <div class="form-group mb-0">
                                 <div class="input-group">
-                                    <select name="bulk" id="bulk"
-                                            class="form-control custom-file-label custom-select">
+                                    <select name="bulk" id="bulk" class="form-control custom-file-label custom-select">
                                         <option selected disabled>- Bulk Options -</option>
                                         <option value="publish">Publish</option>
                                         <option value="draft">Draft</option>
@@ -84,7 +83,21 @@
                                             <td><input type="checkbox"></td>
                                             <td><?php echo $postAuthor; ?></td>
                                             <td><a href="posts.php?source=edit-post"><?php echo $postTitle; ?></a></td>
-                                            <td><?php echo $postCategory; ?></td>
+                                            <td>
+                                                <?php
+                                                $categoryQuery = "SELECT * FROM categories WHERE id = {$postCategory}";
+                                                $categoryResult = mysqli_query($connection, $categoryQuery) or die('Query Error: '.mysqli_error($connection));
+                                                $categoryCount = mysqli_num_rows($categoryResult);
+
+                                                if ($categoryCount) {
+                                                    while ($categoryRow = mysqli_fetch_assoc($categoryResult)) {
+                                                        echo $categoryRow['title'];
+                                                    }
+                                                } else {
+                                                    echo 'Not selected';
+                                                }
+                                                ?>
+                                            </td>
                                             <td><?php echo $postStatus; ?></td>
                                             <td><img src="<?php echo $postImage ?>" width="150" height="50" alt="<?php echo $postTitle; ?>" title="<?php echo $postTitle; ?>"></td>
                                             <td><?php echo $postTags; ?></td>
