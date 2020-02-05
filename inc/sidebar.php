@@ -3,12 +3,17 @@
         <ul class="list-unstyled mb-0">
             <?php
             $categoryQuery = "SELECT * FROM categories LIMIT 10";
-            $categoryResult = mysqli_query($connection, $categoryQuery);
+            $categoryResult = mysqli_query($connection, $categoryQuery) or die('Query Error: '.mysqli_error($connection));
+            $categoryCount = mysqli_num_rows($categoryResult);
 
-            while ($categoryRow = mysqli_fetch_assoc($categoryResult)) {
-                ?>
-                <li><a href="#"><?php echo $categoryRow['title']; ?></a></li>
-                <?php
+            if ($categoryCount > 0) {
+                while ($categoryRow = mysqli_fetch_assoc($categoryResult)) {
+                    ?>
+                    <li><a href="category.php?categoryID=<?php echo $categoryRow['id']; ?>"><?php echo $categoryRow['title']; ?></a></li>
+                    <?php
+                }
+            } else {
+                echo '<li>No categories</li>';
             }
             ?>
         </ul>
