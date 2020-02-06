@@ -69,8 +69,8 @@
                                             $commentID = $commentRow['id'];
                                             $commentAuthor = $commentRow['author'];
                                             $commentContent = $commentRow['content'];
-                                            $commentEmail = $commentRow['author'];
-                                            $commentStatus = $commentRow['author'];
+                                            $commentEmail = $commentRow['email'];
+                                            $commentStatus = $commentRow['status'];
                                             $commentPostID = $commentRow['post_id'];
                                             $commentDate = $commentRow['date'];
                                             ?>
@@ -79,7 +79,23 @@
                                                 <td><?php echo $commentAuthor; ?></td>
                                                 <td><?php echo shorten_text($commentContent, 25, ' <a href="../post.php?postID='.$commentPostID.'">Read more</a>', true); ?></td>
                                                 <td><?php echo $commentEmail; ?></td>
-                                                <td><span class="badge badge-danger"><?php echo $commentStatus; ?></span></td>
+                                                <td>
+                                                    <?php
+                                                    if ($commentStatus == 'approved') {
+                                                        ?>
+                                                        <span class="badge badge-success"><?php echo $commentStatus; ?></span>
+                                                        <?php
+                                                    } elseif ($commentStatus == 'unapproved') {
+                                                        ?>
+                                                        <span class="badge badge-danger"><?php echo $commentStatus; ?></span>
+                                                        <?php
+                                                    } else {
+                                                        ?>
+                                                        <span class="badge badge-primary">Without status</span>
+                                                        <?php
+                                                    }
+                                                    ?>
+                                                </td>
                                                 <td>
                                                     <?php
                                                         $postCommentQuery = "SELECT * FROM posts WHERE id = {$commentPostID}";
@@ -92,10 +108,10 @@
                                                 </td>
                                                 <td><?php echo $commentDate; ?></td>
                                                 <td class="text-center">
-                                                    <a href="comments.php?page=approve" class="btn btn-success btn-xs btn-flat" title="Approve">
+                                                    <a href="comments.php?approve=<?php echo $commentID; ?>" class="btn btn-success btn-xs btn-flat" title="Approve">
                                                         <i class="far fa-thumbs-up"></i>
                                                     </a>
-                                                    <a href="comments.php?page=unapprove" class="btn btn-primary btn-xs btn-flat" title="Unapprove">
+                                                    <a href="comments.php?unapprove=<?php echo $commentID; ?>" class="btn btn-primary btn-xs btn-flat" title="Unapprove">
                                                         <i class="far fa-thumbs-down"></i>
                                                     </a>
                                                     <a href="comments.php?delete=<?php echo $commentID; ?>" class="btn btn-danger btn-xs btn-flat" title="Remove">
@@ -118,6 +134,17 @@
                     </form>
 
                     <?php
+                    if (isset($_GET['approve'])) {
+                        $commentID = $_GET['approve'];
+
+                        $commentQuery = "UPDATE `comments` SET `status` = 'approved' WHERE `comments`.`id` = {$commentID}";
+                        $commentResult = mysqli_query($connection, $commentQuery) or die('Query Error: '.mysqli_error($connection));
+
+                        if ($commentResult) {
+                            redirect('comments.php');
+                        }
+                    }
+
                     if (isset($_GET['delete'])) {
                         $commentID = $_GET['delete'];
                         $commentQuery = "DELETE FROM comments WHERE id = {$commentID}";
