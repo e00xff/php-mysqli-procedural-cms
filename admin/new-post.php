@@ -9,7 +9,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="view-posts.php">Posts</a></li>
+                        <li class="breadcrumb-item"><a href="posts.php?source=view-posts">Posts</a></li>
                         <li class="breadcrumb-item active">New Post</li>
                     </ol>
                 </div>
@@ -100,7 +100,6 @@
                         $postTitle = $_POST['title'];
                         $postStatus = $_POST['status'];
                         $postTags = $_POST['tags'];
-//                        $postCommentCount = NULL;
                         $postAuthor = $_POST['author'];
                         $postDate = date("Y-m-d");
                         $postExcerpt = $_POST['excerpt'];
@@ -111,7 +110,7 @@
                         move_uploaded_file($postPhotoTemp, "../dist/img/posts/$postPhoto");
 
                         $query = "INSERT INTO posts(`category_id`, `title`, `status`, `tags`, `comment_count`, `author`, `date`, `photo`, `excerpt`, `content`) ";
-                        $query .= "VALUES($postCategory, '$postTitle', '$postStatus', '$postTags', '$postCommentCount', '$postAuthor', '$postDate', '$postPhoto', '$postExcerpt', '$postContent')";
+                        $query .= "VALUES($postCategory, '$postTitle', '$postStatus', '$postTags', '0', '$postAuthor', '$postDate', '$postPhoto', '$postExcerpt', '$postContent')";
                         $result = mysqli_query($connection, $query) or die('Query Error: '.mysqli_error($connection));
 
                         if ($result) {

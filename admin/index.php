@@ -57,7 +57,7 @@ ob_start();
                             <div class="icon">
                                 <i class="far fa-file-alt"></i>
                             </div>
-                            <a href="view-posts.php" class="small-box-footer">View Details <i
+                            <a href="posts.php?source=view-posts" class="small-box-footer">View Details <i
                                         class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
@@ -70,7 +70,7 @@ ob_start();
                             <div class="icon">
                                 <i class="far fa-comments"></i>
                             </div>
-                            <a href="view-comments.php" class="small-box-footer">View Details <i
+                            <a href="comments.php?page=comments" class="small-box-footer">View Details <i
                                         class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
@@ -83,7 +83,7 @@ ob_start();
                             <div class="icon">
                                 <i class="fab fa-slideshare"></i>
                             </div>
-                            <a href="view-users.php" class="small-box-footer">View Details <i
+                            <a href="#" class="small-box-footer">View Details <i
                                         class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>

@@ -9,7 +9,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="view-posts.php">Posts</a></li>
+                        <li class="breadcrumb-item"><a href="posts.php?source=view-posts">Posts</a></li>
                         <li class="breadcrumb-item active">View Posts</li>
                     </ol>
                 </div>
@@ -82,7 +82,11 @@
                                         <tr>
                                             <td><input type="checkbox"></td>
                                             <td><?php echo $postAuthor; ?></td>
-                                            <td><a href="posts.php?source=edit-post&postID=<?php echo $postID; ?>"><?php echo $postTitle; ?></a></td>
+                                            <td>
+                                                <a href="../post.php?postID=<?php echo $postID; ?>">
+                                                    <?php echo shorten_text($postTitle, 25); ?>
+                                                </a>
+                                            </td>
                                             <td>
                                                 <?php
                                                 $categoryQuery = "SELECT * FROM categories WHERE id = {$postCategory}";
@@ -98,12 +102,34 @@
                                                 }
                                                 ?>
                                             </td>
-                                            <td><?php echo $postStatus; ?></td>
+                                            <td>
+                                                <?php
+                                                if ($postStatus == 'published') {
+                                                    ?>
+                                                    <span class="badge badge-success"><?php echo $postStatus; ?></span>
+                                                    <?php
+                                                } elseif ($postStatus == 'draft') {
+                                                    ?>
+                                                    <span class="badge badge-danger"><?php echo $postStatus; ?></span>
+                                                    <?php
+                                                } else {
+                                                    ?>
+                                                    <span class="badge badge-primary">Without status</span>
+                                                    <?php
+                                                }
+                                                ?>
+                                            </td>
                                             <td><img src="<?php echo $postImage ?>" width="150" height="50" alt="<?php echo $postTitle; ?>" title="<?php echo $postTitle; ?>"></td>
                                             <td><?php echo $postTags; ?></td>
                                             <td class="text-center"><a href="comments.php?page=comments"><?php echo $postCommentCount; ?></a></td>
                                             <td><?php echo $postDate; ?></td>
                                             <td class="text-center">
+                                                <a href="posts.php?published=<?php echo $postID; ?>" class="btn btn-success btn-xs btn-flat <?php echo $postStatus == 'published' ? 'disabled' : ''; ?>" title="Published">
+                                                    <i class="fas fa-check"></i>
+                                                </a>
+                                                <a href="posts.php?draft=<?php echo $postID; ?>" class="btn btn-warning btn-xs btn-flat <?php echo $postStatus == 'draft' ? 'disabled' : ''; ?>" title="Draft">
+                                                    <i class="fas fa-ban"></i>
+                                                </a>
                                                 <a href="posts.php?source=view-post" class="btn btn-info btn-xs btn-flat" title="View Post"><i class="far fa-eye"></i></a>
                                                 <a href="posts.php?source=edit-post&postID=<?php echo $postID; ?>" class="btn btn-primary btn-xs btn-flat" title="Edit Post"><i class="far fa-edit"></i></a>
                                                 <a href="posts.php?delete=<?php echo $postID; ?>" class="btn btn-danger btn-xs btn-flat" onclick="return confirm('Are you sure you want to delete this record?');" title="Remove Post"><i class="far fa-trash-alt"></i></a>
@@ -128,6 +154,28 @@
                     </div>
 
                     <?php
+                    if (isset($_GET['published'])) {
+                        $postID = $_GET['published'];
+
+                        $postQuery = "UPDATE `posts` SET `status` = 'published' WHERE `posts`.`id` = {$postID}";
+                        $postResult = mysqli_query($connection, $postQuery) or die('Query Error: '.mysqli_error($connection));
+
+                        if ($postResult) {
+                            redirect('posts.php');
+                        }
+                    }
+
+                    if (isset($_GET['draft'])) {
+                        $postID = $_GET['draft'];
+
+                        $postQuery = "UPDATE `posts` SET `status` = 'draft' WHERE `posts`.`id` = {$postID}";
+                        $postResult = mysqli_query($connection, $postQuery) or die('Query Error: '.mysqli_error($connection));
+
+                        if ($postResult) {
+                            redirect('posts.php');
+                        }
+                    }
+
                     if (isset($_GET['delete'])) {
                         $postID = (int)$_GET['delete'];
                         $query = "DELETE FROM posts WHERE id = '{$postID}'";

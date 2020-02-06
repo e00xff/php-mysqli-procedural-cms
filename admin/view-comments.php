@@ -111,7 +111,7 @@
                                                     <a href="comments.php?approve=<?php echo $commentID; ?>" class="btn btn-success btn-xs btn-flat <?php echo $commentStatus == 'approved' ? 'disabled' : ''; ?>" title="Approve">
                                                         <i class="fas fa-check"></i>
                                                     </a>
-                                                    <a href="comments.php?unapprove=<?php echo $commentID; ?>" class="btn btn-info btn-xs btn-flat <?php echo $commentStatus == 'unapproved' ? 'disabled' : ''; ?>" title="Unapprove">
+                                                    <a href="comments.php?unapprove=<?php echo $commentID; ?>" class="btn btn-warning btn-xs btn-flat <?php echo $commentStatus == 'unapproved' ? 'disabled' : ''; ?>" title="Unapprove">
                                                         <i class="fas fa-ban"></i>
                                                     </a>
                                                     <a href="comments.php?delete=<?php echo $commentID; ?>" onclick="return confirm('Are you sure you want to delete this item?');" class="btn btn-danger btn-xs btn-flat" title="Remove">

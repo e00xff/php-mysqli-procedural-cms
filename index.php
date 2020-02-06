@@ -25,7 +25,7 @@ include 'inc/functions.php';
                 </nav>
                 <div class="row">
                     <?php
-                    $postQuery = "SELECT * FROM posts";
+                    $postQuery = "SELECT * FROM posts WHERE status = 'published'";
                     $postResult = mysqli_query($connection, $postQuery) or die('Query Error: '.mysqli_error($connection));
                     $postCount = mysqli_num_rows($postResult);
 

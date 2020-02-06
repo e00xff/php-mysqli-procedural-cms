@@ -66,8 +66,8 @@ function getAllCategories() {
                 <td><?php echo $categoryTitle; ?></td>
                 <td><?php echo $categorySlug; ?></td>
                 <td class="text-center">
-                    <a href="view-categories.php?edit=<?php echo $categoryID; ?>" class="btn btn-primary btn-xs btn-flat">Edit</a>
-                    <a href="view-categories.php?delete=<?php echo $categoryID; ?>" class="btn btn-danger btn-xs btn-flat" onclick="return confirm('Are you sure you want to delete this record?');">Delete</a>
+                    <a href="view-categories.php?edit=<?php echo $categoryID; ?>" class="btn btn-primary btn-xs btn-flat" title="Edit title"><i class="far fa-edit"></i></a>
+                    <a href="view-categories.php?delete=<?php echo $categoryID; ?>" class="btn btn-danger btn-xs btn-flat" onclick="return confirm('Are you sure you want to delete this record?');" title="Remove category"><i class="far fa-trash-alt"></i></a>
                 </td>
             </tr>
             <?php
