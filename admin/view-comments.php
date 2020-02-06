@@ -76,7 +76,7 @@
                                             <tr>
                                                 <td><input type="checkbox"></td>
                                                 <td><?php echo $commentAuthor; ?></td>
-                                                <td><?php echo $commentContent; ?></td>
+                                                <td><?php echo shorten_text($commentContent, 25, ' <a href="../post.php?postID='.$commentPostID.'">Read more</a>', true); ?></td>
                                                 <td><?php echo $commentEmail; ?></td>
                                                 <td><span class="badge badge-danger"><?php echo $commentStatus; ?></span></td>
                                                 <td>

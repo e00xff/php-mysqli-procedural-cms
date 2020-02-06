@@ -66,16 +66,12 @@ include 'inc/functions.php';
                         </div>
                         <div class="card-body">
 
-                            <div class="alert alert-primary" role="alert">
-                                Message
-                            </div>
-
-                            <form method="post" action="#">
+                            <form method="post" action="post.php?postID=<?php echo $postRow['id']; ?>">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="name">Name</label>
-                                            <input type="text" class="form-control" id="name" name="name">
+                                            <label for="author">Author</label>
+                                            <input type="text" class="form-control" id="author" name="author">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -86,11 +82,30 @@ include 'inc/functions.php';
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="message">Message</label>
-                                    <textarea name="message" id="message" rows="3" class="form-control"></textarea>
+                                    <label for="content">Content</label>
+                                    <textarea name="content" id="content" rows="3" class="form-control"></textarea>
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                                <button type="submit" name="insertComment" class="btn btn-primary btn-sm mb-3">Post a comment</button>
                             </form>
+                            <?php
+                            if (isset($_POST['insertComment'])) {
+                                $commentAuthor = $_POST['author'];
+                                $commentEmail = $_POST['email'];
+                                $commentContent = $_POST['content'];
+                                $commentStatus = 'unapproved';
+                                $commentDate = date("Y-m-d");
+
+                                $commentQuery = "INSERT INTO `comments` (`post_id`, `author`, `email`, `content`, `status`, `date`) ";
+                                $commentQuery .= "VALUES ($postID, '$commentAuthor', '$commentEmail', '$commentContent', '$commentStatus', '$commentDate')";
+                                $commentResult = mysqli_query($connection, $commentQuery) or die('Query Error: '.mysqli_error($connection));
+
+                                if ($commentResult) {
+                                    ?>
+                                    <div class="alert alert-primary mb-0" role="alert">The message will be posted by the administrator after moderation.</div>
+                                    <?php
+                                }
+                            }
+                            ?>
                         </div>
                     </div>
 
@@ -121,28 +136,6 @@ include 'inc/functions.php';
                             </table>
                         </div>
                     </div>
-
-                    <div class="col-md-6">
-                        <div class="card mb-3 shadow-sm">
-                            <img class="card-img-top" src="dist/img/posts/<?php echo $postRow['photo']; ?>" width="350" height="250" alt="">
-                            <div class="card-body">
-                                <p class="card-text">
-                                    <a href="post.php"><?php echo $postRow['title']; ?></a>
-                                    <small class="d-block">By <a href="author.php"><?php echo $postRow['author']; ?></a></small>
-                                </p>
-                                <div class="card-text small">
-                                    <?php echo $postRow['excerpt']; ?>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <a href="post.php" class="btn btn-sm btn-outline-secondary">Read more</a>
-                                    </div>
-                                    <small class="text-muted"><?php echo $postRow['date']; ?></small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <?php
                 } else {
                     redirect('index.php');

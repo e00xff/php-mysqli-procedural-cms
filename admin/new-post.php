@@ -102,7 +102,7 @@
                         $postTags = $_POST['tags'];
                         $postCommentCount = NULL;
                         $postAuthor = $_POST['author'];
-                        $postDate = date("d-m-y");
+                        $postDate = date("Y-m-d");
                         $postExcerpt = $_POST['excerpt'];
                         $postContent = $_POST['content'];
 
