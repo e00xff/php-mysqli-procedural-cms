@@ -66,6 +66,7 @@
 
                                     if ($commentCount > 0) {
                                         while ($commentRow = mysqli_fetch_assoc($commentResult)) {
+                                            $commentID = $commentRow['id'];
                                             $commentAuthor = $commentRow['author'];
                                             $commentContent = $commentRow['content'];
                                             $commentEmail = $commentRow['author'];
@@ -97,7 +98,7 @@
                                                     <a href="comments.php?page=unapprove" class="btn btn-primary btn-xs btn-flat" title="Unapprove">
                                                         <i class="far fa-thumbs-down"></i>
                                                     </a>
-                                                    <a href="comments.php?page=delete" class="btn btn-danger btn-xs btn-flat" title="Remove">
+                                                    <a href="comments.php?delete=<?php echo $commentID; ?>" class="btn btn-danger btn-xs btn-flat" title="Remove">
                                                         <i class="far fa-trash-alt"></i>
                                                     </a>
                                                 </td>
@@ -115,6 +116,18 @@
                             </div>
                         </div>
                     </form>
+
+                    <?php
+                    if (isset($_GET['delete'])) {
+                        $commentID = $_GET['delete'];
+                        $commentQuery = "DELETE FROM comments WHERE id = {$commentID}";
+                        $commentResult = mysqli_query($connection, $commentQuery) or die('Query Error: '.mysqli_error($connection));
+
+                        if ($commentResult) {
+                            redirect('comments.php');
+                        }
+                    }
+                    ?>
 
                     <nav aria-label="...">
                         <ul class="pagination pagination-sm">
