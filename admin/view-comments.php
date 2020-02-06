@@ -84,8 +84,10 @@
                                                         $postCommentQuery = "SELECT * FROM posts WHERE id = {$commentPostID}";
                                                         $postCommentResult = mysqli_query($connection, $postCommentQuery) or die('Query Error: '.mysqli_error($postCommentQuery));
                                                         $postRow = mysqli_fetch_assoc($postCommentResult);
-                                                        echo $postRow['title'];
+                                                        $postID = $postRow['id'];
+                                                        $postTitle = $postRow['title'];
                                                     ?>
+                                                    <a href="../post.php?postID=<?php echo $postID; ?>"><?php echo $postTitle; ?></a>
                                                 </td>
                                                 <td><?php echo $commentDate; ?></td>
                                                 <td class="text-center">
