@@ -82,7 +82,7 @@
                                         <tr>
                                             <td><input type="checkbox"></td>
                                             <td><?php echo $postAuthor; ?></td>
-                                            <td><a href="posts.php?source=edit-post"><?php echo $postTitle; ?></a></td>
+                                            <td><a href="posts.php?source=edit-post&postID=<?php echo $postID; ?>"><?php echo $postTitle; ?></a></td>
                                             <td>
                                                 <?php
                                                 $categoryQuery = "SELECT * FROM categories WHERE id = {$postCategory}";
@@ -101,7 +101,7 @@
                                             <td><?php echo $postStatus; ?></td>
                                             <td><img src="<?php echo $postImage ?>" width="150" height="50" alt="<?php echo $postTitle; ?>" title="<?php echo $postTitle; ?>"></td>
                                             <td><?php echo $postTags; ?></td>
-                                            <td><a href="view-comments.php"><?php echo $postCommentCount; ?></a></td>
+                                            <td class="text-center"><a href="comments.php?page=comments"><?php echo $postCommentCount; ?></a></td>
                                             <td><?php echo $postDate; ?></td>
                                             <td class="text-center">
                                                 <a href="posts.php?source=view-post" class="btn btn-info btn-xs btn-flat" title="View Post"><i class="far fa-eye"></i></a>

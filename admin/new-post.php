@@ -100,7 +100,7 @@
                         $postTitle = $_POST['title'];
                         $postStatus = $_POST['status'];
                         $postTags = $_POST['tags'];
-                        $postCommentCount = NULL;
+//                        $postCommentCount = NULL;
                         $postAuthor = $_POST['author'];
                         $postDate = date("Y-m-d");
                         $postExcerpt = $_POST['excerpt'];

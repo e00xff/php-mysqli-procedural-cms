@@ -99,6 +99,10 @@ include 'inc/functions.php';
                                 $commentQuery .= "VALUES ($postID, '$commentAuthor', '$commentEmail', '$commentContent', '$commentStatus', '$commentDate')";
                                 $commentResult = mysqli_query($connection, $commentQuery) or die('Query Error: '.mysqli_error($connection));
 
+                                $postCommentQuery = "UPDATE posts SET comment_count = comment_count + 1 ";
+                                $postCommentQuery .= "WHERE id = $postID";
+                                $postCommentResult = mysqli_query($connection, $postCommentQuery) or die('Query Error: '.mysqli_error($connection));
+
                                 if ($commentResult) {
                                     ?>
                                     <div class="alert alert-primary mb-0" role="alert">The message will be posted by the administrator after moderation.</div>
