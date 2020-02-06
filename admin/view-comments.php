@@ -85,7 +85,7 @@
                                                         ?>
                                                         <span class="badge badge-success"><?php echo $commentStatus; ?></span>
                                                         <?php
-                                                    } elseif ($commentStatus == 'unapproved') {
+                                                    } elseif ($commentStatus == 'unapprove') {
                                                         ?>
                                                         <span class="badge badge-danger"><?php echo $commentStatus; ?></span>
                                                         <?php
@@ -138,6 +138,18 @@
                         $commentID = $_GET['approve'];
 
                         $commentQuery = "UPDATE `comments` SET `status` = 'approved' WHERE `comments`.`id` = {$commentID}";
+                        $commentResult = mysqli_query($connection, $commentQuery) or die('Query Error: '.mysqli_error($connection));
+
+                        if ($commentResult) {
+                            redirect('comments.php');
+                        }
+                    }
+
+
+                    if (isset($_GET['unapprove'])) {
+                        $commentID = $_GET['unapprove'];
+
+                        $commentQuery = "UPDATE `comments` SET `status` = 'unapprove' WHERE `comments`.`id` = {$commentID}";
                         $commentResult = mysqli_query($connection, $commentQuery) or die('Query Error: '.mysqli_error($connection));
 
                         if ($commentResult) {
