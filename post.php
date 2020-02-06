@@ -116,22 +116,40 @@ include 'inc/functions.php';
                         <div class="card-body p-0">
                             <table class="table table-borderless mb-0">
                                 <tbody>
-                                <tr>
-                                    <td style="width: 100px;">
-                                        <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
-                                    </td>
-                                    <td>
-                                        <div class="title h6">
-                                            <a href="#"><b>John Smith</b></a>
-                                            made a post.
-                                        </div>
-                                        <h6 class="text-muted time small">1 minute ago</h6>
+                                <?php
+                                $commentQuery = "SELECT * FROM comments WHERE status = 'approved'";
+                                $commentResult = mysqli_query($connection, $commentQuery) or die('Query Error: '.mysqli_error($connection));
+                                $commentCount = mysqli_num_rows($commentResult);
 
-                                        <p class="small">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus ducimus eos iure reiciendis totam veniam.
-                                        </p>
-                                    </td>
-                                </tr>
+                                if ($commentCount > 0) {
+                                    while ($commentRow = mysqli_fetch_assoc($commentResult)) {
+                                        $commentAuthor = $commentRow['author'];
+                                        $commentDate = date('Y-m-d');
+                                        $commentContent = $commentRow['content'];
+                                        ?>
+                                        <tr>
+                                            <td style="width: 100px;">
+                                                <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
+                                            </td>
+                                            <td>
+                                                <div class="title h6">
+                                                    <a href="#"><b><?php echo $commentAuthor; ?></b></a>
+                                                </div>
+                                                <h6 class="text-muted time small"><?php echo $commentDate; ?></h6>
+
+                                                <p class="small">
+                                                    <?php echo $commentContent; ?>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <?php
+                                    }
+                                } else {
+                                    echo '<tr>';
+                                    echo '<td colspan="2">No comments yet.</td>';
+                                    echo '</tr>';
+                                }
+                                ?>
                                 </tbody>
                             </table>
                         </div>

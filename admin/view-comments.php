@@ -85,7 +85,7 @@
                                                         ?>
                                                         <span class="badge badge-success"><?php echo $commentStatus; ?></span>
                                                         <?php
-                                                    } elseif ($commentStatus == 'unapprove') {
+                                                    } elseif ($commentStatus == 'unapproved') {
                                                         ?>
                                                         <span class="badge badge-danger"><?php echo $commentStatus; ?></span>
                                                         <?php
@@ -108,13 +108,13 @@
                                                 </td>
                                                 <td><?php echo $commentDate; ?></td>
                                                 <td class="text-center">
-                                                    <a href="comments.php?approve=<?php echo $commentID; ?>" class="btn btn-success btn-xs btn-flat" title="Approve">
-                                                        <i class="far fa-thumbs-up"></i>
+                                                    <a href="comments.php?approve=<?php echo $commentID; ?>" class="btn btn-success btn-xs btn-flat <?php echo $commentStatus == 'approved' ? 'disabled' : ''; ?>" title="Approve">
+                                                        <i class="fas fa-check"></i>
                                                     </a>
-                                                    <a href="comments.php?unapprove=<?php echo $commentID; ?>" class="btn btn-primary btn-xs btn-flat" title="Unapprove">
-                                                        <i class="far fa-thumbs-down"></i>
+                                                    <a href="comments.php?unapprove=<?php echo $commentID; ?>" class="btn btn-info btn-xs btn-flat <?php echo $commentStatus == 'unapproved' ? 'disabled' : ''; ?>" title="Unapprove">
+                                                        <i class="fas fa-ban"></i>
                                                     </a>
-                                                    <a href="comments.php?delete=<?php echo $commentID; ?>" class="btn btn-danger btn-xs btn-flat" title="Remove">
+                                                    <a href="comments.php?delete=<?php echo $commentID; ?>" onclick="return confirm('Are you sure you want to delete this item?');" class="btn btn-danger btn-xs btn-flat" title="Remove">
                                                         <i class="far fa-trash-alt"></i>
                                                     </a>
                                                 </td>
@@ -149,7 +149,7 @@
                     if (isset($_GET['unapprove'])) {
                         $commentID = $_GET['unapprove'];
 
-                        $commentQuery = "UPDATE `comments` SET `status` = 'unapprove' WHERE `comments`.`id` = {$commentID}";
+                        $commentQuery = "UPDATE `comments` SET `status` = 'unapproved' WHERE `comments`.`id` = {$commentID}";
                         $commentResult = mysqli_query($connection, $commentQuery) or die('Query Error: '.mysqli_error($connection));
 
                         if ($commentResult) {
