@@ -48,12 +48,13 @@
                                 <table class="table table-hover table-sm projects mb-0">
                                     <thead>
                                     <tr>
-                                        <th style="width: 60px;"><input type="checkbox"></th>
+                                        <th><input type="checkbox"></th>
                                         <th>Author</th>
                                         <th>Content</th>
                                         <th>E-Mail</th>
                                         <th>Status</th>
                                         <th>In Response To</th>
+                                        <th>Date</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                     </thead>
@@ -65,31 +66,45 @@
 
                                     if ($commentCount > 0) {
                                         while ($commentRow = mysqli_fetch_assoc($commentResult)) {
-                                            $author = $commentRow['author'];
-                                            $content = $commentRow['content'];
-                                            $email = $commentRow['author'];
-                                            $status = $commentRow['author'];
-                                            $inResponseTo = $commentRow['post_id'];
+                                            $commentAuthor = $commentRow['author'];
+                                            $commentContent = $commentRow['content'];
+                                            $commentEmail = $commentRow['author'];
+                                            $commentStatus = $commentRow['author'];
+                                            $commentPostID = $commentRow['post_id'];
+                                            $commentDate = $commentRow['date'];
                                             ?>
                                             <tr>
                                                 <td><input type="checkbox"></td>
-                                                <td><?php echo $author; ?></td>
-                                                <td><?php echo $content; ?></td>
-                                                <td><?php echo $email; ?></td>
-                                                <td><span class="badge badge-danger"><?php echo $status; ?></span></td>
-                                                <td><?php echo $inResponseTo ?></td>
+                                                <td><?php echo $commentAuthor; ?></td>
+                                                <td><?php echo $commentContent; ?></td>
+                                                <td><?php echo $commentEmail; ?></td>
+                                                <td><span class="badge badge-danger"><?php echo $commentStatus; ?></span></td>
+                                                <td>
+                                                    <?php
+                                                        $postCommentQuery = "SELECT * FROM posts WHERE id = {$commentPostID}";
+                                                        $postCommentResult = mysqli_query($connection, $postCommentQuery) or die('Query Error: '.mysqli_error($postCommentQuery));
+                                                        $postRow = mysqli_fetch_assoc($postCommentResult);
+                                                        echo $postRow['title'];
+                                                    ?>
+                                                </td>
+                                                <td><?php echo $commentDate; ?></td>
                                                 <td class="text-center">
-                                                    <a href="#" class="btn btn-success btn-xs btn-flat">Approve</a>
-                                                    <a href="#" class="btn btn-primary btn-xs btn-flat">Unapprove</a>
-                                                    <a href="#" class="btn btn-info btn-xs btn-flat">View</a>
-                                                    <a href="#" class="btn btn-danger btn-xs btn-flat">Delete</a>
+                                                    <a href="comments.php?page=approve" class="btn btn-success btn-xs btn-flat" title="Approve">
+                                                        <i class="far fa-thumbs-up"></i>
+                                                    </a>
+                                                    <a href="comments.php?page=unapprove" class="btn btn-primary btn-xs btn-flat" title="Unapprove">
+                                                        <i class="far fa-thumbs-down"></i>
+                                                    </a>
+                                                    <a href="comments.php?page=delete" class="btn btn-danger btn-xs btn-flat" title="Remove">
+                                                        <i class="far fa-trash-alt"></i>
+                                                    </a>
                                                 </td>
                                             </tr>
                                             <?php
                                         }
                                     } else {
                                         echo '<tr>';
-                                        echo '<td>No records</td>';
+                                        echo '<td colspan="8">No records</td>';
                                         echo '</tr>';
                                     }
                                     ?>
