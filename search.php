@@ -1,4 +1,7 @@
-<?php include 'inc/db.php'; ?>
+<?php
+include 'inc/db.php';
+include 'inc/functions.php';
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -26,11 +29,7 @@
                         $search = $_POST['search'];
 
                         $searchQuery = "SELECT * FROM posts WHERE tags LIKE '%$search%' ";
-                        $searchResult = mysqli_query($connection, $searchQuery);
-
-                        if (!$searchResult) {
-                            die("Query Failed". mysqli_error($connection));
-                        }
+                        $searchResult = mysqli_query($connection, $searchQuery) or die('Query Error: '.mysqli_error($connection));
 
                         $searchCount = mysqli_num_rows($searchResult);
 

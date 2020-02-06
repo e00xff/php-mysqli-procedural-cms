@@ -1,4 +1,7 @@
-<?php include 'inc/db.php'; ?>
+<?php
+include 'inc/db.php';
+include 'inc/functions.php';
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -143,7 +146,7 @@
 
                     <?php
                 } else {
-                    echo '<p>No record found.</p>';
+                    redirect('index.php');
                 }
                 ?>
             </div>

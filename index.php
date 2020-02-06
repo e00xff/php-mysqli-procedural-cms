@@ -1,4 +1,7 @@
-<?php include 'inc/db.php'; ?>
+<?php
+include 'inc/db.php';
+include 'inc/functions.php';
+?>
 <!doctype html>
 <html lang="en">
 <head>

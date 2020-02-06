@@ -1,4 +1,7 @@
-<?php include 'inc/db.php'; ?>
+<?php
+include 'inc/db.php';
+include 'inc/functions.php';
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -55,11 +58,13 @@
                                 <?php
                             }
                         } else {
+                            echo '<div class="col-md-12">';
                             echo '<p>Post does not exists.</p>';
+                            echo '</div>';
                         }
 
                     } else {
-                        echo 'No records.';
+                        redirect('index.php');
                     }
                     ?>
                 </div>
