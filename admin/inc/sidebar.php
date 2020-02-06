@@ -58,7 +58,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="view-comments.php" class="nav-link">
+                    <a href="comments.php?page=comments" class="nav-link">
                         <i class="nav-icon far fa-comments"></i>
                         <p>
                             Comments

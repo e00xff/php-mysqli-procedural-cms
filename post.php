@@ -18,7 +18,6 @@ include 'inc/functions.php';
                 <?php include 'inc/sidebar.php'; ?>
             </div>
             <div class="col-md-9">
-
                 <?php
                 if (isset($_GET['postID'])) {
                     $postID = (int)$_GET['postID'];
