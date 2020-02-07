@@ -68,6 +68,7 @@
                                 $userCount = mysqli_num_rows($userResult);
 
                                 if ($userCount > 0) {
+
                                     while ($userRow = mysqli_fetch_assoc($userResult)) {
                                         $userID = $userRow['id'];
                                         $photo = !empty($userRow['photo']) ? '../uploads/users/'.$userRow['photo'] : 'https://via.placeholder.com/150x50';
@@ -127,7 +128,6 @@
                                         }
                                     }
 
-
                                     if (isset($_GET['approved'])) {
                                         $userID = $_GET['approved'];
 
@@ -159,7 +159,6 @@
                                             redirect('users.php');
                                         }
                                     }
-
 
                                 } else {
                                     ?>
