@@ -51,53 +51,16 @@
                                             <div class="form-group">
                                                 <label for="role">User Role</label>
                                                 <select class="form-control" id="role" name="role">
-                                                    <?php
-                                                    if ($role == 'administrator') {
-                                                        ?>
-                                                        <option disabled>Select Options</option>
-                                                        <option value="administrator" selected>Administrator</option>
-                                                        <option value="subscriber">Subscriber</option>
-                                                        <?php
-                                                    } elseif ($role == 'subscriber') {
-                                                        ?>
-                                                        <option disabled>Select Options</option>
-                                                        <option value="administrator">Administrator</option>
-                                                        <option value="subscriber" selected>Subscriber</option>
-                                                        <?php
-                                                    } else {
-                                                        ?>
-                                                        <option selected disabled>Select Options</option>
-                                                        <option value="administrator">Administrator</option>
-                                                        <option value="subscriber">Subscriber</option>
-                                                        <?php
-                                                    }
-                                                    ?>
+                                                    <option disabled>Select Options</option>
+                                                    <option value="administrator" <?php if ($role == "administrator" ) echo "selected" ; ?>>Administrator</option>
+                                                    <option value="subscriber" <?php if ($role == "subscriber" ) echo "selected" ; ?>>Subscriber</option>
                                                 </select>
                                             </div>
                                             <div class="form-group">
                                                 <label for="status">User Status</label>
                                                 <select class="form-control" id="status" name="status">
-                                                    <?php
-                                                    if ($status == 'approved') {
-                                                        ?>
-                                                        <option disabled>Select Options</option>
-                                                        <option value="approved" selected>Approved</option>
-                                                        <option value="unapproved">Unapproved</option>
-                                                        <?php
-                                                    } elseif ($status == 'unapproved') {
-                                                        ?>
-                                                        <option disabled>Select Options</option>
-                                                        <option value="approved">Approved</option>
-                                                        <option value="unapproved" selected>Unapproved</option>
-                                                        <?php
-                                                    } else {
-                                                        ?>
-                                                        <option selected disabled>Select Options</option>
-                                                        <option value="approved">Approved</option>
-                                                        <option value="unapproved">Unapproved</option>
-                                                        <?php
-                                                    }
-                                                    ?>
+                                                    <option value="subscriber" <?php if ($status == "approved" ) echo "selected" ; ?>>Approved</option>
+                                                    <option value="unapproved" <?php if ($status == "unapproved" ) echo "selected" ; ?>>Unapproved</option>
                                                 </select>
                                             </div>
                                             <div class="row">
