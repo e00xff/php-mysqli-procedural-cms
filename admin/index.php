@@ -44,8 +44,7 @@ ob_start();
                             <div class="icon">
                                 <i class="far fa-list-alt"></i>
                             </div>
-                            <a href="view-categories.php" class="small-box-footer">View Details <i
-                                        class="fas fa-arrow-circle-right"></i></a>
+                            <a href="view-categories.php" class="small-box-footer">View Details <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-6">
@@ -57,8 +56,7 @@ ob_start();
                             <div class="icon">
                                 <i class="far fa-file-alt"></i>
                             </div>
-                            <a href="posts.php?source=view-posts" class="small-box-footer">View Details <i
-                                        class="fas fa-arrow-circle-right"></i></a>
+                            <a href="posts.php?source=view-posts" class="small-box-footer">View Details <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-6">
@@ -70,8 +68,7 @@ ob_start();
                             <div class="icon">
                                 <i class="far fa-comments"></i>
                             </div>
-                            <a href="comments.php?page=comments" class="small-box-footer">View Details <i
-                                        class="fas fa-arrow-circle-right"></i></a>
+                            <a href="comments.php?page=comments" class="small-box-footer">View Details <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-6">
@@ -83,8 +80,7 @@ ob_start();
                             <div class="icon">
                                 <i class="fab fa-slideshare"></i>
                             </div>
-                            <a href="#" class="small-box-footer">View Details <i
-                                        class="fas fa-arrow-circle-right"></i></a>
+                            <a href="#" class="small-box-footer">View Details <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-6">
@@ -96,8 +92,7 @@ ob_start();
                             <div class="icon">
                                 <i class="fas fa-users"></i>
                             </div>
-                            <a href="view-users.php" class="small-box-footer">View Details <i
-                                        class="fas fa-arrow-circle-right"></i></a>
+                            <a href="users.php?page=view-users" class="small-box-footer">View Details <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                 </div>

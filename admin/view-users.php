@@ -50,13 +50,14 @@
                                 <thead>
                                 <tr>
                                     <th><input type="checkbox" name="" id=""></th>
-                                    <th>Username</th>
+                                    <th>Photo</th>
                                     <th>First Name</th>
                                     <th>Last Name</th>
+                                    <th>Username</th>
                                     <th>E-Mail</th>
-                                    <th>Photo</th>
+                                    <th>Status</th>
                                     <th>Role</th>
-                                    <th>Access</th>
+                                    <th>Date</th>
                                     <th class="text-center">Action</th>
                                 </tr>
                                 </thead>
@@ -68,27 +69,30 @@
 
                                 if ($userCount > 0) {
                                     while ($userRow = mysqli_fetch_assoc($userResult)) {
+                                        $photo = !empty($userRow['photo']) ? '../uploads/users/'.$userRow['photo'] : 'https://via.placeholder.com/150x50';
                                         $username = $userRow['username'];
                                         $firstName = $userRow['first_name'];
                                         $lastName = $userRow['last_name'];
                                         $email = $userRow['email'];
-                                        $photo = !empty($userRow['photo']) ? '../uploads/users/'.$userRow['photo'] : 'https://via.placeholder.com/150x50';
+                                        $status = $userRow['status'];
                                         $role = $userRow['role'];
+                                        $date = $userRow['date'];
                                         ?>
                                         <tr>
                                             <td><input type="checkbox" name="" id=""></td>
-                                            <td><img class="table-avatar" src="<?php echo $photo; ?>" alt="<?php echo $firstName . ' ' . $lastName; ?>"></td>
-                                            <td><?php echo $username; ?></td>
+                                            <td><img class="table-avatar" src="<?php echo $photo; ?>" alt="<?php echo $firstName . ' ' . $lastName; ?>" width="40" height="40"></td>
                                             <td><?php echo $firstName; ?></td>
                                             <td><?php echo $lastName; ?></td>
+                                            <td><?php echo $username; ?></td>
                                             <td><?php echo $email; ?></td>
+                                            <td><span class="badge <?php echo $status == 'approved' ? 'badge-success' : 'badge-warning'; ?>"><?php echo ucfirst($status); ?></span></td>
                                             <td><?php echo $role; ?></td>
-                                            <td><span class="badge badge-danger">Denied</span></td>
+                                            <td><?php echo $date; ?></td>
                                             <td class="text-center">
                                                 <a href="users.php?page=view-user&userID=1" class="btn btn-info btn-xs btn-flat" title="View User"><i class="far fa-eye"></i></a>
                                                 <a href="users.php?page=edit-user&userID=1" class="btn btn-primary btn-xs btn-flat" title="Edit User"><i class="far fa-edit"></i></a>
                                                 <a href="users.php?approved=1" class="btn btn-success btn-xs btn-flat" title="Approve User"><i class="fas fa-check"></i></a>
-                                                <a href="users.php?denied=1" class="btn btn-warning btn-xs btn-flat" title="Deny User"><i class="fas fa-ban"></i></a>
+                                                <a href="users.php?unapproved=1" class="btn btn-warning btn-xs btn-flat" title="Unapprove User"><i class="fas fa-ban"></i></a>
                                                 <a href="users.php?delete=1" class="btn btn-danger btn-xs btn-flat" onclick="return confirm('Are you sure you want to delete this record?');" title="Remove User"><i class="far fa-trash-alt"></i></a>
                                             </td>
                                         </tr>
@@ -97,7 +101,7 @@
                                 } else {
                                     ?>
                                         <tr>
-                                            <td colspan="9">No records found</td>
+                                            <td colspan="10">No records found</td>
                                         </tr>
                                     <?php
                                 }

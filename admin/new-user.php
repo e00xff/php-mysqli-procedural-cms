@@ -25,27 +25,35 @@
                         <div class="card-header">
                             <h3 class="card-title">New User</h3>
                         </div>
-                        <form method="post" action="#" role="form">
+                        <form method="post" action="users.php?page=new-user" enctype="multipart/form-data" role="form">
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="access">Access</label>
-                                    <select class="form-control" id="access" name="access">
+                                    <label for="role">User Role</label>
+                                    <select class="form-control" id="role" name="role">
                                         <option selected disabled>Select Options</option>
-                                        <option value="granted">Granted</option>
-                                        <option value="denied">Denied</option>
+                                        <option value="administrator">Administrator</option>
+                                        <option value="subscriber">Subscriber</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="status">User Status</label>
+                                    <select class="form-control" id="status" name="status">
+                                        <option selected disabled>Select Options</option>
+                                        <option value="approved">Approved</option>
+                                        <option value="unapproved">Unapproved</option>
                                     </select>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="first_name">First Name</label>
-                                            <input type="text" class="form-control" id="first_name" name="first_name">
+                                            <label for="firstName">First Name</label>
+                                            <input type="text" class="form-control" id="firstName" name="firstName">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="last_name">Last Name</label>
-                                            <input type="text" class="form-control" id="last_name" name="last_name">
+                                            <label for="lastName">Last Name</label>
+                                            <input type="text" class="form-control" id="lastName" name="lastName">
                                         </div>
                                     </div>
                                 </div>
@@ -66,30 +74,49 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group mb-0">
-                                            <label for="confirm_password">Confirm Password</label>
-                                            <input type="password" class="form-control" id="confirm_password" name="confirm_password">
+                                            <label for="confirmPassword">Confirm Password</label>
+                                            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword">
                                         </div>
                                     </div>
                                 </div>
-                                <p>
-                                    <img src="https://via.placeholder.com/80" alt="">
-                                </p>
                                 <div class="form-group mb-0">
-                                    <label for="status">Photo</label>
+                                    <label for="photo">Photo</label>
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="validatedCustomFile" required>
-                                        <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
-                                        <div class="invalid-feedback">Example invalid custom file feedback</div>
+                                        <input type="file" name="photo" id="photo" class="custom-file-input">
+                                        <label class="custom-file-label" for="photo">Choose file...</label>
                                     </div>
                                 </div>
                             </div>
-
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary btn-sm btn-flat">Add</button>
+                                <button type="submit" name="addUser" class="btn btn-primary btn-sm btn-flat">Add</button>
                                 <button type="reset" class="btn btn-info btn-sm btn-flat">Cancel</button>
                             </div>
                         </form>
                     </div>
+                    <?php
+                        if (isset($_POST['addUser'])) {
+                            $role = $_POST['role'];
+                            $status = $_POST['status'];
+                            $firstName = $_POST['firstName'];
+                            $lastName = $_POST['lastName'];
+                            $username = $_POST['username'];
+                            $email = $_POST['email'];
+                            $password = $_POST['password'];
+                            $date = date('Y-m-d');
+
+                            $photo = $_FILES['photo']['name'];
+                            $photoTemp = $_FILES['photo']['tmp_name'];
+                            move_uploaded_file($photoTemp, "../uploads/users/$photo");
+
+                            $userQuery = "INSERT INTO `users` ( `username`, `password`, `first_name`, `last_name`, `email`, `photo`, `role`, `status`, `rand_salt`, `date`)  ";
+                            $userQuery .= "VALUES ('$username', '$password', '$firstName', '$lastName', '$email', '$photo', '$role', '$status', '', '$date')";
+                            $userResult = mysqli_query($connection, $userQuery) or die('Query Error: '.mysqli_error($connection));
+
+                            if ($userResult) {
+                                echo '<p>User inserted, <a href="users.php?page=view-users">view user</a></p>';
+                            }
+                        }
+                    ?>
                 </div>
             </div>
         </div>

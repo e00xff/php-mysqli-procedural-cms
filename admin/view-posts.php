@@ -102,23 +102,7 @@
                                                 }
                                                 ?>
                                             </td>
-                                            <td>
-                                                <?php
-                                                if ($postStatus == 'published') {
-                                                    ?>
-                                                    <span class="badge badge-success"><?php echo $postStatus; ?></span>
-                                                    <?php
-                                                } elseif ($postStatus == 'draft') {
-                                                    ?>
-                                                    <span class="badge badge-danger"><?php echo $postStatus; ?></span>
-                                                    <?php
-                                                } else {
-                                                    ?>
-                                                    <span class="badge badge-primary">Without status</span>
-                                                    <?php
-                                                }
-                                                ?>
-                                            </td>
+                                            <td><span class="badge <?php echo $postStatus == 'published' ? 'badge-success' : 'badge-warning'; ?>"><?php echo ucfirst($postStatus); ?></span></td>
                                             <td><img src="<?php echo $postImage ?>" width="150" height="50" alt="<?php echo $postTitle; ?>" title="<?php echo $postTitle; ?>"></td>
                                             <td><?php echo $postTags; ?></td>
                                             <td class="text-center"><a href="comments.php?page=comments"><?php echo $postCommentCount; ?></a></td>
