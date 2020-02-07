@@ -53,7 +53,7 @@ include 'inc/functions.php';
 
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <a href="#" class="btn btn-sm btn-outline-info">Post a comment</a>
+                                    <a href="#" class="btn btn-sm btn-outline-info mb-0">Post a comment</a>
                                 </div>
                                 <small class="text-muted">Views 0</small>
                             </div>

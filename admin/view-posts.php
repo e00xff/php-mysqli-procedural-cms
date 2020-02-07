@@ -63,7 +63,7 @@
                                 </thead>
                                 <tbody>
                                 <?php
-                                $query = "SELECT * FROM posts";
+                                $query = "SELECT * FROM posts ORDER BY id DESC";
                                 $result = mysqli_query($connection, $query);
                                 $count = mysqli_num_rows($result);
 
@@ -117,6 +117,37 @@
                                         </tr>
                                         <?php
                                     }
+
+                                    if (isset($_GET['published'])) {
+                                        $postID = $_GET['published'];
+
+                                        $postQuery = "UPDATE `posts` SET `status` = 'published' WHERE `posts`.`id` = {$postID}";
+                                        $postResult = mysqli_query($connection, $postQuery) or die('Query Error: '.mysqli_error($connection));
+
+                                        if ($postResult) {
+                                            redirect('posts.php');
+                                        }
+                                    }
+
+                                    if (isset($_GET['draft'])) {
+                                        $postID = $_GET['draft'];
+
+                                        $postQuery = "UPDATE `posts` SET `status` = 'draft' WHERE `posts`.`id` = {$postID}";
+                                        $postResult = mysqli_query($connection, $postQuery) or die('Query Error: '.mysqli_error($connection));
+
+                                        if ($postResult) {
+                                            redirect('posts.php');
+                                        }
+                                    }
+
+                                    if (isset($_GET['delete'])) {
+                                        $postID = (int)$_GET['delete'];
+                                        $query = "DELETE FROM posts WHERE id = '{$postID}'";
+                                        $result = mysqli_query($connection, $query) or die('Query Error: '.mysqli_error($connection));
+
+                                        redirect('posts.php');
+                                    }
+
                                 } else {
                                     ?>
                                     <tr>
@@ -132,38 +163,6 @@
                             <a href="posts.php?source=new-post" class="btn btn-success btn-sm btn-flat">New Post</a>
                         </div>
                     </div>
-
-                    <?php
-                    if (isset($_GET['published'])) {
-                        $postID = $_GET['published'];
-
-                        $postQuery = "UPDATE `posts` SET `status` = 'published' WHERE `posts`.`id` = {$postID}";
-                        $postResult = mysqli_query($connection, $postQuery) or die('Query Error: '.mysqli_error($connection));
-
-                        if ($postResult) {
-                            redirect('posts.php');
-                        }
-                    }
-
-                    if (isset($_GET['draft'])) {
-                        $postID = $_GET['draft'];
-
-                        $postQuery = "UPDATE `posts` SET `status` = 'draft' WHERE `posts`.`id` = {$postID}";
-                        $postResult = mysqli_query($connection, $postQuery) or die('Query Error: '.mysqli_error($connection));
-
-                        if ($postResult) {
-                            redirect('posts.php');
-                        }
-                    }
-
-                    if (isset($_GET['delete'])) {
-                        $postID = (int)$_GET['delete'];
-                        $query = "DELETE FROM posts WHERE id = '{$postID}'";
-                        $result = mysqli_query($connection, $query) or die('Query Error: '.mysqli_error($connection));
-
-                        header("Location: posts.php?source=view-post");
-                    }
-                    ?>
 
                     <nav aria-label="...">
                         <ul class="pagination pagination-sm">

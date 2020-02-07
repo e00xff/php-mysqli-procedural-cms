@@ -63,12 +63,13 @@
                                 </thead>
                                 <tbody>
                                 <?php
-                                $userQuery = "SELECT * FROM users";
+                                $userQuery = "SELECT * FROM users ORDER BY id DESC";
                                 $userResult = mysqli_query($connection, $userQuery) or die('Query Error: '.mysqli_error($connection));
                                 $userCount = mysqli_num_rows($userResult);
 
                                 if ($userCount > 0) {
                                     while ($userRow = mysqli_fetch_assoc($userResult)) {
+                                        $userID = $userRow['id'];
                                         $photo = !empty($userRow['photo']) ? '../uploads/users/'.$userRow['photo'] : 'https://via.placeholder.com/150x50';
                                         $username = $userRow['username'];
                                         $firstName = $userRow['first_name'];
@@ -86,18 +87,80 @@
                                             <td><?php echo $username; ?></td>
                                             <td><?php echo $email; ?></td>
                                             <td><span class="badge <?php echo $status == 'approved' ? 'badge-success' : 'badge-warning'; ?>"><?php echo ucfirst($status); ?></span></td>
-                                            <td><?php echo $role; ?></td>
+                                            <td><span class="badge <?php echo $role == 'administrator' ? 'bg-gray' : 'bg-light'; ?>"><?php echo ucfirst($role); ?></span></td>
                                             <td><?php echo $date; ?></td>
                                             <td class="text-center">
-                                                <a href="users.php?page=view-user&userID=1" class="btn btn-info btn-xs btn-flat" title="View User"><i class="far fa-eye"></i></a>
-                                                <a href="users.php?page=edit-user&userID=1" class="btn btn-primary btn-xs btn-flat" title="Edit User"><i class="far fa-edit"></i></a>
-                                                <a href="users.php?approved=1" class="btn btn-success btn-xs btn-flat" title="Approve User"><i class="fas fa-check"></i></a>
-                                                <a href="users.php?unapproved=1" class="btn btn-warning btn-xs btn-flat" title="Unapprove User"><i class="fas fa-ban"></i></a>
-                                                <a href="users.php?delete=1" class="btn btn-danger btn-xs btn-flat" onclick="return confirm('Are you sure you want to delete this record?');" title="Remove User"><i class="far fa-trash-alt"></i></a>
+                                                <a href="users.php?page=view-user&userID=<?php echo $userID ?>" class="btn btn-info btn-xs btn-flat" title="View User"><i class="far fa-eye"></i></a>
+                                                <a href="users.php?page=edit-user&userID=<?php echo $userID ?>" class="btn btn-primary btn-xs btn-flat" title="Edit User"><i class="far fa-edit"></i></a>
+
+                                                <a href="users.php?changeToAdm=<?php echo $userID ?>" class="btn btn-secondary btn-xs btn-flat <?php echo $role == 'administrator' ? 'disabled' : ''; ?>" title="Change to admin"><i class="fas fa-user-astronaut"></i></a>
+                                                <a href="users.php?changeToSub=<?php echo $userID ?>" class="btn btn-secondary btn-xs btn-flat <?php echo $role == 'subscriber' ? 'disabled' : ''; ?>" title="Change to subscriber"><i class="fas fa-user-alt"></i></a>
+
+                                                <a href="users.php?approved=<?php echo $userID ?>" class="btn btn-success btn-xs btn-flat <?php echo $status == 'approved' ? 'disabled' : ''; ?>" title="Approve User"><i class="fas fa-check"></i></a>
+                                                <a href="users.php?unapproved=<?php echo $userID ?>" class="btn btn-warning btn-xs btn-flat <?php echo $status == 'unapproved' ? 'disabled' : ''; ?>" title="Unapprove User"><i class="fas fa-ban"></i></a>
+
+                                                <a href="users.php?delete=<?php echo $userID ?>" class="btn btn-danger btn-xs btn-flat" onclick="return confirm('Are you sure you want to delete this record?');" title="Remove User"><i class="far fa-trash-alt"></i></a>
                                             </td>
                                         </tr>
                                         <?php
                                     }
+
+                                    if (isset($_GET['changeToAdm'])) {
+                                        $userID = $_GET['changeToAdm'];
+
+                                        $userQuery = "UPDATE `users` SET `role` = 'administrator' WHERE `users`.`id` = {$userID}";
+                                        $userResult = mysqli_query($connection, $userQuery) or die('Query Error: '.mysqli_error($connection));
+
+                                        if ($userResult) {
+                                            redirect('users.php');
+                                        }
+                                    }
+
+                                    if (isset($_GET['changeToSub'])) {
+                                        $userID = $_GET['changeToSub'];
+
+                                        $userQuery = "UPDATE `users` SET `role` = 'subscriber' WHERE `users`.`id` = {$userID}";
+                                        $userResult = mysqli_query($connection, $userQuery) or die('Query Error: '.mysqli_error($connection));
+
+                                        if ($userResult) {
+                                            redirect('users.php');
+                                        }
+                                    }
+
+
+                                    if (isset($_GET['approved'])) {
+                                        $userID = $_GET['approved'];
+
+                                        $userQuery = "UPDATE `users` SET `status` = 'approved' WHERE `users`.`id` = {$userID}";
+                                        $userResult = mysqli_query($connection, $userQuery) or die('Query Error: '.mysqli_error($connection));
+
+                                        if ($userResult) {
+                                            redirect('users.php');
+                                        }
+                                    }
+
+                                    if (isset($_GET['unapproved'])) {
+                                        $userID = $_GET['unapproved'];
+
+                                        $userQuery = "UPDATE `users` SET `status` = 'unapproved' WHERE `users`.`id` = {$userID}";
+                                        $userResult = mysqli_query($connection, $userQuery) or die('Query Error: '.mysqli_error($connection));
+
+                                        if ($userResult) {
+                                            redirect('users.php');
+                                        }
+                                    }
+
+                                    if (isset($_GET['delete'])) {
+                                        $userID = (int)$_GET['delete'];
+
+                                        $userQuery = "DELETE FROM users WHERE id = {$userID}";
+                                        $userResult = mysqli_query($connection, $userQuery) or die('Query Error: '.mysqli_error($connection));
+                                        if ($userResult) {
+                                            redirect('users.php');
+                                        }
+                                    }
+
+
                                 } else {
                                     ?>
                                         <tr>
