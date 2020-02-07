@@ -100,13 +100,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="view-users.php" class="nav-link">
+                            <a href="users.php?page=view-users" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>View Users</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="new-user.php" class="nav-link">
+                            <a href="users.php?page=new-user" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>New User</p>
                             </a>

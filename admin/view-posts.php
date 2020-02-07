@@ -124,14 +124,10 @@
                                             <td class="text-center"><a href="comments.php?page=comments"><?php echo $postCommentCount; ?></a></td>
                                             <td><?php echo $postDate; ?></td>
                                             <td class="text-center">
-                                                <a href="posts.php?published=<?php echo $postID; ?>" class="btn btn-success btn-xs btn-flat <?php echo $postStatus == 'published' ? 'disabled' : ''; ?>" title="Published">
-                                                    <i class="fas fa-check"></i>
-                                                </a>
-                                                <a href="posts.php?draft=<?php echo $postID; ?>" class="btn btn-warning btn-xs btn-flat <?php echo $postStatus == 'draft' ? 'disabled' : ''; ?>" title="Draft">
-                                                    <i class="fas fa-ban"></i>
-                                                </a>
-                                                <a href="posts.php?source=view-post" class="btn btn-info btn-xs btn-flat" title="View Post"><i class="far fa-eye"></i></a>
+                                                <a href="posts.php?source=view-post&postID=<?php echo $postID; ?>" class="btn btn-info btn-xs btn-flat" title="View Post"><i class="far fa-eye"></i></a>
                                                 <a href="posts.php?source=edit-post&postID=<?php echo $postID; ?>" class="btn btn-primary btn-xs btn-flat" title="Edit Post"><i class="far fa-edit"></i></a>
+                                                <a href="posts.php?published=<?php echo $postID; ?>" class="btn btn-success btn-xs btn-flat <?php echo $postStatus == 'published' ? 'disabled' : ''; ?>" title="Publish Post"><i class="fas fa-check"></i></a>
+                                                <a href="posts.php?draft=<?php echo $postID; ?>" class="btn btn-warning btn-xs btn-flat <?php echo $postStatus == 'draft' ? 'disabled' : ''; ?>" title="Draft Post"><i class="fas fa-ban"></i></a>
                                                 <a href="posts.php?delete=<?php echo $postID; ?>" class="btn btn-danger btn-xs btn-flat" onclick="return confirm('Are you sure you want to delete this record?');" title="Remove Post"><i class="far fa-trash-alt"></i></a>
                                             </td>
                                         </tr>
