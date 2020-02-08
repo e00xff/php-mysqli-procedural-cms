@@ -1,21 +1,18 @@
-<?php
-include 'inc/db.php';
-include 'inc/functions.php';
-?>
+<?php include 'core/init.php'; ?>
 <!doctype html>
 <html lang="en">
 <head>
-    <?php include 'inc/head.php'; ?>
+    <?php include 'includes/head.php'; ?>
 </head>
 <body>
 
-<?php include 'inc/header.php'; ?>
+<?php include 'includes/header.php'; ?>
 
 <main role="main" class="wrapper">
     <section class="container">
         <div class="row">
             <div class="col-md-3">
-                <?php include 'inc/sidebar.php'; ?>
+                <?php include 'includes/sidebar.php'; ?>
             </div>
             <div class="col-md-9">
                 <nav aria-label="breadcrumb">
@@ -74,7 +71,7 @@ include 'inc/functions.php';
     </section>
 </main>
 
-<?php include 'inc/footer.php'; ?>
+<?php include 'includes/footer.php'; ?>
 
 </body>
 </html>

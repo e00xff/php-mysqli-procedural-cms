@@ -1,6 +1,24 @@
 <?php
+function kill() {
+    session_destroy();
+    die();
+}
 
-function redirect($filename) {
+function stop() {
+    die();
+}
+
+function dd($value) {
+    var_dump($value);
+    die();
+}
+
+function redirect($value) {
+    header("Location: $value");
+    die();
+}
+
+function redirect2($filename) {
     if (!headers_sent())
         header('Location: '.$filename);
     else {
@@ -12,3 +30,5 @@ function redirect($filename) {
         echo '</noscript>';
     }
 }
+
+?>

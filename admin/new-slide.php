@@ -1,19 +1,15 @@
-<?php
-include '../inc/db.php';
-include 'inc/functions.php';
-ob_start();
-?>
+<?php include 'core/init.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php include 'inc/head.php'; ?>
+    <?php include 'includes/head.php'; ?>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed text-sm">
 
 <div class="wrapper">
 
-    <?php include 'inc/nav.php'; ?>
-    <?php include 'inc/sidebar.php'; ?>
+    <?php include 'includes/nav.php'; ?>
+    <?php include 'includes/sidebar.php'; ?>
 
     <div class="content-wrapper">
 
@@ -88,11 +84,11 @@ ob_start();
 
     </div>
 
-    <?php include 'inc/footer.php'; ?>
+    <?php include 'includes/footer.php'; ?>
 
 </div>
 
-<?php include 'inc/scripts.php'; ?>
+<?php include 'includes/scripts.php'; ?>
 
 </body>
 </html>
