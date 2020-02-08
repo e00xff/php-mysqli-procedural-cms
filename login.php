@@ -18,29 +18,53 @@ include 'inc/functions.php';
                 <?php include 'inc/sidebar.php'; ?>
             </div>
             <div class="col-md-9">
+
                 <div class="card mb-3">
                     <div class="card-header">
                         Login
                     </div>
                     <div class="card-body">
-                        <form method="post" action="">
+                        <form method="post" action="login.php">
                             <div class="form-group">
-                                <label for="email">E-Mail</label>
-                                <input type="email" class="form-control" id="email" name="email">
+                                <label for="username">Username</label>
+                                <input type="text" class="form-control" id="username" name="username">
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
                                 <input type="password" class="form-control" id="password" name="password">
                             </div>
-                            <div class="form-group form-check">
-                                <input type="checkbox" class="form-check-input" id="rememberMe" name="rememberMe">
-                                <label class="form-check-label" for="rememberMe">Remember me</label>
-                            </div>
-                            <button type="submit" name="submit" class="btn btn-primary btn-sm">Login</button>
+                            <button type="submit" name="login" class="btn btn-primary btn-sm">Login</button>
                             <a href="forgot.php" class="btn btn-light btn-sm">Forgot password?</a>
                         </form>
                     </div>
                 </div>
+
+                <?php
+                if (isset($_POST['login'])) {
+                    $username = mysqli_real_escape_string($connection, $_POST['username']);
+                    $password = mysqli_real_escape_string($connection, $_POST['password']);
+
+                    $query = "SELECT * FROM `users` WHERE username = '$username' ";
+                    $result = mysqli_query($connection, $query) or die('Query Error: '.mysqli_error($connection));
+                    $row = mysqli_fetch_assoc($result);
+
+                    $userID = $row['id'];
+                    $dbUsername = $row['username'];
+                    $dbPassword = $row['password'];
+                    $dbFirstName = $row['first_name'];
+                    $dbLastName = $row['last_name'];
+                    $dbRole = $row['role'];
+
+                    if ($username !== $dbUsername && $password !== $dbPassword) {
+                        redirect('login.php');
+                    } elseif($username == $dbUsername && $password == $dbPassword) {
+                        redirect('admin');
+                    } else {
+                        redirect('login.php');
+                    }
+                }
+                ?>
+
             </div>
         </div>
     </section>
