@@ -142,8 +142,14 @@
 
                                     if (isset($_GET['delete'])) {
                                         $postID = (int)$_GET['delete'];
-                                        $query = "DELETE FROM posts WHERE id = '{$postID}'";
-                                        $result = mysqli_query($connection, $query) or die('Query Error: '.mysqli_error($connection));
+
+                                        // Delete post comment
+                                        $postCommentsQuery = "DELETE FROM comments WHERE post_id = {$postID}";
+                                        $postCommentsResult = mysqli_query($connection, $postCommentsQuery) or die('Query Error: '.mysqli_error($connection));
+
+                                        // Delete post
+                                        $postQuery = "DELETE FROM posts WHERE id = {$postID}";
+                                        $postResult = mysqli_query($connection, $postQuery) or die('Query Error: '.mysqli_error($connection));
 
                                         redirect('posts.php');
                                     }
@@ -151,7 +157,7 @@
                                 } else {
                                     ?>
                                     <tr>
-                                        <td colspan="10">No records found</td>
+                                        <td colspan="10">Add a new post</td>
                                     </tr>
                                     <?php
                                 }
