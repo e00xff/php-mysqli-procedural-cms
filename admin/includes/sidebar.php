@@ -2,6 +2,7 @@
 $userID = $_SESSION['id'];
 $fullName = $_SESSION['first_name'].' '.$_SESSION['last_name'];
 
+// Profile Photo
 $userQuery = "SELECT * FROM users WHERE id = {$userID}";
 $userResult = mysqli_query($connection, $userQuery) or die('Query Error: '.mysqli_error());
 $userRow = mysqli_fetch_assoc($userResult);

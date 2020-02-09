@@ -33,17 +33,32 @@
         $categoriesResult = mysqli_query($connection, $categoriesQuery);
         $categoriesCount = mysqli_num_rows($categoriesResult);
 
+        // Posts
         $postsQuery = "SELECT * FROM posts";
         $postsResult = mysqli_query($connection, $postsQuery);
         $postsCount = mysqli_num_rows($postsResult);
 
+        $unpublishedPostsQuery = "SELECT * FROM posts WHERE status = 'unpublished'";
+        $unpublishedPostsResult = mysqli_query($connection, $unpublishedPostsQuery);
+        $unpublishedPostsCount = mysqli_num_rows($unpublishedPostsResult);
+
+        // Comments
         $commentsQuery = "SELECT * FROM comments";
         $commentsResult = mysqli_query($connection, $commentsQuery);
         $commentsCounts = mysqli_num_rows($commentsResult);
 
+        $unapprovedCommentsQuery = "SELECT * FROM comments WHERE status = 'unapproved'";
+        $unapprovedCommentsResult = mysqli_query($connection, $unapprovedCommentsQuery);
+        $unapprovedCommentsCount = mysqli_num_rows($unapprovedCommentsResult);
+
+        // Users
         $usersQuery = "SELECT * FROM users";
         $usersResult = mysqli_query($connection, $usersQuery);
         $usersCounts = mysqli_num_rows($usersResult);
+
+        $usersSubscriberQuery = "SELECT * FROM users WHERE role = 'subscriber'";
+        $usersSubscriberResult = mysqli_query($connection, $usersSubscriberQuery);
+        $usersSubscriberCount = mysqli_num_rows($usersSubscriberResult);
         ?>
 
         <section class="content">
@@ -110,6 +125,24 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div class="card card-danger">
+                            <div class="card-header">
+                                <h3 class="card-title">Statistics</h3>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div id="columnchart_material" style="width: 100%; height: 500px;"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -120,6 +153,38 @@
 </div>
 
 <?php include 'includes/scripts.php'; ?>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', {'packages':['bar']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Data', 'Count'],
+            <?php
+            $elementText = ['Categories', 'Blog Posts', 'Unpublished Posts', 'Comments', 'Unapproved Comments', 'Users', 'Subscriber Role Users'];
+            $elementCount = [$categoriesCount, $postsCount, $unpublishedPostsCount, $commentsCounts, $unapprovedCommentsCount, $usersCounts, $usersSubscriberCount];
+
+            for ($i = 0; $i < 7; $i++) {
+                echo "['{$elementText[$i]}'" . "," . "{$elementCount[$i]}],";
+            }
+            ?>
+        ]);
+
+        var options = {
+            chart: {
+                title: 'Content Management System',
+                subtitle: 'Statistics about Categories, Posts, Comments, Users',
+            }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+    }
+</script>
+
 
 </body>
 </html>
