@@ -169,7 +169,7 @@
                     }
 
                     if (isset($_GET['delete'])) {
-                        $userID = (int)$_GET['delete'];
+                        $userID = mysqli_real_escape_string($connection, $_GET['delete']);
 
                         // Step 1: Delete post related comment
                         $postQuery = "SELECT * FROM posts";
@@ -185,10 +185,13 @@
                         $userPostResult = mysqli_query($connection, $userPostQuery) or die('Query Error: '.mysqli_error($connection));
 
                         // Step 3: Delete user account
-                        $userQuery = "DELETE FROM users WHERE id = {$userID}";
-                        $userResult = mysqli_query($connection, $userQuery) or die('Query Error: '.mysqli_error($connection));
-                        if ($userResult) {
-                            redirect('users.php');
+                        if (isset($_SESSION['role']) && $_SESSION['role'] == 'administrator') {
+
+                            $userQuery = "DELETE FROM users WHERE id = {$userID}";
+                            $userResult = mysqli_query($connection, $userQuery) or die('Query Error: '.mysqli_error($connection));
+                            if ($userResult) {
+                                redirect('users.php');
+                            }
                         }
                     }
 
