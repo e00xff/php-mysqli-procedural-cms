@@ -11,11 +11,7 @@
 <main role="main" class="wrapper">
     <section class="container">
         <div class="row">
-            <div class="col-md-3">
-                <?php include 'includes/sidebar.php'; ?>
-            </div>
-            <div class="col-md-9">
-
+            <div class="col-md-12">
                 <form method="post" action="#">
                     <div class="card mb-3">
                         <div class="card-header">
@@ -35,37 +31,31 @@
                         </div>
                     </div>
                 </form>
-
                 <?php
                 if (isset($_POST['login'])) {
-                    $username = $_POST['username'];
-                    $password = $_POST['password'];
 
-                    $username = mysqli_real_escape_string($connection, $username);
-                    $password = mysqli_real_escape_string($connection, $password);
+                    $username = mysqli_real_escape_string($connection, $_POST['username']);
+                    $password = mysqli_real_escape_string($connection, $_POST['password']);
 
-                    $query = "SELECT * FROM users WHERE username = '{$username}' ";
-                    $select_user_query = mysqli_query($connection, $query);
+                    $loginQuery = "SELECT * FROM users WHERE username = '{$username}' ";
+                    $loginResult = mysqli_query($connection, $loginQuery) or die('Query Error: '.mysqli_error($connection));
 
-                    if (!$select_user_query) {
-                        die("Query Failed". mysqli_error($connection));
+                    while ($row = mysqli_fetch_array($loginResult)) {
+                        $dbUserID = $row['id'];
+                        $dbUsername = $row['username'];
+                        $dbUserPassword = $row['password'];
+                        $dbUserFirstName = $row['first_name'];
+                        $dbUserLastName = $row['last_name'];
+                        $dbUserRole = $row['role'];
                     }
 
-                    while ($row = mysqli_fetch_array($select_user_query)) {
-                        $db_user_id = $row['id'];
-                        $db_username = $row['username'];
-                        $db_user_password = $row['password'];
-                        $db_user_first_name = $row['first_name'];
-                        $db_user_last_name = $row['last_name'];
-                        $db_user_role = $row['role'];
-                    }
+                    if ($username === $dbUsername && $password === $dbUserPassword) {
 
-                    if ($username === $db_username && $password === $db_user_password) {
-
-                        $_SESSION['username'] = $db_username;
-                        $_SESSION['first_name'] = $db_user_first_name;
-                        $_SESSION['last_name'] = $db_user_last_name;
-                        $_SESSION['role'] = $db_user_role;
+                        $_SESSION['id'] = $dbUserID;
+                        $_SESSION['username'] = $dbUsername;
+                        $_SESSION['first_name'] = $dbUserFirstName;
+                        $_SESSION['last_name'] = $dbUserLastName;
+                        $_SESSION['role'] = $dbUserRole;
 
                         header("Location: admin");
                     } else {
@@ -73,7 +63,6 @@
                     }
                 }
                 ?>
-
             </div>
         </div>
     </section>

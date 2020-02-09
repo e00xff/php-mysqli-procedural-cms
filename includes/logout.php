@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+$_SESSION['id'] = null;
 $_SESSION['username'] = null;
 $_SESSION['first_name'] = null;
 $_SESSION['last_name'] = null;

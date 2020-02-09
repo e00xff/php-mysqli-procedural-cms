@@ -1,3 +1,11 @@
+<?php
+$userID = $_SESSION['id'];
+$fullName = $_SESSION['first_name'].' '.$_SESSION['last_name'];
+
+$userQuery = "SELECT * FROM users WHERE id = {$userID}";
+$userResult = mysqli_query($connection, $userQuery) or die('Query Error: '.mysqli_error());
+$userRow = mysqli_fetch_assoc($userResult);
+?>
 <aside class="main-sidebar sidebar-dark-danger elevation-4">
     <a href="javascript:void(0)" class="brand-link navbar-navy text-sm">
         <img src="dist/img/AdminLTELogo.png" alt="CMS" class="brand-image img-circle elevation-3 bg-white" style="opacity: .8">
@@ -7,10 +15,10 @@
     <div class="sidebar">
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="dist/img/users/levan_eradze.png" class="img-circle elevation-2" alt="Levan Eradze">
+                <img src="<?php echo !empty($userRow['photo']) ? '../uploads/users/' . $userRow['photo'] : 'https://via.placeholder.com/150x50'; ?>" class="img-circle elevation-2" alt="<?php echo $fullName; ?>">
             </div>
             <div class="info">
-                <a href="edit-my-profile.php" class="d-block">Levan Eradze</a>
+                <a href="edit-my-profile.php" class="d-block"><?php echo $fullName; ?></a>
             </div>
         </div>
         <nav class="mt-2">

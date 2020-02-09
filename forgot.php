@@ -11,10 +11,7 @@
 <main role="main" class="wrapper">
     <section class="container">
         <div class="row">
-            <div class="col-md-3">
-                <?php include 'includes/sidebar.php'; ?>
-            </div>
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="card mb-3">
                     <div class="card-header">
                         Forgot Password?
