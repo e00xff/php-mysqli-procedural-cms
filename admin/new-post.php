@@ -79,7 +79,7 @@
                                         <label class="custom-file-label" for="photo">Choose file...</label>
                                     </div>
                                 </div>
-                                <div class="form-group mb-0">
+                                <div class="form-group">
                                     <label for="excerpt">Excerpt</label>
                                     <textarea class="form-control textarea" id="excerpt" name="excerpt" rows="3"></textarea>
                                 </div>

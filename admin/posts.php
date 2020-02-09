@@ -3,6 +3,8 @@
 <html lang="en">
 <head>
     <?php include 'includes/head.php'; ?>
+
+    <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed text-sm">
 
@@ -32,6 +34,41 @@
 </div>
 
 <?php include 'includes/scripts.php'; ?>
+
+<script src="plugins/summernote/summernote-bs4.min.js"></script>
+<script>
+$(function () {
+    $('#excerpt').summernote({
+        placeholder: 'Hello stand alone ui',
+        tabsize: 2,
+        height: 60,
+        toolbar: [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview', 'help']]
+        ]
+    });
+
+    $('#content').summernote({
+        placeholder: 'Hello stand alone ui',
+        tabsize: 2,
+        height: 200,
+        toolbar: [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview', 'help']]
+        ]
+    });
+});
+</script>
 
 </body>
 </html>
