@@ -27,14 +27,32 @@
                 </div>
             </div>
         </div>
- 
+
+        <?php
+        $categoriesQuery = "SELECT * FROM categories";
+        $categoriesResult = mysqli_query($connection, $categoriesQuery);
+        $categoriesCount = mysqli_num_rows($categoriesResult);
+
+        $postsQuery = "SELECT * FROM posts";
+        $postsResult = mysqli_query($connection, $postsQuery);
+        $postsCount = mysqli_num_rows($postsResult);
+
+        $commentsQuery = "SELECT * FROM comments";
+        $commentsResult = mysqli_query($connection, $commentsQuery);
+        $commentsCounts = mysqli_num_rows($commentsResult);
+
+        $usersQuery = "SELECT * FROM users";
+        $usersResult = mysqli_query($connection, $usersQuery);
+        $usersCounts = mysqli_num_rows($usersResult);
+        ?>
+
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-3 col-6">
                         <div class="small-box bg-danger">
                             <div class="inner">
-                                <h3>0</h3>
+                                <h3><?php echo $categoriesCount; ?></h3>
                                 <p>Categories</p>
                             </div>
                             <div class="icon">
@@ -46,7 +64,7 @@
                     <div class="col-lg-3 col-6">
                         <div class="small-box bg-danger">
                             <div class="inner">
-                                <h3>0</h3>
+                                <h3><?php echo $postsCount; ?></h3>
                                 <p>Posts</p>
                             </div>
                             <div class="icon">
@@ -58,7 +76,7 @@
                     <div class="col-lg-3 col-6">
                         <div class="small-box bg-danger">
                             <div class="inner">
-                                <h3>0</h3>
+                                <h3><?php echo $commentsCounts; ?></h3>
                                 <p>Comments</p>
                             </div>
                             <div class="icon">
@@ -82,7 +100,7 @@
                     <div class="col-lg-3 col-6">
                         <div class="small-box bg-danger">
                             <div class="inner">
-                                <h3>0</h3>
+                                <h3><?php echo $usersCounts; ?></h3>
                                 <p>Users</p>
                             </div>
                             <div class="icon">
