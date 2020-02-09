@@ -31,34 +31,42 @@
         <?php
         $categoriesQuery = "SELECT * FROM categories";
         $categoriesResult = mysqli_query($connection, $categoriesQuery);
-        $categoriesCount = mysqli_num_rows($categoriesResult);
+        $viewAllCategories = mysqli_num_rows($categoriesResult);
 
         // Posts
         $postsQuery = "SELECT * FROM posts";
         $postsResult = mysqli_query($connection, $postsQuery);
-        $postsCount = mysqli_num_rows($postsResult);
+        $viewAllPosts = mysqli_num_rows($postsResult);
+
+        $publishedPostsQuery = "SELECT * FROM posts WHERE status = 'published'";
+        $publishedPostsResult = mysqli_query($connection, $publishedPostsQuery);
+        $viewPublishedPosts = mysqli_num_rows($publishedPostsResult);
 
         $unpublishedPostsQuery = "SELECT * FROM posts WHERE status = 'unpublished'";
         $unpublishedPostsResult = mysqli_query($connection, $unpublishedPostsQuery);
-        $unpublishedPostsCount = mysqli_num_rows($unpublishedPostsResult);
+        $viewUnpublishedPosts = mysqli_num_rows($unpublishedPostsResult);
 
         // Comments
         $commentsQuery = "SELECT * FROM comments";
         $commentsResult = mysqli_query($connection, $commentsQuery);
-        $commentsCounts = mysqli_num_rows($commentsResult);
+        $viewAllComments = mysqli_num_rows($commentsResult);
+
+        $approvedCommentsQuery = "SELECT * FROM comments WHERE status = 'approved'";
+        $approvedCommentsResult = mysqli_query($connection, $approvedCommentsQuery);
+        $viewApprovedComments = mysqli_num_rows($approvedCommentsResult);
 
         $unapprovedCommentsQuery = "SELECT * FROM comments WHERE status = 'unapproved'";
         $unapprovedCommentsResult = mysqli_query($connection, $unapprovedCommentsQuery);
-        $unapprovedCommentsCount = mysqli_num_rows($unapprovedCommentsResult);
+        $viewUnapprovedComments = mysqli_num_rows($unapprovedCommentsResult);
 
         // Users
         $usersQuery = "SELECT * FROM users";
         $usersResult = mysqli_query($connection, $usersQuery);
-        $usersCounts = mysqli_num_rows($usersResult);
+        $viewAllUsers = mysqli_num_rows($usersResult);
 
         $usersSubscriberQuery = "SELECT * FROM users WHERE role = 'subscriber'";
         $usersSubscriberResult = mysqli_query($connection, $usersSubscriberQuery);
-        $usersSubscriberCount = mysqli_num_rows($usersSubscriberResult);
+        $viewSubscribers = mysqli_num_rows($usersSubscriberResult);
         ?>
 
         <section class="content">
@@ -67,7 +75,7 @@
                     <div class="col-lg-3 col-6">
                         <div class="small-box bg-danger">
                             <div class="inner">
-                                <h3><?php echo $categoriesCount; ?></h3>
+                                <h3><?php echo $viewAllCategories; ?></h3>
                                 <p>Categories</p>
                             </div>
                             <div class="icon">
@@ -79,7 +87,7 @@
                     <div class="col-lg-3 col-6">
                         <div class="small-box bg-danger">
                             <div class="inner">
-                                <h3><?php echo $postsCount; ?></h3>
+                                <h3><?php echo $viewAllPosts; ?></h3>
                                 <p>Posts</p>
                             </div>
                             <div class="icon">
@@ -91,7 +99,7 @@
                     <div class="col-lg-3 col-6">
                         <div class="small-box bg-danger">
                             <div class="inner">
-                                <h3><?php echo $commentsCounts; ?></h3>
+                                <h3><?php echo $viewAllComments; ?></h3>
                                 <p>Comments</p>
                             </div>
                             <div class="icon">
@@ -115,7 +123,7 @@
                     <div class="col-lg-3 col-6">
                         <div class="small-box bg-danger">
                             <div class="inner">
-                                <h3><?php echo $usersCounts; ?></h3>
+                                <h3><?php echo $viewAllUsers; ?></h3>
                                 <p>Users</p>
                             </div>
                             <div class="icon">
@@ -163,10 +171,29 @@
         var data = google.visualization.arrayToDataTable([
             ['Data', 'Count'],
             <?php
-            $elementText = ['Categories', 'Blog Posts', 'Unpublished Posts', 'Comments', 'Unapproved Comments', 'Users', 'Subscriber Role Users'];
-            $elementCount = [$categoriesCount, $postsCount, $unpublishedPostsCount, $commentsCounts, $unapprovedCommentsCount, $usersCounts, $usersSubscriberCount];
+            $elementText = [
+                'All Posts',
+                'Published Posts',
+                'Unpublished Posts',
+                'All Categories',
+                'All Comments',
+                'Approved Comments',
+                'Unapproved Comments',
+                'All Users',
+                'Subscribers'];
+            $elementCount = [
+                $viewAllPosts,
+                $viewPublishedPosts,
+                $viewUnpublishedPosts,
+                $viewAllCategories,
+                $viewAllComments,
+                $viewApprovedComments,
+                $viewUnapprovedComments,
+                $viewAllUsers,
+                $viewSubscribers
+            ];
 
-            for ($i = 0; $i < 7; $i++) {
+            for ($i = 0; $i < 9; $i++) {
                 echo "['{$elementText[$i]}'" . "," . "{$elementCount[$i]}],";
             }
             ?>
