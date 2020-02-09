@@ -63,7 +63,8 @@
                                 </thead>
                                 <tbody>
                                 <?php
-                                $userQuery = "SELECT * FROM users ORDER BY id DESC";
+                                $authUserID = $_SESSION['id'];
+                                $userQuery = "SELECT * FROM users WHERE id <> {$authUserID} ORDER BY id DESC";
                                 $userResult = mysqli_query($connection, $userQuery) or die('Query Error: '.mysqli_error($connection));
                                 $userCount = mysqli_num_rows($userResult);
 

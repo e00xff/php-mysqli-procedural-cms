@@ -55,22 +55,6 @@
                             </div>
                             <form method="post" action="#" enctype="multipart/form-data" role="form">
                                 <div class="card-body">
-                                    <div class="form-group">
-                                        <label for="role">User Role</label>
-                                        <select class="form-control" id="role" name="role">
-                                            <option disabled>Select Options</option>
-                                            <option value="administrator" <?php if ($role == "administrator" ) echo "selected" ; ?>>Administrator</option>
-                                            <option value="subscriber" <?php if ($role == "subscriber" ) echo "selected" ; ?>>Subscriber</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="status">User Status</label>
-                                        <select class="form-control" id="status" name="status">
-                                            <option disabled>Select Options</option>
-                                            <option value="subscriber" <?php if ($status == "approved" ) echo "selected" ; ?>>Approved</option>
-                                            <option value="unapproved" <?php if ($status == "unapproved" ) echo "selected" ; ?>>Unapproved</option>
-                                        </select>
-                                    </div>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -117,8 +101,6 @@
                             $firstName = $_POST['firstName'];
                             $lastName = $_POST['lastName'];
                             $email = $_POST['email'];
-                            $role = $_POST['role'];
-                            $status = $_POST['status'];
                             $date = date('Y-m-y');
 
                             $photo      =  $_FILES['photo']['name'];
@@ -140,8 +122,6 @@
                             $userQuery .= "last_name   = '$lastName', ";
                             $userQuery .= "email= '$email', ";
                             $userQuery .= "photo  = '$photo', ";
-                            $userQuery .= "role  = '$role', ";
-                            $userQuery .= "status  = '$status', ";
                             $userQuery .= "date   = '$date' ";
                             $userQuery .= "WHERE id = $userID";
 
