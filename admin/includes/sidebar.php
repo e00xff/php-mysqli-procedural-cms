@@ -75,29 +75,29 @@ $userRow = mysqli_fetch_assoc($userResult);
                     </a>
                 </li>
 
-                <li class="nav-item has-treeview">
-                    <a href="javascript:void(0)" class="nav-link">
-                        <i class="nav-icon fab fa-slideshare"></i>
-                        <p>
-                            Slider
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="view-slides.php" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>View Photos</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="new-slide.php" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>New Photo</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+<!--                <li class="nav-item has-treeview">-->
+<!--                    <a href="javascript:void(0)" class="nav-link">-->
+<!--                        <i class="nav-icon fab fa-slideshare"></i>-->
+<!--                        <p>-->
+<!--                            Slider-->
+<!--                            <i class="right fas fa-angle-left"></i>-->
+<!--                        </p>-->
+<!--                    </a>-->
+<!--                    <ul class="nav nav-treeview">-->
+<!--                        <li class="nav-item">-->
+<!--                            <a href="view-slides.php" class="nav-link">-->
+<!--                                <i class="far fa-circle nav-icon"></i>-->
+<!--                                <p>View Photos</p>-->
+<!--                            </a>-->
+<!--                        </li>-->
+<!--                        <li class="nav-item">-->
+<!--                            <a href="new-slide.php" class="nav-link">-->
+<!--                                <i class="far fa-circle nav-icon"></i>-->
+<!--                                <p>New Photo</p>-->
+<!--                            </a>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                </li>-->
 
                 <li class="nav-item has-treeview">
                     <a href="javascript:void(0)" class="nav-link">

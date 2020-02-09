@@ -106,61 +106,6 @@
                                         </tr>
                                         <?php
                                     }
-
-                                    if (isset($_GET['changeToAdm'])) {
-                                        $userID = $_GET['changeToAdm'];
-
-                                        $userQuery = "UPDATE `users` SET `role` = 'administrator' WHERE `users`.`id` = {$userID}";
-                                        $userResult = mysqli_query($connection, $userQuery) or die('Query Error: '.mysqli_error($connection));
-
-                                        if ($userResult) {
-                                            redirect('users.php');
-                                        }
-                                    }
-
-                                    if (isset($_GET['changeToSub'])) {
-                                        $userID = $_GET['changeToSub'];
-
-                                        $userQuery = "UPDATE `users` SET `role` = 'subscriber' WHERE `users`.`id` = {$userID}";
-                                        $userResult = mysqli_query($connection, $userQuery) or die('Query Error: '.mysqli_error($connection));
-
-                                        if ($userResult) {
-                                            redirect('users.php');
-                                        }
-                                    }
-
-                                    if (isset($_GET['approved'])) {
-                                        $userID = $_GET['approved'];
-
-                                        $userQuery = "UPDATE `users` SET `status` = 'approved' WHERE `users`.`id` = {$userID}";
-                                        $userResult = mysqli_query($connection, $userQuery) or die('Query Error: '.mysqli_error($connection));
-
-                                        if ($userResult) {
-                                            redirect('users.php');
-                                        }
-                                    }
-
-                                    if (isset($_GET['unapproved'])) {
-                                        $userID = $_GET['unapproved'];
-
-                                        $userQuery = "UPDATE `users` SET `status` = 'unapproved' WHERE `users`.`id` = {$userID}";
-                                        $userResult = mysqli_query($connection, $userQuery) or die('Query Error: '.mysqli_error($connection));
-
-                                        if ($userResult) {
-                                            redirect('users.php');
-                                        }
-                                    }
-
-                                    if (isset($_GET['delete'])) {
-                                        $userID = (int)$_GET['delete'];
-
-                                        $userQuery = "DELETE FROM users WHERE id = {$userID}";
-                                        $userResult = mysqli_query($connection, $userQuery) or die('Query Error: '.mysqli_error($connection));
-                                        if ($userResult) {
-                                            redirect('users.php');
-                                        }
-                                    }
-
                                 } else {
                                     ?>
                                         <tr>
@@ -176,6 +121,78 @@
                             <a href="users.php?page=new-user" class="btn btn-success btn-sm btn-flat">New User</a>
                         </div>
                     </div>
+
+                    <?php
+
+                    if (isset($_GET['changeToAdm'])) {
+                        $userID = $_GET['changeToAdm'];
+
+                        $userQuery = "UPDATE `users` SET `role` = 'administrator' WHERE `users`.`id` = {$userID}";
+                        $userResult = mysqli_query($connection, $userQuery) or die('Query Error: '.mysqli_error($connection));
+
+                        if ($userResult) {
+                            redirect('users.php');
+                        }
+                    }
+
+                    if (isset($_GET['changeToSub'])) {
+                        $userID = $_GET['changeToSub'];
+
+                        $userQuery = "UPDATE `users` SET `role` = 'subscriber' WHERE `users`.`id` = {$userID}";
+                        $userResult = mysqli_query($connection, $userQuery) or die('Query Error: '.mysqli_error($connection));
+
+                        if ($userResult) {
+                            redirect('users.php');
+                        }
+                    }
+
+                    if (isset($_GET['approved'])) {
+                        $userID = $_GET['approved'];
+
+                        $userQuery = "UPDATE `users` SET `status` = 'approved' WHERE `users`.`id` = {$userID}";
+                        $userResult = mysqli_query($connection, $userQuery) or die('Query Error: '.mysqli_error($connection));
+
+                        if ($userResult) {
+                            redirect('users.php');
+                        }
+                    }
+
+                    if (isset($_GET['unapproved'])) {
+                        $userID = $_GET['unapproved'];
+
+                        $userQuery = "UPDATE `users` SET `status` = 'unapproved' WHERE `users`.`id` = {$userID}";
+                        $userResult = mysqli_query($connection, $userQuery) or die('Query Error: '.mysqli_error($connection));
+
+                        if ($userResult) {
+                            redirect('users.php');
+                        }
+                    }
+
+                    if (isset($_GET['delete'])) {
+                        $userID = (int)$_GET['delete'];
+
+                        // Step 1: Delete post related comment
+                        $postQuery = "SELECT * FROM posts";
+                        $postResult = mysqli_query($connection, $postQuery) or die('Query Error: '.mysqli_error($connection));
+                        $postRow = mysqli_fetch_assoc($postResult);
+                        $postID = $postRow['id'];
+
+                        $postRelatedCommentQuery = "DELETE FROM comments WHERE post_id = {$postID}";
+                        $postRelatedCommentResult = mysqli_query($connection, $postRelatedCommentQuery) or die('Query Error: '.mysqli_error($connection));
+
+                        // Step 2: Delete user related post
+                        $userPostQuery = "DELETE FROM posts WHERE author_id = {$userID}";
+                        $userPostResult = mysqli_query($connection, $userPostQuery) or die('Query Error: '.mysqli_error($connection));
+
+                        // Step 3: Delete user account
+                        $userQuery = "DELETE FROM users WHERE id = {$userID}";
+                        $userResult = mysqli_query($connection, $userQuery) or die('Query Error: '.mysqli_error($connection));
+                        if ($userResult) {
+                            redirect('users.php');
+                        }
+                    }
+
+                    ?>
 
                     <nav aria-label="...">
                         <ul class="pagination pagination-sm">

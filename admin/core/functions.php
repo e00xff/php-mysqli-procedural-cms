@@ -142,8 +142,17 @@ function deleteCategories() {
     if (isset($_GET['delete'])) {
         $categoryID = $_GET['delete'];
 
-        $query = "DELETE FROM categories WHERE id = {$categoryID}";
-        $result = mysqli_query($connection, $query) or die('Query Failed: ' . mysqli_error($connection));
+        // step1: Delete post related comment
+        $postCommentsQuery = "DELETE FROM comments WHERE post_id = {$categoryID}";
+        $postCommentsResult = mysqli_query($connection, $postCommentsQuery) or die('Query Error: '.mysqli_error($connection));
+
+        // step2: Delete post related category
+        $postCategoryQuery = "DELETE FROM posts WHERE category_id = {$categoryID}";
+        $postCategoryResult = mysqli_query($connection, $postCategoryQuery) or die('Query Error: '.mysqli_error($connection));
+
+        // step3: Delete category
+        $categoryQuery = "DELETE FROM categories WHERE id = {$categoryID}";
+        $categoryResult = mysqli_query($connection, $categoryQuery) or die('Query Failed: ' . mysqli_error($connection));
 
         header("Location: view-categories.php");
     }

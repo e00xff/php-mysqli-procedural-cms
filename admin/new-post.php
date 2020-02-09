@@ -45,7 +45,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="author">Author</label>
-                                    <input type="text" class="form-control" id="author" name="author">
+                                    <input type="text" class="form-control" id="author" name="author" value="<?php echo $_SESSION['first_name'].' '.$_SESSION['last_name']; ?>">
                                 </div>
                                 <div class="form-group">
                                     <label for="category">Category</label>
@@ -96,7 +96,8 @@
                     </div>
                     <?php
                     if (isset($_POST['submit'])) {
-                        $postCategory = $_POST['category'];
+                        $postCategoryID = $_POST['category'];
+                        $postAuthorID = $_SESSION['id'];
                         $postTitle = $_POST['title'];
                         $postStatus = $_POST['status'];
                         $postTags = $_POST['tags'];
@@ -109,8 +110,8 @@
                         $postPhotoTemp = $_FILES['photo']['tmp_name'];
                         move_uploaded_file($postPhotoTemp, "../dist/img/posts/$postPhoto");
 
-                        $query = "INSERT INTO posts(`category_id`, `title`, `status`, `tags`, `comment_count`, `author`, `date`, `photo`, `excerpt`, `content`) ";
-                        $query .= "VALUES($postCategory, '$postTitle', '$postStatus', '$postTags', '0', '$postAuthor', '$postDate', '$postPhoto', '$postExcerpt', '$postContent')";
+                        $query = "INSERT INTO posts(`category_id`, `author_id`, `title`, `status`, `tags`, `comment_count`, `author`, `date`, `photo`, `excerpt`, `content`) ";
+                        $query .= "VALUES($postCategoryID, $postAuthorID, '$postTitle', '$postStatus', '$postTags', '0', '$postAuthor', '$postDate', '$postPhoto', '$postExcerpt', '$postContent')";
                         $result = mysqli_query($connection, $query) or die('Query Error: '.mysqli_error($connection));
 
                         if ($result) {

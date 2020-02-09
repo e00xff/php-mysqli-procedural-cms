@@ -111,49 +111,12 @@
                                                 <a href="posts.php?source=view-post&postID=<?php echo $postID; ?>" class="btn btn-info btn-xs btn-flat" title="View Post"><i class="far fa-eye"></i></a>
                                                 <a href="posts.php?source=edit-post&postID=<?php echo $postID; ?>" class="btn btn-primary btn-xs btn-flat" title="Edit Post"><i class="far fa-edit"></i></a>
                                                 <a href="posts.php?published=<?php echo $postID; ?>" class="btn btn-success btn-xs btn-flat <?php echo $postStatus == 'published' ? 'disabled' : ''; ?>" title="Publish Post"><i class="fas fa-check"></i></a>
-                                                <a href="posts.php?draft=<?php echo $postID; ?>" class="btn btn-warning btn-xs btn-flat <?php echo $postStatus == 'draft' ? 'disabled' : ''; ?>" title="Draft Post"><i class="fas fa-ban"></i></a>
+                                                <a href="posts.php?unpublished=<?php echo $postID; ?>" class="btn btn-warning btn-xs btn-flat <?php echo $postStatus == 'unpublished' ? 'disabled' : ''; ?>" title="Unpublish Post"><i class="fas fa-ban"></i></a>
                                                 <a href="posts.php?delete=<?php echo $postID; ?>" class="btn btn-danger btn-xs btn-flat" onclick="return confirm('Are you sure you want to delete this record?');" title="Remove Post"><i class="far fa-trash-alt"></i></a>
                                             </td>
                                         </tr>
                                         <?php
                                     }
-
-                                    if (isset($_GET['published'])) {
-                                        $postID = $_GET['published'];
-
-                                        $postQuery = "UPDATE `posts` SET `status` = 'published' WHERE `posts`.`id` = {$postID}";
-                                        $postResult = mysqli_query($connection, $postQuery) or die('Query Error: '.mysqli_error($connection));
-
-                                        if ($postResult) {
-                                            redirect('posts.php');
-                                        }
-                                    }
-
-                                    if (isset($_GET['draft'])) {
-                                        $postID = $_GET['draft'];
-
-                                        $postQuery = "UPDATE `posts` SET `status` = 'draft' WHERE `posts`.`id` = {$postID}";
-                                        $postResult = mysqli_query($connection, $postQuery) or die('Query Error: '.mysqli_error($connection));
-
-                                        if ($postResult) {
-                                            redirect('posts.php');
-                                        }
-                                    }
-
-                                    if (isset($_GET['delete'])) {
-                                        $postID = (int)$_GET['delete'];
-
-                                        // Delete post comment
-                                        $postCommentsQuery = "DELETE FROM comments WHERE post_id = {$postID}";
-                                        $postCommentsResult = mysqli_query($connection, $postCommentsQuery) or die('Query Error: '.mysqli_error($connection));
-
-                                        // Delete post
-                                        $postQuery = "DELETE FROM posts WHERE id = {$postID}";
-                                        $postResult = mysqli_query($connection, $postQuery) or die('Query Error: '.mysqli_error($connection));
-
-                                        redirect('posts.php');
-                                    }
-
                                 } else {
                                     ?>
                                     <tr>
@@ -169,6 +132,46 @@
                             <a href="posts.php?source=new-post" class="btn btn-success btn-sm btn-flat">New Post</a>
                         </div>
                     </div>
+
+                    <?php
+
+                    if (isset($_GET['published'])) {
+                        $postID = $_GET['published'];
+
+                        $postQuery = "UPDATE `posts` SET `status` = 'published' WHERE `posts`.`id` = {$postID}";
+                        $postResult = mysqli_query($connection, $postQuery) or die('Query Error: '.mysqli_error($connection));
+
+                        if ($postResult) {
+                            redirect('posts.php');
+                        }
+                    }
+
+                    if (isset($_GET['unpublished'])) {
+                        $postID = $_GET['unpublished'];
+
+                        $postQuery = "UPDATE `posts` SET `status` = 'unpublished' WHERE `posts`.`id` = {$postID}";
+                        $postResult = mysqli_query($connection, $postQuery) or die('Query Error: '.mysqli_error($connection));
+
+                        if ($postResult) {
+                            redirect('posts.php');
+                        }
+                    }
+
+                    if (isset($_GET['delete'])) {
+                        $postID = (int)$_GET['delete'];
+
+                        // Delete post comment
+                        $postCommentsQuery = "DELETE FROM comments WHERE post_id = {$postID}";
+                        $postCommentsResult = mysqli_query($connection, $postCommentsQuery) or die('Query Error: '.mysqli_error($connection));
+
+                        // Delete post
+                        $postQuery = "DELETE FROM posts WHERE id = {$postID}";
+                        $postResult = mysqli_query($connection, $postQuery) or die('Query Error: '.mysqli_error($connection));
+
+                        redirect('posts.php');
+                    }
+
+                    ?>
 
                     <nav aria-label="...">
                         <ul class="pagination pagination-sm">

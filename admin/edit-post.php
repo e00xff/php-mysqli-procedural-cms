@@ -115,7 +115,8 @@
                         if (isset($_POST['updatePost'])) {
                             $author = $_POST['author'];
                             $title = $_POST['title'];
-                            $category = $_POST['category'];
+                            $categoryID = $_POST['category'];
+                            $authorID = $_SESSION['id'];
                             $status = $_POST['status'];
                             $photo      =  $_FILES['photo']['name'];
                             $photo_temp =  $_FILES['photo']['tmp_name'];
@@ -136,7 +137,8 @@
 
                             $query = "UPDATE posts SET ";
                             $query .="title  = '{$title}', ";
-                            $query .="category_id = '{$category}', ";
+                            $query .="category_id = '{$categoryID}', ";
+                            $query .="author_id = '{$authorID}', ";
                             $query .="date   =  now(), ";
                             $query .="status = '{$status}', ";
                             $query .="tags   = '{$tags}', ";

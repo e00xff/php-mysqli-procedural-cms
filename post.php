@@ -82,33 +82,34 @@
                                     <label for="content">Content</label>
                                     <textarea name="content" id="content" rows="3" class="form-control"></textarea>
                                 </div>
-                                <button type="submit" name="insertComment" class="btn btn-primary btn-sm mb-3">Post a comment</button>
+                                <button type="submit" name="insertComment" class="btn btn-primary btn-sm mb-0">Post a comment</button>
                             </form>
-                            <?php
-                            if (isset($_POST['insertComment'])) {
-                                $commentAuthor = $_POST['author'];
-                                $commentEmail = $_POST['email'];
-                                $commentContent = $_POST['content'];
-                                $commentStatus = 'unapproved';
-                                $commentDate = date("Y-m-d");
-
-                                $commentQuery = "INSERT INTO `comments` (`post_id`, `author`, `email`, `content`, `status`, `date`) ";
-                                $commentQuery .= "VALUES ($postID, '$commentAuthor', '$commentEmail', '$commentContent', '$commentStatus', '$commentDate')";
-                                $commentResult = mysqli_query($connection, $commentQuery) or die('Query Error: '.mysqli_error($connection));
-
-                                $postCommentQuery = "UPDATE posts SET comment_count = comment_count + 1 ";
-                                $postCommentQuery .= "WHERE id = $postID";
-                                $postCommentResult = mysqli_query($connection, $postCommentQuery) or die('Query Error: '.mysqli_error($connection));
-
-                                if ($commentResult) {
-                                    ?>
-                                    <div class="alert alert-primary mb-0" role="alert">The message will be posted by the administrator after moderation.</div>
-                                    <?php
-                                }
-                            }
-                            ?>
                         </div>
                     </div>
+
+                    <?php
+                    if (isset($_POST['insertComment'])) {
+                        $commentAuthor = $_POST['author'];
+                        $commentEmail = $_POST['email'];
+                        $commentContent = $_POST['content'];
+                        $commentStatus = 'unapproved';
+                        $commentDate = date("Y-m-d");
+
+                        $commentQuery = "INSERT INTO `comments` (`post_id`, `author`, `email`, `content`, `status`, `date`) ";
+                        $commentQuery .= "VALUES ($postID, '$commentAuthor', '$commentEmail', '$commentContent', '$commentStatus', '$commentDate')";
+                        $commentResult = mysqli_query($connection, $commentQuery) or die('Query Error: '.mysqli_error($connection));
+
+                        $postCommentQuery = "UPDATE posts SET comment_count = comment_count + 1 ";
+                        $postCommentQuery .= "WHERE id = $postID";
+                        $postCommentResult = mysqli_query($connection, $postCommentQuery) or die('Query Error: '.mysqli_error($connection));
+
+                        if ($commentResult) {
+                            ?>
+                            <div class="alert alert-primary mb-3" role="alert">The message will be posted by the administrator after moderation.</div>
+                            <?php
+                        }
+                    }
+                    ?>
 
                     <div class="card mb-3">
                         <div class="card-header">
