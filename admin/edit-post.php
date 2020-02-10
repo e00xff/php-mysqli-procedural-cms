@@ -150,8 +150,15 @@
                             $updatePost = mysqli_query($connection, $query);
 
                             confirmQuery($updatePost);
-
-                            echo "<p>Post Updated. <a href='../post.php?postID={$postID}'>View Post </a> or <a href='posts.php'>Edit More Posts</a></p>";
+                            ?>
+                            <div class="callout callout-success">
+                                <h5>Post Updated</h5>
+                                <p>
+                                    <a href="../post.php?postID=<?php echo $postID; ?>" class="btn btn-sm btn-flat btn-primary">View Post</a>
+                                    <a href="posts.php" class="btn btn-sm btn-flat btn-info">Edit Posts</a>
+                                </p>
+                            </div>
+                            <?php
                         }
 
                     } else {

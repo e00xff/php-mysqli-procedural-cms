@@ -71,6 +71,37 @@
 
         <section class="content">
             <div class="container-fluid">
+<!--                <div class="row">-->
+<!--                    <div class="col-md-4">-->
+<!--                        <div class="card">-->
+<!--                            <div class="card-header">-->
+<!--                                <h3 class="card-title">Blog Manager</h3>-->
+<!--                            </div>-->
+<!--                            <div class="card-body">-->
+<!--                                <a class="btn btn-app">-->
+<!--                                    <span class="badge bg-danger">--><?php //echo $viewAllCategories; ?><!--</span>-->
+<!--                                    <i class="far fa-list-alt"></i> Categories-->
+<!--                                </a>-->
+<!--                                <a class="btn btn-app">-->
+<!--                                    <span class="badge bg-danger">--><?php //echo $viewAllPosts; ?><!--</span>-->
+<!--                                    <i class="far fa-file-alt"></i> Posts-->
+<!--                                </a>-->
+<!--                                <a class="btn btn-app">-->
+<!--                                    <span class="badge bg-danger">--><?php //echo $viewAllComments; ?><!--</span>-->
+<!--                                    <i class="far fa-comments"></i> Comments-->
+<!--                                </a>-->
+<!--                                <a class="btn btn-app">-->
+<!--                                    <span class="badge bg-danger">0</span>-->
+<!--                                    <i class="fab fa-slideshare"></i> Slides-->
+<!--                                </a>-->
+<!--                                <a class="btn btn-app">-->
+<!--                                    <span class="badge bg-danger">--><?php //echo $viewAllUsers; ?><!--</span>-->
+<!--                                    <i class="fas fa-users"></i> Users-->
+<!--                                </a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
                 <div class="row">
                     <div class="col-lg-3 col-6">
                         <div class="small-box bg-danger">

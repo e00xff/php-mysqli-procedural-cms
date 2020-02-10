@@ -24,33 +24,50 @@
                     $postCount = mysqli_num_rows($postResult);
 
                     $postRow = mysqli_fetch_assoc($postResult);
+                    $postTitle = $postRow['title'];
+                    $postDate = $postRow['date'];
+                    $postCategoryID = $postRow['category_id'];
+                    $postAuthor = $postRow['author'];
+                    $postContent = $postRow['content'];
+
                     $postPhoto = !empty($postRow['photo']) ? 'dist/img/posts/'.$postRow['photo'] : '//placehold.it/1000x250';
+
+
+
                     ?>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                             <li class="breadcrumb-item" aria-current="page"><a href="index.php">News</a></li>
-                            <li class="breadcrumb-item active" aria-current="page"><?php echo $postRow['title']; ?></li>
+                            <li class="breadcrumb-item active" aria-current="page"><?php echo $postTitle; ?></li>
                         </ol>
                     </nav>
 
                     <div class="card mb-3 shadow-sm">
                         <img class="card-img-top" src="<?php echo $postPhoto; ?>" width="1000" height="250" alt="">
                         <div class="card-body">
-                            <h5 class="card-text"><?php echo $postRow['title']; ?></h5>
+                            <h5 class="card-text"><?php echo $postTitle; ?></h5>
                             <hr>
 
                             <ul class="list-unstyled">
-                                <li><strong>Date:</strong> <?php echo $postRow['date']; ?></li>
-                                <li><strong>Category:</strong> <?php echo $postRow['category_id']; ?></li>
-                                <li><strong>Author:</strong> <a href="author.html"><?php echo $postRow['author']; ?></a></li>
+                                <li><strong>Date:</strong> <?php echo $postDate; ?></li>
+                                <li><strong>Category:</strong> <?php echo $postCategoryID; ?></li>
+                                <li><strong>Author:</strong> <a href="author.html"><?php echo $postAuthor; ?></a></li>
                             </ul>
 
-                            <?php echo $postRow['content']; ?>
+                            <?php echo $postContent; ?>
 
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
                                     <a href="#" class="btn btn-sm btn-outline-info mb-0">Post a comment</a>
+
+                                    <?php
+                                    if (isset($_SESSION['role'])) {
+                                        ?>
+                                        <a href="admin/posts.php?source=edit-post&postID=<?php echo $postID; ?>" class="btn btn-sm btn-outline-danger mb-0">Edit Post</a>
+                                        <?php
+                                    }
+                                    ?>
                                 </div>
                                 <small class="text-muted">Views 0</small>
                             </div>

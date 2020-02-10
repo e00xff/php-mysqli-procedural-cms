@@ -18,9 +18,30 @@
                 <li class="nav-item">
                     <a class="nav-link" href="registration.php">Registration</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="login.php">Login</a>
-                </li>
+                <?php
+                if (!isset($_SESSION['role'])) {
+                    ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.php">Login</a>
+                    </li>
+                    <?php
+                } else {
+                    ?>
+                    <li class="nav-item dropdown">
+                        <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <?php echo $_SESSION['first_name'] . ' ' . $_SESSION['last_name']; ?>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions">
+                            <a class="dropdown-item" href="admin">Dashboard</a>
+                            <a class="dropdown-item" href="admin/edit-my-profile.php">Edit Profile</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="includes/logout.php">Log out</a>
+                        </div>
+                    </li>
+                    <?php
+                }
+                ?>
+
             </ul>
         </div>
     </nav>

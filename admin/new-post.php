@@ -115,7 +115,14 @@
                         $result = mysqli_query($connection, $query) or die('Query Error: '.mysqli_error($connection));
 
                         if ($result) {
-                            echo '<p>Post inserted, <a href="posts.php?source=view-posts">view post</a></p>';
+                            ?>
+                            <div class="callout callout-success">
+                                <h5>Post Inserted</h5>
+                                <p>
+                                    <a href="posts.php?source=view-posts" class="btn btn-primary btn-sm">View Post</a>
+                                </p>
+                            </div>
+                            <?php
                         }
                     }
                     ?>
