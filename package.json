@@ -1,0 +1,22 @@
+{
+  "name": "php-mysqli-procedural-cms",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/e00xff/php-mysqli-procedural-cms.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/e00xff/php-mysqli-procedural-cms/issues"
+  },
+  "homepage": "https://github.com/e00xff/php-mysqli-procedural-cms#readme",
+  "dependencies": {
+    "sweetalert2": "^9.7.2"
+  }
+}

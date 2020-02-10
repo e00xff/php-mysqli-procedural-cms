@@ -113,6 +113,7 @@
                                                 <a href="posts.php?published=<?php echo $postID; ?>" class="btn btn-success btn-xs btn-flat <?php echo $postStatus == 'published' ? 'disabled' : ''; ?>" title="Publish Post"><i class="fas fa-check"></i></a>
                                                 <a href="posts.php?unpublished=<?php echo $postID; ?>" class="btn btn-warning btn-xs btn-flat <?php echo $postStatus == 'unpublished' ? 'disabled' : ''; ?>" title="Unpublish Post"><i class="fas fa-ban"></i></a>
                                                 <a href="posts.php?delete=<?php echo $postID; ?>" class="btn btn-danger btn-xs btn-flat" onclick="return confirm('Are you sure you want to delete this record?');" title="Remove Post"><i class="far fa-trash-alt"></i></a>
+                                                <!-- <button onclick="deleteRecord()" id="deleteRecord" type="button" class="btn btn-danger btn-xs btn-flat"><i class="far fa-trash-alt"></i></button> -->
                                             </td>
                                         </tr>
                                         <?php
