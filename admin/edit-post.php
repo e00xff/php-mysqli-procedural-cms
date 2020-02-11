@@ -195,6 +195,7 @@
                             <a href="posts.php" class="btn btn-sm btn-flat btn-info">Edit Posts</a>
                         </p>
                     </div>
+                    <br>
                     <?php
                 }
 

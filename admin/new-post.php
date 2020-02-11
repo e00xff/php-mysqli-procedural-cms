@@ -148,14 +148,20 @@
                 $query .= "VALUES($postCategoryID, $postAuthorID, '$postTitle', '$postStatus', '$postTags', '0', '$postAuthor', '$postDate', '$postPhoto', '$postExcerpt', '$postContent')";
                 $result = mysqli_query($connection, $query) or die('Query Error: '.mysqli_error($connection));
 
+                $thePostID = mysqli_insert_id($connection);
+
                 if ($result) {
                     ?>
                     <div class="callout callout-success mb-3">
                         <h5>Post Inserted</h5>
                         <p>
+                            Post created <a href="../post.php?postID=<?php echo $thePostID; ?>" target="_blank">View Post</a>
+                        </p>
+                        <p>
                             <a href="posts.php?source=view-posts" class="btn btn-primary btn-sm">View Post</a>
                         </p>
                     </div>
+                    <br>
                     <?php
                 }
             }

@@ -94,6 +94,7 @@
                             </div>
                             <div class="card-footer">
                                 <button type="submit" name="submit" class="btn btn-primary btn-sm btn-flat">Apply</button>
+                                <a href="posts.php?source=new-post" class="btn btn-success btn-sm btn-flat">New Post</a>
                             </div>
                         </div>
                         <div class="card card-danger">
@@ -185,7 +186,7 @@
                                 </table>
                             </div>
                             <div class="card-footer">
-                                <a href="posts.php?source=new-post" class="btn btn-success btn-sm btn-flat">New Post</a>
+                                Total Records: <?php echo $count > 0 ? $count : 0; ?>
                             </div>
                         </div>
                     </form>

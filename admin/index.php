@@ -71,96 +71,126 @@
 
         <section class="content">
             <div class="container-fluid">
-<!--                <div class="row">-->
-<!--                    <div class="col-md-4">-->
-<!--                        <div class="card">-->
-<!--                            <div class="card-header">-->
-<!--                                <h3 class="card-title">Blog Manager</h3>-->
-<!--                            </div>-->
-<!--                            <div class="card-body">-->
-<!--                                <a class="btn btn-app">-->
-<!--                                    <span class="badge bg-danger">--><?php //echo $viewAllCategories; ?><!--</span>-->
-<!--                                    <i class="far fa-list-alt"></i> Categories-->
-<!--                                </a>-->
-<!--                                <a class="btn btn-app">-->
-<!--                                    <span class="badge bg-danger">--><?php //echo $viewAllPosts; ?><!--</span>-->
-<!--                                    <i class="far fa-file-alt"></i> Posts-->
-<!--                                </a>-->
-<!--                                <a class="btn btn-app">-->
-<!--                                    <span class="badge bg-danger">--><?php //echo $viewAllComments; ?><!--</span>-->
-<!--                                    <i class="far fa-comments"></i> Comments-->
-<!--                                </a>-->
-<!--                                <a class="btn btn-app">-->
-<!--                                    <span class="badge bg-danger">0</span>-->
-<!--                                    <i class="fab fa-slideshare"></i> Slides-->
-<!--                                </a>-->
-<!--                                <a class="btn btn-app">-->
-<!--                                    <span class="badge bg-danger">--><?php //echo $viewAllUsers; ?><!--</span>-->
-<!--                                    <i class="fas fa-users"></i> Users-->
-<!--                                </a>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
                 <div class="row">
-                    <div class="col-lg-3 col-6">
-                        <div class="small-box bg-danger">
-                            <div class="inner">
-                                <h3><?php echo $viewAllCategories; ?></h3>
-                                <p>Categories</p>
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-lg-4 col-6">
+                                <div class="small-box bg-danger">
+                                    <div class="inner">
+                                        <h3><?php echo $viewAllCategories; ?></h3>
+                                        <p>Categories</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="far fa-list-alt"></i>
+                                    </div>
+                                    <a href="view-categories.php" class="small-box-footer">View Details <i class="fas fa-arrow-circle-right"></i></a>
+                                </div>
                             </div>
-                            <div class="icon">
-                                <i class="far fa-list-alt"></i>
+                            <div class="col-lg-4 col-6">
+                                <div class="small-box bg-danger">
+                                    <div class="inner">
+                                        <h3><?php echo $viewAllPosts; ?></h3>
+                                        <p>Posts</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="far fa-file-alt"></i>
+                                    </div>
+                                    <a href="posts.php?source=view-posts" class="small-box-footer">View Details <i class="fas fa-arrow-circle-right"></i></a>
+                                </div>
                             </div>
-                            <a href="view-categories.php" class="small-box-footer">View Details <i class="fas fa-arrow-circle-right"></i></a>
+                            <div class="col-lg-4 col-6">
+                                <div class="small-box bg-danger">
+                                    <div class="inner">
+                                        <h3><?php echo $viewAllComments; ?></h3>
+                                        <p>Comments</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="far fa-comments"></i>
+                                    </div>
+                                    <a href="comments.php?page=comments" class="small-box-footer">View Details <i class="fas fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-6">
+                                <div class="small-box bg-danger">
+                                    <div class="inner">
+                                        <h3>0</h3>
+                                        <p>Slides</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fab fa-slideshare"></i>
+                                    </div>
+                                    <a href="#" class="small-box-footer">View Details <i class="fas fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-6">
+                                <div class="small-box bg-danger">
+                                    <div class="inner">
+                                        <h3><?php echo $viewAllUsers; ?></h3>
+                                        <p>Users</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <a href="users.php?page=view-users" class="small-box-footer">View Details <i class="fas fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-6">
-                        <div class="small-box bg-danger">
-                            <div class="inner">
-                                <h3><?php echo $viewAllPosts; ?></h3>
-                                <p>Posts</p>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Members Online</h3>
+                                <div class="card-tools">
+                                    <span class="badge badge-danger">8 New Members</span>
+                                </div>
                             </div>
-                            <div class="icon">
-                                <i class="far fa-file-alt"></i>
+                            <div class="card-body p-0">
+                                <ul class="users-list clearfix">
+                                    <li>
+                                        <img src="dist/img/user1-128x128.jpg" alt="User Image">
+                                        <a class="users-list-name" href="#">Alexander Pierce</a>
+                                        <span class="users-list-date">Today</span>
+                                    </li>
+                                    <li>
+                                        <img src="dist/img/user8-128x128.jpg" alt="User Image">
+                                        <a class="users-list-name" href="#">Norman</a>
+                                        <span class="users-list-date">Yesterday</span>
+                                    </li>
+                                    <li>
+                                        <img src="dist/img/user7-128x128.jpg" alt="User Image">
+                                        <a class="users-list-name" href="#">Jane</a>
+                                        <span class="users-list-date">12 Jan</span>
+                                    </li>
+                                    <li>
+                                        <img src="dist/img/user6-128x128.jpg" alt="User Image">
+                                        <a class="users-list-name" href="#">John</a>
+                                        <span class="users-list-date">12 Jan</span>
+                                    </li>
+                                    <li>
+                                        <img src="dist/img/user2-160x160.jpg" alt="User Image">
+                                        <a class="users-list-name" href="#">Alexander</a>
+                                        <span class="users-list-date">13 Jan</span>
+                                    </li>
+                                    <li>
+                                        <img src="dist/img/user5-128x128.jpg" alt="User Image">
+                                        <a class="users-list-name" href="#">Sarah</a>
+                                        <span class="users-list-date">14 Jan</span>
+                                    </li>
+                                    <li>
+                                        <img src="dist/img/user4-128x128.jpg" alt="User Image">
+                                        <a class="users-list-name" href="#">Nora</a>
+                                        <span class="users-list-date">15 Jan</span>
+                                    </li>
+                                    <li>
+                                        <img src="dist/img/user3-128x128.jpg" alt="User Image">
+                                        <a class="users-list-name" href="#">Nadia</a>
+                                        <span class="users-list-date">15 Jan</span>
+                                    </li>
+                                </ul>
                             </div>
-                            <a href="posts.php?source=view-posts" class="small-box-footer">View Details <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-6">
-                        <div class="small-box bg-danger">
-                            <div class="inner">
-                                <h3><?php echo $viewAllComments; ?></h3>
-                                <p>Comments</p>
+                            <div class="card-footer text-center">
+                                <a href="javascript::">View All Users</a>
                             </div>
-                            <div class="icon">
-                                <i class="far fa-comments"></i>
-                            </div>
-                            <a href="comments.php?page=comments" class="small-box-footer">View Details <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-6">
-                        <div class="small-box bg-danger">
-                            <div class="inner">
-                                <h3>0</h3>
-                                <p>Slides</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fab fa-slideshare"></i>
-                            </div>
-                            <a href="#" class="small-box-footer">View Details <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-6">
-                        <div class="small-box bg-danger">
-                            <div class="inner">
-                                <h3><?php echo $viewAllUsers; ?></h3>
-                                <p>Users</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fas fa-users"></i>
-                            </div>
-                            <a href="users.php?page=view-users" class="small-box-footer">View Details <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                 </div>
