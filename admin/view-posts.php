@@ -22,15 +22,69 @@
             <div class="row">
                 <div class="col-lg-12 col-12">
 
-                    <form method="post" action="#">
+                    <?php
+
+                    if(isset($_POST['checkBoxArray'])) {
+                        foreach($_POST['checkBoxArray'] as $postValueId ){
+                            $bulkOptions = $_POST['bulkOptions'];
+
+                            switch($bulkOptions) {
+                                case 'published':
+                                    $query = "UPDATE posts SET status = '{$bulkOptions}' WHERE id = {$postValueId}  ";
+                                    $updateToPublishedStatus = mysqli_query($connection, $query);
+                                    confirmQuery($updateToPublishedStatus);
+                                    break;
+
+                                case 'unpublished':
+                                    $query = "UPDATE posts SET status = '{$bulkOptions}' WHERE id = {$postValueId}  ";
+                                    $updateToUnpublishedStatus = mysqli_query($connection, $query);
+                                    confirmQuery($updateToUnpublishedStatus);
+                                    break;
+
+                                case 'delete':
+                                    $query = "DELETE FROM posts WHERE id = {$postValueId}  ";
+                                    $updateToDeleteStatus = mysqli_query($connection, $query);
+                                    confirmQuery($updateToDeleteStatus);
+                                    break;
+
+                                case 'clone':
+                                    $query = "SELECT * FROM posts WHERE id = '{$postValueId}' ";
+                                    $selectPostQuery = mysqli_query($connection, $query);
+                                    $row = mysqli_fetch_assoc($selectPostQuery);
+
+                                    $postCategoryID = $row['category_id'];
+                                    $postAuthorID   = $row['author_id'];
+                                    $postTitle      = $row['title'];
+                                    $postStatus     = $row['status'];
+                                    $postTags       = $row['tags'];
+                                    $postAuthor     = $row['author'];
+                                    $postDate       = date("Y-m-d");
+                                    $postPhoto      = $row['photo'];
+                                    $postExcerpt    = $row['excerpt'];
+                                    $postContent    = $row['content'];
+
+                                    $query = "INSERT INTO posts(`category_id`, `author_id`, `title`, `status`, `tags`, `comment_count`, `author`, `date`, `photo`, `excerpt`, `content`) ";
+                                    $query .= "VALUES($postCategoryID, $postAuthorID, '$postTitle', '$postStatus', '$postTags', '0', '$postAuthor', '$postDate', '$postPhoto', '$postExcerpt', '$postContent')";
+                                    $copyQuery = mysqli_query($connection, $query);
+
+                                    if(!$copyQuery ) {
+                                        die("QUERY FAILED" . mysqli_error($connection));
+                                    }
+                                    break;
+                            }
+                        }
+                    }
+                    ?>
+
+                    <form action="#" method="post">
                         <div class="card card-danger">
                             <div class="card-body">
                                 <div class="form-group mb-0">
-                                    <div class="input-group" id="bulkOptions">
-                                        <select name="bulk" id="bulk" class="form-control custom-file-label custom-select">
+                                    <div class="input-group">
+                                        <select name="bulkOptions" class="form-control custom-file-label custom-select">
                                             <option selected disabled>- Bulk Options -</option>
-                                            <option value="publish">Publish</option>
-                                            <option value="draft">Unpublish</option>
+                                            <option value="published">Publish</option>
+                                            <option value="unpublished">Unpublish</option>
                                             <option value="delete">Delete</option>
                                             <option value="clone">Clone</option>
                                         </select>
@@ -80,7 +134,7 @@
                                             $postDate = $row['date'];
                                             ?>
                                             <tr>
-                                                <td><input type="checkbox" name="checkBoxArray[]" class="checkBoxes" value="<?php echo $postID; ?>"></td>
+                                                <td><input type="checkbox" class="checkBoxes" name="checkBoxArray[]" value="<?php echo $postID; ?>"></td>
                                                 <td><?php echo $postAuthor; ?></td>
                                                 <td>
                                                     <a href="../post.php?postID=<?php echo $postID; ?>">
