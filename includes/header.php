@@ -1,3 +1,4 @@
+<?php $currentPage = basename($_SERVER['PHP_SELF']); ?>
 <header>
     <nav class="navbar navbar-expand-md navbar-dark bg-danger fixed-top">
         <a class="navbar-brand" href="index.php">CMS</a>
@@ -6,17 +7,17 @@
         </button>
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
+                <li class="nav-item <?php echo $currentPage == 'index.php' ? 'active' : ''; ?>">
                     <a class="nav-link" href="index.php">Blog <span class="sr-only">(Current)</span></a>
                 </li>
             </ul>
 
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                <li class="nav-item">
+                <li class="nav-item <?php echo $currentPage == 'contact.php' ? 'active' : ''; ?>">
                     <a class="nav-link" href="contact.php">Contact</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="registration.php">Registration</a>
+                    <a class="nav-link <?php echo $currentPage == 'registration.php' ? 'active' : ''; ?>" href="registration.php">Registration</a>
                 </li>
                 <?php
                 if (!isset($_SESSION['role'])) {

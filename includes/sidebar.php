@@ -8,8 +8,14 @@
 
             if ($categoryCount > 0) {
                 while ($categoryRow = mysqli_fetch_assoc($categoryResult)) {
+                    $catID = $categoryRow['id'];
+                    $catTitle = $categoryRow['title'];
                     ?>
-                    <li><a href="category.php?categoryID=<?php echo $categoryRow['id']; ?>"><?php echo $categoryRow['title']; ?></a></li>
+                    <li>
+                        <a href="category.php?categoryID=<?php echo $catID; ?>">
+                            <?php echo $catTitle; ?>
+                        </a>
+                    </li>
                     <?php
                 }
             } else {
