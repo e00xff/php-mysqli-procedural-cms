@@ -155,11 +155,12 @@
                                         while ($usersRow = mysqli_fetch_assoc($usersResult)) {
                                             $userPhoto = $usersRow['photo'];
                                             $userFullName = $usersRow['first_name'] . ' ' . $usersRow['last_name'];
+                                            $date = $usersRow['date'];
                                             ?>
                                             <li>
                                                 <img src="dist/img/user1-128x128.jpg" alt="User Image">
                                                 <a class="users-list-name" href="#"><?php echo $userFullName; ?></a>
-                                                <span class="users-list-date">Today</span>
+                                                <span class="users-list-date"><?php echo $date; ?></span>
                                             </li>
                                             <?php
                                         }
