@@ -15,7 +15,7 @@
                 <form method="post" action="#">
                     <div class="card mb-3">
                         <div class="card-header">
-                            Login
+                            Sign in
                         </div>
                         <div class="card-body">
                             <div class="form-group">
