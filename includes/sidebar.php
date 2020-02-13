@@ -45,9 +45,6 @@
 </ul>
 
 
-
-
-
 <div class="card mb-3 shadow-sm">
     <div class="card-header">Recent Posts</div>
     <table class="table table-hover table-sm mb-0">

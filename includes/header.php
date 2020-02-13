@@ -23,7 +23,7 @@
                 if (!isset($_SESSION['role'])) {
                     ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="login.php">Login</a>
+                        <a class="nav-link <?php echo $currentPage == 'login.php' ? 'active' : ''; ?>" href="login.php">Login</a>
                     </li>
                     <?php
                 } else {

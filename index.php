@@ -14,7 +14,7 @@
             <div class="col-md-3">
                 <?php include 'includes/sidebar.php'; ?>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-6">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">Home</li>
@@ -35,9 +35,9 @@
                             $postExcerpt = $postRow['excerpt'];
                             $postDate = $postRow['date'];
                             ?>
-                            <div class="col-md-6">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                 <div class="card mb-3 shadow-sm">
-                                    <img class="card-img-top" src="dist/img/posts/<?php echo $postPhoto; ?>" width="350" height="250" alt="">
+                                    <img class="card-img-top" src="dist/img/posts/<?php echo $postPhoto; ?>" width="350" height="150" alt="">
                                     <div class="card-body">
                                         <p class="card-text">
                                             <a href="post.php?postID=<?php echo $postID; ?>"><?php echo $postTitle; ?></a>
@@ -56,9 +56,17 @@
                                 </div>
                             </div>
                             <?php
-                        } // end while loop
+                        }
+                    } else {
                         ?>
-                        <nav aria-label="Page navigation example">
+                        <p>No records</p>
+                        <?php
+                    }
+                    ?>
+                </div>
+
+                <?php if ($postCount > 0): ?>
+                    <nav aria-label="Page navigation example">
                             <ul class="pagination pagination-sm">
                                 <li class="page-item"><a class="page-link" href="#">Previous</a></li>
                                 <li class="page-item"><a class="page-link" href="#">1</a></li>
@@ -67,17 +75,39 @@
                                 <li class="page-item"><a class="page-link" href="#">Next</a></li>
                             </ul>
                         </nav>
-                        <?php
-                    } else {
-                        ?>
-                        <div class="col-md-12">
-                            <p>No records</p>
-                        </div>
-                        <?php
-                    }
-                    ?>
+                <?php endif; ?>
+            </div>
+            <div class="col-md-3">
+                <div class="p-4 mb-3 bg-light rounded">
+                    <h4 class="font-italic">Adv 1</h4>
+                    <p class="mb-0">
+                        Lorem ipsum dolor sit amet.
+                    </p>
                 </div>
-
+                <div class="p-4 mb-3 bg-light rounded">
+                    <h4 class="font-italic">Adv 2</h4>
+                    <p class="mb-0">
+                        Lorem ipsum dolor sit amet.
+                    </p>
+                </div>
+                <div class="p-4 mb-3 bg-light rounded">
+                    <h4 class="font-italic">Adv 3</h4>
+                    <p class="mb-0">
+                        Lorem ipsum dolor sit amet.
+                    </p>
+                </div>
+                <div class="p-4 mb-3 bg-light rounded">
+                    <h4 class="font-italic">Adv 4</h4>
+                    <p class="mb-0">
+                        Lorem ipsum dolor sit amet.
+                    </p>
+                </div>
+                <div class="p-4 mb-3 bg-light rounded">
+                    <h4 class="font-italic">Adv 5</h4>
+                    <p class="mb-0">
+                        Lorem ipsum dolor sit amet.
+                    </p>
+                </div>
             </div>
         </div>
     </section>
