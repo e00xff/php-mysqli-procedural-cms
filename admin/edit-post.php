@@ -29,6 +29,7 @@
 
             if ($postCount > 0) {
                 while ($postRow = mysqli_fetch_assoc($postResult)) {
+                    $postCategoryID = $postRow['category_id'];
                     $postTitle = $postRow['title'];
                     $postStatus = $postRow['status'];
                     $postTags = $postRow['tags'];
@@ -106,11 +107,20 @@
                                             while ($categoryRow = mysqli_fetch_assoc($categoryResult)) {
                                                 $categoryID = $categoryRow['id'];
                                                 $categoryTitle = $categoryRow['title'];
-                                                ?>
-                                                <option value="<?php echo $categoryID; ?>">
-                                                    <?php echo $categoryTitle; ?>
-                                                </option>
-                                                <?php
+
+                                                if ($categoryID == $postCategoryID) {
+                                                    ?>
+                                                    <option value="<?php echo $categoryID; ?>" selected>
+                                                        <?php echo $categoryTitle; ?>
+                                                    </option>
+                                                    <?php
+                                                } else {
+                                                    ?>
+                                                    <option value="<?php echo $categoryID; ?>">
+                                                        <?php echo $categoryTitle; ?>
+                                                    </option>
+                                                    <?php
+                                                }
                                             }
                                             ?>
                                         </select>

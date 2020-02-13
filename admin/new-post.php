@@ -77,9 +77,11 @@
 
                                         if ($categoryCount > 0) {
                                             while ($categoryRow = mysqli_fetch_assoc($categoryResult)) {
+                                                $categoryID = $categoryRow['id'];
+                                                $categoryTitle = $categoryRow['title'];
                                                 ?>
-                                                <option value="<?php echo $categoryRow['id']; ?>">
-                                                    <?php echo $categoryRow['title']; ?>
+                                                <option value="<?php echo $categoryID; ?>">
+                                                    <?php echo $categoryTitle; ?>
                                                 </option>
                                                 <?php
                                             }
