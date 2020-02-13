@@ -65,16 +65,20 @@
                     $confirmPassword = mysqli_real_escape_string($connection, $_POST['confirm_password']);
                     $date = date('Y-m-d');
 
+                    $randSaltQuery = "SELECT rand_salt FROM users";
+                    $randSaltResult = mysqli_query($connection, $randSaltQuery) or die('Query Error: '.mysqli_error($connection));
+                    $randSaltRow = mysqli_fetch_array($randSaltResult);
+                    $salt = $randSaltRow['rand_salt'];
+
                     if (!empty($firstName) && !empty($lastName) && !empty($username) && !empty($email) && !empty($password) && !empty($confirmPassword)) {
 
-                        if ($password !== $confirmPassword) {
-                            echo '<p>Confirm your password.</p>';
-                        } else {
+                        $password = crypt($password, $salt);
 
-                            $randSaltQuery = "SELECT rand_salt FROM users";
-                            $randSaltResult = mysqli_query($connection, $randSaltQuery) or die('Query Error: '.mysqli_error($connection));
-                            $randSaltRow = mysqli_fetch_array($randSaltResult);
-                            $salt = $randSaltRow['rand_salt'];
+//                        if ($password !== $confirmPassword) {
+//                            echo '<p>Confirm your password.</p>';
+//                        } else {
+
+
 
                             $query = "INSERT INTO `users` (`username`, `password`, `first_name`, `last_name`, `email`, `role`, `status`, `date`) ";
                             $query .= "VALUES ('$username', '$password', '$firstName', '$lastName', '$email', 'subscriber', 'unapproved', '$date')";
@@ -87,9 +91,9 @@
                             }
                         }
 
-                    } else {
-                        echo '<p>Fields are required.</p>';
-                    }
+//                    } else {
+//                        echo '<p>Fields are required.</p>';
+//                    }
 
                 }
                 ?>
