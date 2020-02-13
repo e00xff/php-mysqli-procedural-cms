@@ -36,7 +36,7 @@
                     $postAuthor = $postRow['author'];
                     $postPhoto = !empty($postRow['photo']) ? '../dist/img/posts/' . $postRow['photo'] : 'https://via.placeholder.com/150x50';
                     $postExcerpt = $postRow['excerpt'];
-                    $postContent = $postRow['content'];
+                    $postContent = str_replace('\r\n', '</br>',$postRow['content']);
                     ?>
                     <form action="posts.php?source=edit-post&postID=<?php echo $postID; ?>" method="post" enctype="multipart/form-data" role="form">
                     <div class="row">
