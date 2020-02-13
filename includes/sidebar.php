@@ -1,31 +1,3 @@
-<div class="card mb-3 shadow-sm">
-    <div class="card-body">
-        <ul class="list-unstyled mb-0">
-            <?php
-            $categoryQuery = "SELECT * FROM categories LIMIT 10";
-            $categoryResult = mysqli_query($connection, $categoryQuery) or die('Query Error: '.mysqli_error($connection));
-            $categoryCount = mysqli_num_rows($categoryResult);
-
-            if ($categoryCount > 0) {
-                while ($categoryRow = mysqli_fetch_assoc($categoryResult)) {
-                    $catID = $categoryRow['id'];
-                    $catTitle = $categoryRow['title'];
-                    ?>
-                    <li>
-                        <a href="category.php?categoryID=<?php echo $catID; ?>">
-                            <?php echo $catTitle; ?>
-                        </a>
-                    </li>
-                    <?php
-                }
-            } else {
-                echo '<li>No categories</li>';
-            }
-            ?>
-        </ul>
-    </div>
-</div>
-
 <form action="search.php" method="post" class="mb-3">
     <div class="input-group">
         <input type="search" name="search" placeholder="Search keyword" class="form-control py-2">
@@ -36,6 +8,45 @@
         </span>
     </div>
 </form>
+
+<ul class="list-group mb-3">
+    <?php
+    $categoryQuery = "SELECT * FROM categories LIMIT 10";
+    $categoryResult = mysqli_query($connection, $categoryQuery) or die('Query Error: '.mysqli_error($connection));
+    $categoryCount = mysqli_num_rows($categoryResult);
+
+    if ($categoryCount > 0) {
+        while ($categoryRow = mysqli_fetch_assoc($categoryResult)) {
+            $catID = $categoryRow['id'];
+            $catTitle = $categoryRow['title'];
+
+            $selectedCategory = isset($_GET['categoryID']) && $_GET['categoryID'] == $catID;
+
+            if ($selectedCategory) {
+                ?>
+                <li class="list-group-item active">
+                    <?php echo $catTitle; ?>
+                </li>
+                <?php
+            } else {
+                ?>
+                <li class="list-group-item">
+                    <a href="category.php?categoryID=<?php echo $catID; ?>">
+                        <?php echo $catTitle; ?>
+                    </a>
+                </li>
+                <?php
+            }
+        }
+    } else {
+        echo '<li class="list-group-item">No categories</li>';
+    }
+    ?>
+</ul>
+
+
+
+
 
 <div class="card mb-3 shadow-sm">
     <div class="card-header">Recent Posts</div>
