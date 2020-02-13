@@ -171,18 +171,18 @@
                     if (isset($_GET['delete'])) {
                         $userID = mysqli_real_escape_string($connection, $_GET['delete']);
 
-                        // Step 1: Delete post related comment
-                        $postQuery = "SELECT * FROM posts";
-                        $postResult = mysqli_query($connection, $postQuery) or die('Query Error: '.mysqli_error($connection));
-                        $postRow = mysqli_fetch_assoc($postResult);
-                        $postID = $postRow['id'];
-
-                        $postRelatedCommentQuery = "DELETE FROM comments WHERE post_id = {$postID}";
-                        $postRelatedCommentResult = mysqli_query($connection, $postRelatedCommentQuery) or die('Query Error: '.mysqli_error($connection));
-
-                        // Step 2: Delete user related post
-                        $userPostQuery = "DELETE FROM posts WHERE author_id = {$userID}";
-                        $userPostResult = mysqli_query($connection, $userPostQuery) or die('Query Error: '.mysqli_error($connection));
+//                        // Step 1: Delete post related comment
+//                        $postQuery = "SELECT * FROM posts";
+//                        $postResult = mysqli_query($connection, $postQuery) or die('Query Error: '.mysqli_error($connection));
+//                        $postRow = mysqli_fetch_assoc($postResult);
+//                        $postID = $postRow['id'];
+//
+//                        $postRelatedCommentQuery = "DELETE FROM comments WHERE post_id = {$postID}";
+//                        $postRelatedCommentResult = mysqli_query($connection, $postRelatedCommentQuery) or die('Query Error: '.mysqli_error($connection));
+//
+//                        // Step 2: Delete user related post
+//                        $userPostQuery = "DELETE FROM posts WHERE author_id = {$userID}";
+//                        $userPostResult = mysqli_query($connection, $userPostQuery) or die('Query Error: '.mysqli_error($connection));
 
                         // Step 3: Delete user account
                         if (isset($_SESSION['role']) && $_SESSION['role'] == 'administrator') {
