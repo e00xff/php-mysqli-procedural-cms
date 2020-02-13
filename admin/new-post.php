@@ -146,6 +146,11 @@
                 $postPhotoTemp = $_FILES['photo']['tmp_name'];
                 move_uploaded_file($postPhotoTemp, "../dist/img/posts/$postPhoto");
 
+                if (empty($postCategoryID)) {
+                    echo 'Post category is required';
+                    die();
+                }
+
                 $query = "INSERT INTO posts(`category_id`, `author_id`, `title`, `status`, `tags`, `comment_count`, `author`, `date`, `photo`, `excerpt`, `content`) ";
                 $query .= "VALUES($postCategoryID, $postAuthorID, '$postTitle', '$postStatus', '$postTags', '0', '$postAuthor', '$postDate', '$postPhoto', '$postExcerpt', '$postContent')";
                 $result = mysqli_query($connection, $query) or die('Query Error: '.mysqli_error($connection));

@@ -108,8 +108,8 @@
                             $photoTemp = $_FILES['photo']['tmp_name'];
                             move_uploaded_file($photoTemp, "../uploads/users/$photo");
 
-                            $userQuery = "INSERT INTO `users` ( `username`, `password`, `first_name`, `last_name`, `email`, `photo`, `role`, `status`, `rand_salt`, `date`)  ";
-                            $userQuery .= "VALUES ('$username', '$password', '$firstName', '$lastName', '$email', '$photo', '$role', '$status', '', '$date')";
+                            $userQuery = "INSERT INTO `users` ( `username`, `password`, `first_name`, `last_name`, `email`, `photo`, `role`, `status`, `date`)  ";
+                            $userQuery .= "VALUES ('$username', '$password', '$firstName', '$lastName', '$email', '$photo', '$role', '$status', '$date')";
                             $userResult = mysqli_query($connection, $userQuery) or die('Query Error: '.mysqli_error($connection));
 
                             if ($userResult) {

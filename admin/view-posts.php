@@ -64,6 +64,10 @@
                                     $postExcerpt    = $row['excerpt'];
                                     $postContent    = $row['content'];
 
+                                    if (empty($postTags)) {
+                                        $postTags = 'No tags';
+                                    }
+
                                     $query = "INSERT INTO posts(`category_id`, `author_id`, `title`, `status`, `tags`, `comment_count`, `author`, `date`, `photo`, `excerpt`, `content`) ";
                                     $query .= "VALUES($postCategoryID, $postAuthorID, '$postTitle', '$postStatus', '$postTags', '0', '$postAuthor', '$postDate', '$postPhoto', '$postExcerpt', '$postContent')";
                                     $copyQuery = mysqli_query($connection, $query);
