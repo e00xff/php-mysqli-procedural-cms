@@ -69,7 +69,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="password">Password</label>
-                                            <input type="password" class="form-control" id="password" name="password">
+                                            <input type="password" class="form-control" id="password" name="password" autocomplete="off">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -108,30 +108,24 @@
                             $photoTemp = $_FILES['photo']['tmp_name'];
                             move_uploaded_file($photoTemp, "../uploads/users/$photo");
 
-//                            $randSaltQuery = "SELECT rand_salt FROM users";
-//                            $randSaltResult = mysqli_query($connection, $randSaltQuery) or die('Query Error: '.mysqli_error($connection));
-//                            $randSaltRow = mysqli_fetch_array($randSaltResult);
-//                            $salt = $randSaltRow['rand_salt'];
+                            $hashedPassword   = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
 
-//                            if (!empty($firstName) && !empty($lastName) && !empty($username) && !empty($email) && !empty($password)) {
-
-                                $cryptPassword = crypt($password);
+                            if (!empty($firstName) && !empty($lastName) && !empty($username) && !empty($email) && !empty($password)) {
 
                                 $userQuery = "INSERT INTO `users` ( `username`, `password`, `first_name`, `last_name`, `email`, `photo`, `role`, `status`, `date`)  ";
-                                $userQuery .= "VALUES ('$username', '$cryptPassword', '$firstName', '$lastName', '$email', '$photo', '$role', '$status', '$date')";
+                                $userQuery .= "VALUES ('$username', '$hashedPassword', '$firstName', '$lastName', '$email', '$photo', '$role', '$status', '$date')";
 
-                                echo $userQuery;
 
-//                                $userResult = mysqli_query($connection, $query) or die('Query Error: '.mysqli_error($connection));
-//                                if ($userResult) {
-//                                    echo '<p>User inserted, <a href="users.php?page=view-users">view user</a></p>';
-//                                } else {
-//                                    echo '<p>Fields cannot be empty.</p>';
-//                                }
+                                $userResult = mysqli_query($connection, $userQuery) or die('Query Error: '.mysqli_error($connection));
+                                if ($userResult) {
+                                    echo '<p>User inserted, <a href="users.php?page=view-users">view user</a></p>';
+                                } else {
+                                    echo '<p>Fields cannot be empty.</p>';
+                                }
 
-//                            } else {
-//                                echo '<p>Fields are required.</p>';
-//                            }
+                            } else {
+                                echo '<p>Fields are required.</p>';
+                            }
 
                         }
                     ?>

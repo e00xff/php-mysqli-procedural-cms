@@ -49,18 +49,15 @@ if (isset($_SESSION['role'])) {
                         $loginResult = mysqli_query($connection, $loginQuery) or die('Query Error: '.mysqli_error($connection));
 
                         while ($row = mysqli_fetch_array($loginResult)) {
-                            $dbUserID = $row['id'];
-                            $dbUsername = $row['username'];
+                            $dbUserID       = $row['id'];
+                            $dbUsername     = $row['username'];
                             $dbUserPassword = $row['password'];
                             $dbUserFirstName = $row['first_name'];
                             $dbUserLastName = $row['last_name'];
-                            $dbUserRole = $row['role'];
+                            $dbUserRole     = $row['role'];
                         }
 
-                        $cryptPassword = crypt($password, $dbUserPassword);
-
-                        if ($username === $dbUsername && $cryptPassword === $dbUserPassword) {
-
+                        if (password_verify($password, $dbUserPassword)) {
                             $_SESSION['id'] = $dbUserID;
                             $_SESSION['username'] = $dbUsername;
                             $_SESSION['first_name'] = $dbUserFirstName;
