@@ -34,6 +34,7 @@
                             $firstName = $userRow['first_name'];
                             $lastName = $userRow['last_name'];
                             $email = $userRow['email'];
+                            $password = $userRow['password'];
                             $role = $userRow['role'];
                             $status = $userRow['status'];
                             $date = date('Y-m-y');
@@ -80,6 +81,10 @@
                                             <input type="text" class="form-control" id="username" name="username" value="<?php echo $username; ?>">
                                         </div>
                                         <div class="form-group">
+                                            <label for="password">Password</label>
+                                            <input type="password" class="form-control" id="password" name="password" value="<?php echo $password; ?>">
+                                        </div>
+                                        <div class="form-group">
                                             <label for="email">E-Mail</label>
                                             <input type="email" class="form-control" id="email" name="email" value="<?php echo $email; ?>">
                                         </div>
@@ -106,6 +111,7 @@
 
                     if (isset($_POST['updateUser'])) {
                         $username = $_POST['username'];
+                        $password = $_POST['password'];
                         $firstName = $_POST['firstName'];
                         $lastName = $_POST['lastName'];
                         $email = $_POST['email'];
@@ -126,11 +132,22 @@
                             }
                         }
 
+
+                        $randSaltQuery = "SELECT rand_salt FROM users";
+                        $randSaltResult = mysqli_query($connection, $randSaltQuery) or die('Query Error: '.mysqli_error($connection));
+                        $randSaltRow = mysqli_fetch_array($randSaltResult);
+                        $salt = $randSaltRow['rand_salt'];
+                        $cryptPassword = crypt($password, $salt);
+
+
+
+
                         $userQuery = "UPDATE users SET ";
                         $userQuery .= "username  = '$username', ";
                         $userQuery .= "first_name = '$firstName', ";
                         $userQuery .= "last_name   = '$lastName', ";
                         $userQuery .= "email= '$email', ";
+                        $userQuery .= "password= '$cryptPassword', ";
                         $userQuery .= "photo  = '$photo', ";
                         $userQuery .= "role  = '$role', ";
                         $userQuery .= "status  = '$status', ";

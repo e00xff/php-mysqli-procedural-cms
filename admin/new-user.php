@@ -30,17 +30,17 @@
                                 <div class="form-group">
                                     <label for="role">User Role</label>
                                     <select class="form-control" id="role" name="role">
-                                        <option selected disabled>Select Options</option>
-                                        <option value="administrator">Administrator</option>
+                                        <option disabled>Select Options</option>
                                         <option value="subscriber">Subscriber</option>
+                                        <option value="administrator">Administrator</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="status">User Status</label>
                                     <select class="form-control" id="status" name="status">
-                                        <option selected disabled>Select Options</option>
-                                        <option value="approved">Approved</option>
+                                        <option disabled>Select Options</option>
                                         <option value="unapproved">Unapproved</option>
+                                        <option value="approved">Approved</option>
                                     </select>
                                 </div>
                                 <div class="row">
@@ -95,26 +95,44 @@
                     </div>
                     <?php
                         if (isset($_POST['addUser'])) {
-                            $role = $_POST['role'];
-                            $status = $_POST['status'];
-                            $firstName = $_POST['firstName'];
-                            $lastName = $_POST['lastName'];
-                            $username = $_POST['username'];
-                            $email = $_POST['email'];
-                            $password = $_POST['password'];
-                            $date = date('Y-m-d');
+                            $role       = mysqli_real_escape_string($connection, $_POST['role']);
+                            $status     = mysqli_real_escape_string($connection, $_POST['status']);
+                            $firstName  = mysqli_real_escape_string($connection, $_POST['firstName']);
+                            $lastName   = mysqli_real_escape_string($connection, $_POST['lastName']);
+                            $username   = mysqli_real_escape_string($connection, $_POST['username']);
+                            $email      = mysqli_real_escape_string($connection, $_POST['email']);
+                            $password   = mysqli_real_escape_string($connection, $_POST['password']);
+                            $date       = mysqli_real_escape_string($connection, date('Y-m-d'));
 
                             $photo = $_FILES['photo']['name'];
                             $photoTemp = $_FILES['photo']['tmp_name'];
                             move_uploaded_file($photoTemp, "../uploads/users/$photo");
 
-                            $userQuery = "INSERT INTO `users` ( `username`, `password`, `first_name`, `last_name`, `email`, `photo`, `role`, `status`, `date`)  ";
-                            $userQuery .= "VALUES ('$username', '$password', '$firstName', '$lastName', '$email', '$photo', '$role', '$status', '$date')";
-                            $userResult = mysqli_query($connection, $userQuery) or die('Query Error: '.mysqli_error($connection));
+//                            $randSaltQuery = "SELECT rand_salt FROM users";
+//                            $randSaltResult = mysqli_query($connection, $randSaltQuery) or die('Query Error: '.mysqli_error($connection));
+//                            $randSaltRow = mysqli_fetch_array($randSaltResult);
+//                            $salt = $randSaltRow['rand_salt'];
 
-                            if ($userResult) {
-                                echo '<p>User inserted, <a href="users.php?page=view-users">view user</a></p>';
-                            }
+//                            if (!empty($firstName) && !empty($lastName) && !empty($username) && !empty($email) && !empty($password)) {
+
+                                $cryptPassword = crypt($password);
+
+                                $userQuery = "INSERT INTO `users` ( `username`, `password`, `first_name`, `last_name`, `email`, `photo`, `role`, `status`, `date`)  ";
+                                $userQuery .= "VALUES ('$username', '$cryptPassword', '$firstName', '$lastName', '$email', '$photo', '$role', '$status', '$date')";
+
+                                echo $userQuery;
+
+//                                $userResult = mysqli_query($connection, $query) or die('Query Error: '.mysqli_error($connection));
+//                                if ($userResult) {
+//                                    echo '<p>User inserted, <a href="users.php?page=view-users">view user</a></p>';
+//                                } else {
+//                                    echo '<p>Fields cannot be empty.</p>';
+//                                }
+
+//                            } else {
+//                                echo '<p>Fields are required.</p>';
+//                            }
+
                         }
                     ?>
                 </div>

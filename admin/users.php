@@ -15,6 +15,9 @@
         $page = isset($_GET['page']) ? $page = $_GET['page'] : $page = '';
 
         switch ($page) {
+            case 'view-user';
+                include "view-user.php";
+                break;
             case 'new-user';
                 include "new-user.php";
                 break;

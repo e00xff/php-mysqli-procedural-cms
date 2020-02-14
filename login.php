@@ -57,7 +57,9 @@ if (isset($_SESSION['role'])) {
                             $dbUserRole = $row['role'];
                         }
 
-                        if ($username === $dbUsername && $password === $dbUserPassword) {
+                        $cryptPassword = crypt($password, $dbUserPassword);
+
+                        if ($username === $dbUsername && $cryptPassword === $dbUserPassword) {
 
                             $_SESSION['id'] = $dbUserID;
                             $_SESSION['username'] = $dbUsername;

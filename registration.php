@@ -72,16 +72,14 @@
 
                     if (!empty($firstName) && !empty($lastName) && !empty($username) && !empty($email) && !empty($password) && !empty($confirmPassword)) {
 
-                        $password = crypt($password, $salt);
+                        $cryptPassword = crypt($password, $salt);
 
-//                        if ($password !== $confirmPassword) {
-//                            echo '<p>Confirm your password.</p>';
-//                        } else {
-
-
+                        if ($password !== $confirmPassword) {
+                            echo '<p>Confirm your password.</p>';
+                        } else {
 
                             $query = "INSERT INTO `users` (`username`, `password`, `first_name`, `last_name`, `email`, `role`, `status`, `date`) ";
-                            $query .= "VALUES ('$username', '$password', '$firstName', '$lastName', '$email', 'subscriber', 'unapproved', '$date')";
+                            $query .= "VALUES ('$username', '$cryptPassword', '$firstName', '$lastName', '$email', 'subscriber', 'unapproved', '$date')";
 
                             $result = mysqli_query($connection, $query) or die('Query Error: '.mysqli_error($connection));
                             if ($result) {
@@ -91,9 +89,9 @@
                             }
                         }
 
-//                    } else {
-//                        echo '<p>Fields are required.</p>';
-//                    }
+                    } else {
+                        echo '<p>Fields are required.</p>';
+                    }
 
                 }
                 ?>
