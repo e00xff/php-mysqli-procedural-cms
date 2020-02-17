@@ -37,7 +37,7 @@
                                     <div class="card-body">
                                         <p class="card-text">
                                             <a href="post.php?postID=<?php echo $postRow['id']; ?>"><?php echo $postRow['title']; ?></a>
-                                            <small class="d-block">By <a href="author.php"><?php echo $postRow['author']; ?></a></small>
+                                            <small class="d-block">By <a href="author-posts.php"><?php echo $postRow['author']; ?></a></small>
                                         </p>
                                         <div class="card-text small mb-3">
                                             <?php echo $postRow['excerpt']; ?>

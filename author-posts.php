@@ -22,7 +22,9 @@
                 </nav>
                 <div class="row">
                     <?php
-                    $postQuery = "SELECT * FROM posts WHERE status = 'published'";
+                    $authorID = isset($_GET['authorID']) ? $_GET['authorID'] : header('index.php');
+
+                    $postQuery = "SELECT * FROM posts WHERE author_id = {$authorID}";
                     $postResult = mysqli_query($connection, $postQuery) or die('Query Error: '.mysqli_error($connection));
                     $postCount = mysqli_num_rows($postResult);
 
@@ -42,7 +44,7 @@
                                     <div class="card-body">
                                         <p class="card-text">
                                             <a href="post.php?postID=<?php echo $postID; ?>"><?php echo $postTitle; ?></a>
-                                            <small class="d-block">By <a href="author-posts.php?authorID=<?php echo $postAuthorID; ?>"><?php echo $postAuthor; ?></a></small>
+                                            <small class="d-block">By <a href="author-posts.php?author=<?php echo $postAuthorID; ?>"><?php echo $postAuthor; ?></a></small>
                                         </p>
                                         <div class="card-text small">
                                             <?php echo $postExcerpt; ?>
@@ -68,14 +70,14 @@
 
                 <?php if ($postCount > 0): ?>
                     <nav aria-label="Page navigation example">
-                            <ul class="pagination pagination-sm">
-                                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                            </ul>
-                        </nav>
+                        <ul class="pagination pagination-sm">
+                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        </ul>
+                    </nav>
                 <?php endif; ?>
             </div>
             <div class="col-md-3">
