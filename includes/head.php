@@ -7,4 +7,4 @@
 <link rel="icon" type="image/png" href="dist/img/favicon.png">
 <link rel="stylesheet" href="dist/css/font-awesome.min.css">
 <link rel="stylesheet" href="dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="dist/css/style.css">
+<link rel="stylesheet" href="dist/css/public.css">

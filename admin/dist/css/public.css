@@ -1,0 +1,20 @@
+/*************************************************
+* Page Loader
+*************************************************/
+.load-screen {
+    background: url("../img/loader/header-back.png");
+    position: fixed;
+    z-index: 10000;
+    top:0px;
+    width: 100%;
+    height: 1600px;
+
+}
+
+.loading {
+    width: 500px;
+    height: 500px;
+    margin: 10% auto;
+    background: url("../img/loader/loader.gif") no-repeat center;
+    background-size: 40%;
+}

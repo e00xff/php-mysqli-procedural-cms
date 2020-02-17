@@ -6,3 +6,4 @@
 <link rel="stylesheet" href="dist/css/adminlte.min.css">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 <link rel="shortcut icon" href="dist/img/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="dist/css/public.css">
