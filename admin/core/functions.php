@@ -7,6 +7,23 @@ function confirmQuery($result) {
     }
 }
 
+function isAdmin($username)
+{
+    global $conn;
+    $query = "SELECT user_role FROM users WHERE username = '$username'";
+    $result = mysqli_query($conn, $query);
+    confirm($result);
+    $row = mysqli_fetch_array($result);
+    if (!isset($row['user_role'])) {
+        return false;
+    } else if ($row['user_role'] == 'admin') {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
 function redirect($filename) {
     if (!headers_sent())
         header('Location: '.$filename);

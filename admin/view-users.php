@@ -55,8 +55,8 @@
                                     <th>Last Name</th>
                                     <th>Username</th>
                                     <th>E-Mail</th>
-                                    <th>Status</th>
-                                    <th>Role</th>
+                                    <th>User Status</th>
+                                    <th>User Type</th>
                                     <th>Date</th>
                                     <th class="text-center">Action</th>
                                 </tr>

@@ -110,14 +110,16 @@
                                     <thead>
                                     <tr>
                                         <th style="width: 60px;"><input type="checkbox" id="selectAllBoxes"></th>
-                                        <th>Author</th>
                                         <th>Title</th>
                                         <th>Category</th>
+                                        <th>Author</th>
                                         <th>Status</th>
                                         <th>Image</th>
                                         <th>Tags</th>
                                         <th>Comments</th>
-                                        <th>Date</th>
+                                        <th>Views</th>
+                                        <th>Created</th>
+                                        <th>Updated</th>
                                         <th style="width: 200px;" class="text-center">Action</th>
                                     </tr>
                                     </thead>
@@ -137,11 +139,11 @@
                                             $postImage = !empty($row['photo']) ? '../dist/img/posts/'.$row['photo'] : 'https://via.placeholder.com/150x50';
                                             $postTags = $row['tags'];
                                             $postCommentCount = $row['comment_count'];
+                                            $postViewCount = $row['view_count'];
                                             $postDate = $row['date'];
                                             ?>
                                             <tr>
                                                 <td><input type="checkbox" class="checkBoxes" name="checkBoxArray[]" value="<?php echo $postID; ?>"></td>
-                                                <td><?php echo $postAuthor; ?></td>
                                                 <td>
                                                     <a href="../post.php?postID=<?php echo $postID; ?>">
                                                         <?php echo shorten_text($postTitle, 25); ?>
@@ -162,11 +164,17 @@
                                                     }
                                                     ?>
                                                 </td>
+                                                <td><?php echo $postAuthor; ?></td>
                                                 <td><span class="badge <?php echo $postStatus == 'published' ? 'badge-success' : 'badge-warning'; ?>"><?php echo ucfirst($postStatus); ?></span></td>
                                                 <td><img src="<?php echo $postImage ?>" width="150" height="50" alt="<?php echo $postTitle; ?>" title="<?php echo $postTitle; ?>"></td>
                                                 <td><?php echo $postTags; ?></td>
                                                 <td class="text-center"><a href="comments.php?page=comments"><?php echo $postCommentCount; ?></a></td>
+                                                <td>
+                                                    <?php echo $postViewCount; ?>
+                                                    <a href="posts.php?reset=<?php echo $postID; ?>"><small>Reset</small></a>
+                                                </td>
                                                 <td><?php echo $postDate; ?></td>
+                                                <td></td>
                                                 <td class="text-center">
                                                     <a href="posts.php?source=view-post&postID=<?php echo $postID; ?>" class="btn btn-info btn-xs btn-flat" title="View Post"><i class="far fa-eye"></i></a>
                                                     <a href="posts.php?source=edit-post&postID=<?php echo $postID; ?>" class="btn btn-primary btn-xs btn-flat" title="Edit Post"><i class="far fa-edit"></i></a>
@@ -181,7 +189,7 @@
                                     } else {
                                         ?>
                                         <tr>
-                                            <td colspan="10">Add a new post</td>
+                                            <td colspan="12">Add a new post</td>
                                         </tr>
                                         <?php
                                     }
@@ -228,6 +236,15 @@
 
                         // Delete post
                         $postQuery = "DELETE FROM posts WHERE id = {$postID}";
+                        $postResult = mysqli_query($connection, $postQuery) or die('Query Error: '.mysqli_error($connection));
+
+                        redirect('posts.php');
+                    }
+
+                    if (isset($_GET['reset'])) {
+                        $postID = (int)$_GET['reset'];
+
+                        $postQuery = "UPDATE posts SET view_count = 0 WHERE id = {$postID}";
                         $postResult = mysqli_query($connection, $postQuery) or die('Query Error: '.mysqli_error($connection));
 
                         redirect('posts.php');

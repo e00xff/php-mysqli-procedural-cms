@@ -19,20 +19,23 @@
                 if (isset($_GET['postID'])) {
                     $postID = (int)$_GET['postID'];
 
-                    $postQuery = "SELECT * FROM posts WHERE id = {$postID}";
+                    // User seen a post
+                    $viewsQuery = "UPDATE `posts` SET `view_count` = `view_count` + 1 WHERE `posts`.`id` = {$postID}";
+                    $viewsResult = mysqli_query($connection, $viewsQuery) or die('Query Error: '.mysqli_error($connection));
+
+                    // Post data
+                    $postQuery = "SELECT * FROM `posts` WHERE `id` = {$postID}";
                     $postResult = mysqli_query($connection, $postQuery) or die('Query Error: '.mysqli_error($connection));
                     $postCount = mysqli_num_rows($postResult);
 
                     $postRow = mysqli_fetch_assoc($postResult);
-                    $postTitle = $postRow['title'];
-                    $postDate = $postRow['date'];
+                    $postTitle  = $postRow['title'];
+                    $postDate   = $postRow['date'];
                     $postCategoryID = $postRow['category_id'];
                     $postAuthor = $postRow['author'];
                     $postContent = $postRow['content'];
 
                     $postPhoto = !empty($postRow['photo']) ? 'dist/img/posts/'.$postRow['photo'] : '//placehold.it/1000x250';
-
-
 
                     ?>
                     <nav aria-label="breadcrumb">
@@ -117,8 +120,7 @@
                             $commentQuery .= "VALUES ($postID, '$commentAuthor', '$commentEmail', '$commentContent', '$commentStatus', '$commentDate')";
                             $commentResult = mysqli_query($connection, $commentQuery) or die('Query Error: '.mysqli_error($connection));
 
-                            $postCommentQuery = "UPDATE posts SET comment_count = comment_count + 1 ";
-                            $postCommentQuery .= "WHERE id = $postID";
+                            $postCommentQuery = "UPDATE posts SET comment_count = comment_count + 1 WHERE id = {$postID}";
                             $postCommentResult = mysqli_query($connection, $postCommentQuery) or die('Query Error: '.mysqli_error($connection));
 
                             if ($commentResult) {
@@ -185,6 +187,7 @@
                         </div>
                     </div>
                     <?php
+
                 } else {
                     redirect('index.php');
                 }
