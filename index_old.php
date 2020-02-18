@@ -22,16 +22,7 @@
                 </nav>
                 <div class="row">
                     <?php
-                    $perPage = 2;
-                    $page = isset($_GET['page']) ? $page = (int)$_GET['page'] : $page = '';
-                    $firstPage = ($page == "" || $page == 1) ? $firstPage = 0 : $firstPage = ($page * $perPage) - $perPage;
-
-                    $query = "SELECT * FROM posts";
-                    $result = mysqli_query($connection, $query) or die('Query error: '.mysqli_error($connection));
-                    $count = mysqli_num_rows($result);
-                    $count = ceil($count / $perPage);
-
-                    $postQuery = "SELECT * FROM posts WHERE status = 'published' LIMIT {$firstPage}, $perPage";
+                    $postQuery = "SELECT * FROM posts WHERE status = 'published'";
                     $postResult = mysqli_query($connection, $postQuery) or die('Query Error: '.mysqli_error($connection));
                     $postCount = mysqli_num_rows($postResult);
 
@@ -68,38 +59,21 @@
                             <?php
                         }
                     } else {
-                        echo '<p>No records</p>';
+                        ?>
+                        <p>No records</p>
+                        <?php
                     }
-
                     ?>
                 </div>
 
                 <?php if ($postCount > 0): ?>
                     <nav aria-label="Page navigation example">
                             <ul class="pagination pagination-sm">
-                                <li class="page-item">
-                                    <a class="page-link" href="#">Previous</a>
-                                </li>
-
-                                <?php for($i = 1; $i <= $count; $i++) : ?>
-                                    <?php if ($i == $page): ?>
-                                        <li class="page-item active">
-                                            <a href="index.php?page=<?php echo $i; ?>" class="page-link">
-                                                <?php echo $i; ?>
-                                            </a>
-                                        </li>
-                                    <?php else: ?>
-                                        <li class="page-item">
-                                            <a href="index.php?page=<?php echo $i; ?>" class="page-link">
-                                                <?php echo $i; ?>
-                                            </a>
-                                        </li>
-                                    <?php endif; ?>
-                                <?php endfor; ?>
-
-                                <li class="page-item">
-                                    <a class="page-link" href="#">Next</a>
-                                </li>
+                                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#">Next</a></li>
                             </ul>
                         </nav>
                 <?php endif; ?>
