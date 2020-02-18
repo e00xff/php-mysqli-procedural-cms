@@ -1,5 +1,64 @@
 <?php
 
+function usersOnline () {
+    if (isset($_GET['onlineUsers'])) {
+        global $connection;
+
+        if (!$connection) {
+            session_start();
+            include 'database.php';
+
+            $sessionID = session_id();
+            $time = time();
+            $timeOutInSeconds = 30;
+            $timeOut = $time - $timeOutInSeconds;
+
+            $query = "SELECT * FROM online WHERE usr_session = '{$sessionID}'";
+            $result = mysqli_query($connection, $query) or die('Error Query:'.mysqli_error($connection));
+            $count = mysqli_num_rows($result);
+
+            if ($count == null) :
+                mysqli_query($connection, "INSERT INTO online(usr_session, usr_time) VALUES('$sessionID', '$time')");
+            else:
+                mysqli_query($connection, "UPDATE online SET usr_time = '$time' WHERE usr_session = '{$sessionID}'");
+            endif;
+
+            $usersOnlineQuery = mysqli_query($connection, "SELECT * FROM online WHERE usr_time > '{$timeOut}'");
+            echo $countUser = mysqli_num_rows($usersOnlineQuery);
+        }
+    }
+}
+
+usersOnline();
+
+
+//function usersOnline () {
+//    global $connection;
+//
+//    $sessionID = session_id();
+//    $time = time();
+//    $timeOutInSeconds = 30;
+//    $timeOut = $time - $timeOutInSeconds;
+//
+//    $query = "SELECT * FROM online WHERE usr_session = '{$sessionID}'";
+//    $result = mysqli_query($connection, $query) or die('Error Query:'.mysqli_error($connection));
+//    $count = mysqli_num_rows($result);
+//
+//    if ($count == null) :
+//        mysqli_query($connection, "INSERT INTO online(usr_session, usr_time) VALUES('$sessionID', '$time')");
+//    else:
+//        mysqli_query($connection, "UPDATE online SET usr_time = '$time' WHERE usr_session = '{$sessionID}'");
+//    endif;
+//
+//    $usersOnlineQuery = mysqli_query($connection, "SELECT * FROM online WHERE usr_time > '{$timeOut}'");
+//    return mysqli_num_rows($usersOnlineQuery);
+//}
+
+
+
+
+
+
 function confirmQuery($result) {
     global $connection;
     if (!$result) {

@@ -9,29 +9,11 @@
     </ul>
 
     <ul class="navbar-nav ml-auto">
-        <?php
-            $sessionID = session_id();
-            $time = time();
-            $timeOutInSeconds = 30;
-            $timeOut = $time - $timeOutInSeconds;
-
-            $query = "SELECT * FROM online WHERE usr_session = '{$sessionID}'";
-            $result = mysqli_query($connection, $query) or die('Error Query:'.mysqli_error($connection));
-            $count = mysqli_num_rows($result);
-
-            if ($count == null) {
-                mysqli_query($connection, "INSERT INTO online(usr_session, usr_time) VALUES('$sessionID', '$time')");
-            } else {
-                mysqli_query($connection, "UPDATE online SET usr_time = '$time' WHERE usr_session = '{$sessionID}'");
-            }
-
-            $usersOnline = mysqli_query($connection, "SELECT * FROM online WHERE usr_time > '{$timeOut}'");
-            $countUser = mysqli_num_rows($usersOnline);
-        ?>
         <li class="nav-item">
             <a class="nav-link" href="">
                 <i class="fas fa-users"></i>
-                <sup><?php echo $countUser; ?></sup>
+                <sup><?php echo usersOnline(); ?></sup>
+                <sup><span class="users-online"></span></sup>
             </a>
         </li>
         <li class="nav-item">
