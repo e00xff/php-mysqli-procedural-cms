@@ -70,13 +70,13 @@
                     } else {
                         echo '<p>No records</p>';
                     }
-
                     ?>
                 </div>
 
                 <?php if ($postCount > 0): ?>
                     <nav aria-label="Page navigation example">
                             <ul class="pagination pagination-sm">
+
                                 <li class="page-item">
                                     <a class="page-link" href="#">Previous</a>
                                 </li>
@@ -100,6 +100,7 @@
                                 <li class="page-item">
                                     <a class="page-link" href="#">Next</a>
                                 </li>
+
                             </ul>
                         </nav>
                 <?php endif; ?>

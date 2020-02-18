@@ -10,6 +10,11 @@
                 <li class="nav-item <?php echo $currentPage == 'index.php' ? 'active' : ''; ?>">
                     <a class="nav-link" href="index.php">Blog <span class="sr-only">(Current)</span></a>
                 </li>
+                <?php if (isset($_SESSION['role'])) : ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin">Admin</a>
+                    </li>
+                <?php endif; ?>
             </ul>
 
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
