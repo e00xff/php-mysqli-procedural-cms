@@ -38,7 +38,7 @@
                             <div class="card-header">
                                 <h3 class="card-title">New Photo</h3>
                             </div>
-                            <form method="post" action="#" role="form">
+                            <form method="post" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" role="form">
                                 <div class="card-body">
 
                                     <div class="form-group">

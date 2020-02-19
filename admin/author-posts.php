@@ -24,7 +24,10 @@
                 <div class="col-lg-12 col-12">
 
                     <?php
+                    $author = (isset($_GET['author'])) ? $author = $_GET['author'] : header('posts.php');
+                    ?>
 
+                    <?php
                     if(isset($_POST['checkBoxArray'])) {
                         foreach($_POST['checkBoxArray'] as $postValueId ){
                             $bulkOptions = $_POST['bulkOptions'];
@@ -81,7 +84,7 @@
                     }
                     ?>
 
-                    <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
+                    <form action="#" method="post">
                         <div class="card card-danger">
                             <div class="card-body">
                                 <div class="form-group mb-0">
@@ -98,6 +101,7 @@
                             </div>
                             <div class="card-footer">
                                 <button type="submit" name="submit" class="btn btn-primary btn-sm btn-flat">Apply</button>
+                                <a href="posts.php?source=new-post" class="btn btn-success btn-sm btn-flat">New Post</a>
                             </div>
                         </div>
                         <div class="card card-danger">
@@ -124,7 +128,7 @@
                                     </thead>
                                     <tbody>
                                     <?php
-                                    $query = "SELECT * FROM posts ORDER BY id DESC";
+                                    $query = "SELECT * FROM posts WHERE author = '$author' ORDER BY id DESC";
                                     $result = mysqli_query($connection, $query);
                                     $count = mysqli_num_rows($result);
 
@@ -163,11 +167,7 @@
                                                     }
                                                     ?>
                                                 </td>
-                                                <td>
-                                                    <a href="posts.php?source=author-posts&author=<?php echo urlencode($postAuthor); ?>">
-                                                        <?php echo $postAuthor; ?>
-                                                    </a>
-                                                </td>
+                                                <td><a href="posts.php?source=author-posts&postID=<?php echo $postID; ?>"><?php echo $postAuthor; ?></a></td>
                                                 <td><span class="badge <?php echo $postStatus == 'published' ? 'badge-success' : 'badge-warning'; ?>"><?php echo ucfirst($postStatus); ?></span></td>
                                                 <td><img src="<?php echo $postImage ?>" width="150" height="50" alt="<?php echo $postTitle; ?>" title="<?php echo $postTitle; ?>"></td>
                                                 <td><?php echo $postTags; ?></td>
@@ -255,23 +255,7 @@
 
                     ?>
 
-                    <a href="posts.php?source=new-post" class="btn btn-success btn-sm btn-flat mb-3">New Post</a>
-
-                    <nav aria-label="...">
-                        <ul class="pagination pagination-sm">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item active" aria-current="page">
-                                <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
-                            </li>
-                        </ul>
-                    </nav>
+                    <a href="posts.php" class="btn btn-default btn-sm btn-flat mb-3">Go Back</a>
 
                 </div>
             </div>

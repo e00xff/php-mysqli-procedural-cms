@@ -23,6 +23,9 @@
             case 'edit-post';
                 include "edit-post.php";
                 break;
+            case 'author-posts';
+                include "author-posts.php";
+                break;
             default:
                 include "view-posts.php";
                 break;

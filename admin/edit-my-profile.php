@@ -53,7 +53,7 @@
                             <div class="card-header">
                                 <h3 class="card-title">Edit My Profile</h3>
                             </div>
-                            <form method="post" action="#" enctype="multipart/form-data" role="form">
+                            <form method="post" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" role="form">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-6">

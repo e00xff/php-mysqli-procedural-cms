@@ -21,7 +21,7 @@
             <div class="row">
                 <div class="col-lg-12 col-12">
 
-                    <form method="post" action="#" role="form">
+                    <form method="post" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" role="form">
                         <div class="card card-danger">
                             <div class="card-body">
                                 <div class="form-group mb-0">

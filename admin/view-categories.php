@@ -33,7 +33,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-8 col-8">
-                        <form method="post" action="#" role="form">
+                        <form method="post" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" role="form">
                             <div class="card card-danger">
                                 <div class="card-header">
                                     <h3 class="card-title">Add Category</h3>
@@ -63,7 +63,7 @@
                         </form>
                         <?php insertCategories(); ?>
 
-                        <form method="post" action="#" role="form">
+                        <form method="post" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" role="form">
                             <div class="card card-danger">
                                 <div class="card-body">
                                     <div class="form-group mb-0">

@@ -123,6 +123,7 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                         <div class="mb-3">
+                            <a href="posts.php" class="btn btn-default btn-sm btn-flat">Go Back</a>
                             <button type="submit" name="submit" class="btn btn-primary btn-sm btn-flat">Add</button>
                             <button type="reset" class="btn btn-info btn-sm btn-flat">Cancel</button>
                         </div>
