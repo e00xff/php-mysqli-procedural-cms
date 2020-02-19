@@ -1,5 +1,20 @@
 <?php
 
+function escape($str) {
+    global $connection;
+
+    $string = trim($str);
+    return mysqli_real_escape_string($connection, $string);
+}
+
+function clean_text($string)
+{
+    $string = trim($string);
+    $string = stripslashes($string);
+    $string = htmlspecialchars($string);
+    return $string;
+}
+
 function usersOnline () {
     if (isset($_GET['onlineUsers'])) {
         global $connection;

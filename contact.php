@@ -20,16 +20,12 @@
 
                         <form method="post" action="#">
                             <div class="form-group">
-                                <label for="name">Your name</label>
-                                <input type="text" class="form-control" id="name" name="name">
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Your email</label>
+                                <label for="email">E-mail</label>
                                 <input type="email" class="form-control" id="email" name="email">
                             </div>
                             <div class="form-group">
-                                <label for="title">Subject</label>
-                                <input type="text" class="form-control" id="title" name="title">
+                                <label for="subject">Subject</label>
+                                <input type="text" class="form-control" id="subject" name="subject">
                             </div>
                             <div class="form-group">
                                 <label for="message">Message</label>
@@ -38,6 +34,18 @@
                             <button type="submit" name="submit" class="btn btn-primary btn-sm">Send</button>
                         </form>
 
+                        <?php
+
+                        if (isset($_POST['submit'])) {
+
+                            $to = "info@company.com";
+                            $subject = wordwrap($_POST['subject'], 70);
+                            $message = wordwrap($_POST['message'], 150);
+                            $header = "From ".$_POST['email'];
+
+                            mail($to, $subject, $message, $header);
+                        }
+                        ?>
                     </div>
                 </div>
             </div>

@@ -164,6 +164,7 @@
                                                     ?>
                                                 </td>
                                                 <td>
+
                                                     <a href="posts.php?source=author-posts&author=<?php echo urlencode($postAuthor); ?>">
                                                         <?php echo $postAuthor; ?>
                                                     </a>
