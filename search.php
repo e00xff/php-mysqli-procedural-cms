@@ -25,17 +25,17 @@
                     if(isset($_POST['submit'])) {
                         $search = $_POST['search'];
 
-                        $searchQuery = "SELECT * FROM posts WHERE tags LIKE '%$search%' ";
+                        if (isset($_SESSION['role']) && $_SESSION['role'] == 'administrator'):
+                            $searchQuery = "SELECT * FROM posts WHERE tags LIKE '%$search%'";
+                        else:
+                            $searchQuery = "SELECT * FROM posts WHERE tags LIKE '%$search%' AND status= 'published'";
+                        endif;
+
                         $searchResult = mysqli_query($connection, $searchQuery) or die('Query Error: '.mysqli_error($connection));
 
                         $searchCount = mysqli_num_rows($searchResult);
 
-                        if ($searchCount == 0) {
-                            echo '<div class="col-md-6">';
-                            echo '<p>Nothing found.</p>';
-                            echo '</div>';
-                        } else {
-
+                        if ($searchCount > 0) {
                             while($searchRow = mysqli_fetch_assoc($searchResult)) {
                                 ?>
                                 <div class="col-md-6">
@@ -60,9 +60,15 @@
                                 </div>
                                 <?php
                             }
-
+                        } else {
+                            ?>
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                <div class="alert alert-warning" role="alert">
+                                    No records found.
+                                </div>
+                            </div>
+                            <?php
                         }
-
                     }
                     ?>
                 </div>

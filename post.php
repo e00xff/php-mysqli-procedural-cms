@@ -20,23 +20,30 @@
                     $postID = (int)$_GET['postID'];
 
                     // User seen a post
-                    $viewsQuery = "UPDATE `posts` SET `view_count` = `view_count` + 1 WHERE `posts`.`id` = {$postID}";
+                    $viewsQuery = "UPDATE `posts` SET `view_count` = `view_count` + 1 WHERE `posts`.`id` = {$postID} AND status = 'published'";
                     $viewsResult = mysqli_query($connection, $viewsQuery) or die('Query Error: '.mysqli_error($connection));
 
                     // Post data
-                    $postQuery = "SELECT * FROM `posts` WHERE `id` = {$postID}";
+                    if (isset($_SESSION['role']) && $_SESSION['role'] == 'administrator'):
+                        $postQuery = "SELECT * FROM `posts` WHERE `id` = {$postID}";
+                    else:
+                        $postQuery = "SELECT * FROM `posts` WHERE `id` = {$postID} AND status = 'published'";
+                    endif;
+
                     $postResult = mysqli_query($connection, $postQuery) or die('Query Error: '.mysqli_error($connection));
                     $postCount = mysqli_num_rows($postResult);
 
-                    $postRow = mysqli_fetch_assoc($postResult);
-                    $postTitle  = $postRow['title'];
-                    $postDate   = $postRow['date'];
-                    $postCategoryID = $postRow['category_id'];
-                    $postAuthor = $postRow['author'];
-                    $postContent = $postRow['content'];
-
-                    $postPhoto = !empty($postRow['photo']) ? 'dist/img/posts/'.$postRow['photo'] : '//placehold.it/1000x250';
-
+                    if ($postCount > 0) {
+                        $postRow = mysqli_fetch_assoc($postResult);
+                        $postTitle  = $postRow['title'];
+                        $postDate   = $postRow['date'];
+                        $postCategoryID = $postRow['category_id'];
+                        $postAuthor = $postRow['author'];
+                        $postContent = $postRow['content'];
+                        $postPhoto = !empty($postRow['photo']) ? 'dist/img/posts/'.$postRow['photo'] : '//placehold.it/1000x250';
+                    } else {
+                        redirect('index.php');
+                    }
                     ?>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">

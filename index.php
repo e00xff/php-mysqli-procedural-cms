@@ -17,9 +17,10 @@
             <div class="col-md-6">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item">Home</li>
+                        <li class="breadcrumb-item">All Posts</li>
                     </ol>
                 </nav>
+
                 <div class="row">
                     <?php
                     $perPage = 2;
@@ -31,7 +32,12 @@
                     $count = mysqli_num_rows($result);
                     $count = ceil($count / $perPage);
 
-                    $postQuery = "SELECT * FROM posts WHERE status = 'published' LIMIT {$firstPage}, $perPage";
+                    if (isset($_SESSION['role']) && $_SESSION['role'] == 'administrator'):
+                        $postQuery = "SELECT * FROM posts LIMIT {$firstPage}, {$perPage}";
+                    else:
+                        $postQuery = "SELECT * FROM posts WHERE status = 'published' LIMIT {$firstPage}, {$perPage}";
+                    endif;
+
                     $postResult = mysqli_query($connection, $postQuery) or die('Query Error: '.mysqli_error($connection));
                     $postCount = mysqli_num_rows($postResult);
 
@@ -68,7 +74,13 @@
                             <?php
                         }
                     } else {
-                        echo '<p>No records</p>';
+                        ?>
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                            <div class="alert alert-warning" role="alert">
+                                No records found.
+                            </div>
+                        </div>
+                        <?php
                     }
                     ?>
                 </div>

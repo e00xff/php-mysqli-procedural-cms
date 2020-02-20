@@ -17,14 +17,19 @@
             <div class="col-md-9">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item">Category</li>
+                        <li class="breadcrumb-item">Posts by category</li>
                     </ol>
                 </nav>
                 <div class="row">
                     <?php
                     $categoryID = (int)$_GET['categoryID'] ? (int)$_GET['categoryID'] : redirect('index.php');
 
-                    $postQuery = "SELECT * FROM posts WHERE category_id = $categoryID";
+                    if (isset($_SESSION['role']) && $_SESSION['role'] == 'administrator'):
+                        $postQuery = "SELECT * FROM posts WHERE category_id = {$categoryID}";
+                    else:
+                        $postQuery = "SELECT * FROM posts WHERE category_id = {$categoryID} AND status = 'published'";
+                    endif;
+
                     $postResult = mysqli_query($connection, $postQuery) or die('Query Error: '.mysqli_error($connection));
                     $postCount = mysqli_num_rows($postResult);
 
@@ -54,9 +59,13 @@
                             <?php
                         }
                     } else {
-                        echo '<div class="col-md-12">';
-                        echo '<p>Post does not exists.</p>';
-                        echo '</div>';
+                        ?>
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                            <div class="alert alert-warning" role="alert">
+                                No records found.
+                            </div>
+                        </div>
+                        <?php
                     }
                     ?>
                 </div>
