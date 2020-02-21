@@ -29,44 +29,18 @@
         </div>
 
         <?php
-        $categoriesQuery = "SELECT * FROM categories";
-        $categoriesResult = mysqli_query($connection, $categoriesQuery);
-        $viewAllCategories = mysqli_num_rows($categoriesResult);
+        $categories = recordCount("SELECT * FROM categories");
+        $posts = recordCount("SELECT * FROM posts");
+        $postsPublished = recordCount("SELECT * FROM posts WHERE status = 'published'");
+        $postsUnpublished = recordCount("SELECT * FROM posts WHERE status = 'unpublished'");
 
-        // Posts
-        $postsQuery = "SELECT * FROM posts";
-        $postsResult = mysqli_query($connection, $postsQuery);
-        $viewAllPosts = mysqli_num_rows($postsResult);
+        $comments = recordCount("SELECT * FROM comments");
+        $commentsApproved = recordCount("SELECT * FROM comments WHERE status = 'approved'");
+        $commentsUnapproved = recordCount("SELECT * FROM comments WHERE status = 'unapproved'");
 
-        $publishedPostsQuery = "SELECT * FROM posts WHERE status = 'published'";
-        $publishedPostsResult = mysqli_query($connection, $publishedPostsQuery);
-        $viewPublishedPosts = mysqli_num_rows($publishedPostsResult);
-
-        $unpublishedPostsQuery = "SELECT * FROM posts WHERE status = 'unpublished'";
-        $unpublishedPostsResult = mysqli_query($connection, $unpublishedPostsQuery);
-        $viewUnpublishedPosts = mysqli_num_rows($unpublishedPostsResult);
-
-        // Comments
-        $commentsQuery = "SELECT * FROM comments";
-        $commentsResult = mysqli_query($connection, $commentsQuery);
-        $viewAllComments = mysqli_num_rows($commentsResult);
-
-        $approvedCommentsQuery = "SELECT * FROM comments WHERE status = 'approved'";
-        $approvedCommentsResult = mysqli_query($connection, $approvedCommentsQuery);
-        $viewApprovedComments = mysqli_num_rows($approvedCommentsResult);
-
-        $unapprovedCommentsQuery = "SELECT * FROM comments WHERE status = 'unapproved'";
-        $unapprovedCommentsResult = mysqli_query($connection, $unapprovedCommentsQuery);
-        $viewUnapprovedComments = mysqli_num_rows($unapprovedCommentsResult);
-
-        // Users
-        $usersQuery = "SELECT * FROM users";
-        $usersResult = mysqli_query($connection, $usersQuery);
-        $viewAllUsers = mysqli_num_rows($usersResult);
-
-        $usersSubscriberQuery = "SELECT * FROM users WHERE role = 'subscriber'";
-        $usersSubscriberResult = mysqli_query($connection, $usersSubscriberQuery);
-        $viewSubscribers = mysqli_num_rows($usersSubscriberResult);
+        $users = recordCount("SELECT * FROM users");
+        $usersSubscribers = recordCount("SELECT * FROM users WHERE role = 'subscriber'");
+        $usersAdministrators = recordCount("SELECT * FROM users WHERE role = 'administrator'");
         ?>
 
         <section class="content">
@@ -77,7 +51,7 @@
                             <div class="col-lg-4 col-6">
                                 <div class="small-box bg-danger">
                                     <div class="inner">
-                                        <h3><?php echo $viewAllCategories; ?></h3>
+                                        <h3><?php echo $categories; ?></h3>
                                         <p>Categories</p>
                                     </div>
                                     <div class="icon">
@@ -89,7 +63,7 @@
                             <div class="col-lg-4 col-6">
                                 <div class="small-box bg-danger">
                                     <div class="inner">
-                                        <h3><?php echo $viewAllPosts; ?></h3>
+                                        <h3><?php echo $posts; ?></h3>
                                         <p>Posts</p>
                                     </div>
                                     <div class="icon">
@@ -101,7 +75,7 @@
                             <div class="col-lg-4 col-6">
                                 <div class="small-box bg-danger">
                                     <div class="inner">
-                                        <h3><?php echo $viewAllComments; ?></h3>
+                                        <h3><?php echo $comments; ?></h3>
                                         <p>Comments</p>
                                     </div>
                                     <div class="icon">
@@ -125,7 +99,7 @@
                             <div class="col-lg-4 col-6">
                                 <div class="small-box bg-danger">
                                     <div class="inner">
-                                        <h3><?php echo $viewAllUsers; ?></h3>
+                                        <h3><?php echo $users; ?></h3>
                                         <p>Users</p>
                                     </div>
                                     <div class="icon">
@@ -169,7 +143,7 @@
                                 </ul>
                             </div>
                             <div class="card-footer text-center">
-                                <a href="javascript::">View All Users</a>
+                                <a href="users.php?page=view-users">View All Users</a>
                             </div>
                         </div>
                     </div>
@@ -223,15 +197,15 @@
                 'All Users',
                 'Subscribers'];
             $elementCount = [
-                $viewAllPosts,
-                $viewPublishedPosts,
-                $viewUnpublishedPosts,
-                $viewAllCategories,
-                $viewAllComments,
-                $viewApprovedComments,
-                $viewUnapprovedComments,
-                $viewAllUsers,
-                $viewSubscribers
+                $posts,
+                $postsPublished,
+                $postsUnpublished,
+                $categories,
+                $comments,
+                $commentsApproved,
+                $commentsUnapproved,
+                $users,
+                $usersSubscribers
             ];
 
             for ($i = 0; $i < 9; $i++) {
