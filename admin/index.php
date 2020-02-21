@@ -29,18 +29,19 @@
         </div>
 
         <?php
-        $categories = recordCount("SELECT * FROM categories");
-        $posts = recordCount("SELECT * FROM posts");
-        $postsPublished = recordCount("SELECT * FROM posts WHERE status = 'published'");
-        $postsUnpublished = recordCount("SELECT * FROM posts WHERE status = 'unpublished'");
+        $categories = recordCount('categories');
 
-        $comments = recordCount("SELECT * FROM comments");
-        $commentsApproved = recordCount("SELECT * FROM comments WHERE status = 'approved'");
-        $commentsUnapproved = recordCount("SELECT * FROM comments WHERE status = 'unapproved'");
+        $posts = recordCount('posts');
+        $postsPublished = checkStatus('posts','status','published');
+        $postsUnpublished = checkStatus('posts', 'status', 'unpublished');
 
-        $users = recordCount("SELECT * FROM users");
-        $usersSubscribers = recordCount("SELECT * FROM users WHERE role = 'subscriber'");
-        $usersAdministrators = recordCount("SELECT * FROM users WHERE role = 'administrator'");
+        $comments = recordCount('comments');
+        $commentsApproved = checkStatus('comments', 'status', 'approved');
+        $commentsUnapproved = checkStatus('comments', 'status', 'unapproved');
+
+        $users = recordCount('users');
+        $usersSubscribers = checkUserRole('users', 'role','subscriber');
+        $usersAdministrators = checkUserRole('users', 'role','administrator');
         ?>
 
         <section class="content">
