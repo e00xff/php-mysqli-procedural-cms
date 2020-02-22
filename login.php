@@ -18,7 +18,7 @@ if (isset($_SESSION['role'])) {
             <div class="row">
                 <div class="col-md-12">
 
-                    <form method="post" action="#">
+                    <form method="post" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>">
                         <div class="card mb-3">
                             <div class="card-header">
                                 Sign in

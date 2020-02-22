@@ -1,3 +1,4 @@
-RewriteEngine on
-
-RewriteRule ^(index|contact|registration)$ $1.php [NC,L]
+#RewriteEngine on
+#RewriteRule ^(index|contact|registration|login)$ $1.php [NC,L]
+#RewriteRule ^post/(\d+)$ post.php?postID=$1 [NC,L]
+#RewriteRule ^category/(\d+)$ category.php?categoryID=$1 [NC,L]

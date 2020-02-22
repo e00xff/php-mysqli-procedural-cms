@@ -244,4 +244,29 @@ function deleteCategories() {
     }
 }
 
+
+
+
+
+function emailExist($email) {
+    global $connection;
+    $query = "SELECT email FROM users WHERE email = '$email' ";
+    $result = mysqli_query($connection, $query);
+    confirmQuery($result);
+
+    if (mysqli_num_rows($result) > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function ifItIsMethod($method = null) {
+    if ($_SERVER['REQUEST_METHOD'] == strtoupper($method)) {
+        return true;
+    }
+    return false;
+}
+
+
 ?>
