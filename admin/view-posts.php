@@ -124,7 +124,21 @@
                                     </thead>
                                     <tbody>
                                     <?php
-                                    $query = "SELECT * FROM posts ORDER BY id DESC";
+                                    $query = "SELECT posts.id, 
+                                                     posts.category_id, 
+                                                     posts.author_id, 
+                                                     posts.title, 
+                                                     posts.status, 
+                                                     posts.tags, 
+                                                     posts.comment_count, 
+                                                     posts.view_count, 
+                                                     posts.author, 
+                                                     posts.date, 
+                                                     posts.photo, 
+                                                     categories.id as category_id, 
+                                                     categories.title as category_title
+                                                FROM posts INNER JOIN categories ON posts.category_id = categories.id
+                                                ORDER BY posts.id DESC";
                                     $result = mysqli_query($connection, $query);
                                     $count = mysqli_num_rows($result);
 
@@ -140,43 +154,19 @@
                                             $postCommentCount = $row['comment_count'];
                                             $postViewCount = $row['view_count'];
                                             $postDate = $row['date'];
+                                            $categoryID = $row['category_id'];
+                                            $categoryTitle = $row['category_title']
                                             ?>
                                             <tr>
                                                 <td><input type="checkbox" class="checkBoxes" name="checkBoxArray[]" value="<?php echo $postID; ?>"></td>
-                                                <td>
-                                                    <a href="posts.php?source=edit-post&postID=<?php echo $postID; ?>">
-                                                        <?php echo shorten_text($postTitle, 25); ?>
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <?php
-                                                    $categoryQuery = "SELECT * FROM categories WHERE id = {$postCategory}";
-                                                    $categoryResult = mysqli_query($connection, $categoryQuery) or die('Query Error: '.mysqli_error($connection));
-                                                    $categoryCount = mysqli_num_rows($categoryResult);
-
-                                                    if ($categoryCount) {
-                                                        while ($categoryRow = mysqli_fetch_assoc($categoryResult)) {
-                                                            echo $categoryRow['title'];
-                                                        }
-                                                    } else {
-                                                        echo 'Not selected';
-                                                    }
-                                                    ?>
-                                                </td>
-                                                <td>
-
-                                                    <a href="posts.php?source=author-posts&author=<?php echo urlencode($postAuthor); ?>">
-                                                        <?php echo $postAuthor; ?>
-                                                    </a>
-                                                </td>
+                                                <td><a href="posts.php?source=edit-post&postID=<?php echo $postID; ?>"><?php echo shorten_text($postTitle, 25); ?></a></td>
+                                                <td><?php echo $categoryTitle; ?></td>
+                                                <td><a href="posts.php?source=author-posts&author=<?php echo urlencode($postAuthor); ?>"><?php echo $postAuthor; ?></a></td>
                                                 <td><span class="badge <?php echo $postStatus == 'published' ? 'badge-success' : 'badge-warning'; ?>"><?php echo ucfirst($postStatus); ?></span></td>
                                                 <td><img src="<?php echo $postImage ?>" width="150" height="50" alt="<?php echo $postTitle; ?>" title="<?php echo $postTitle; ?>"></td>
                                                 <td><?php echo $postTags; ?></td>
                                                 <td class="text-center"><a href="comments.php?page=comments"><?php echo $postCommentCount; ?></a></td>
-                                                <td>
-                                                    <?php echo $postViewCount; ?>
-                                                    <a href="posts.php?reset=<?php echo $postID; ?>"><small>Reset</small></a>
-                                                </td>
+                                                <td><?php echo $postViewCount; ?><a href="posts.php?reset=<?php echo $postID; ?>"><small>Reset</small></a></td>
                                                 <td><?php echo $postDate; ?></td>
                                                 <td></td>
                                                 <td class="text-center">
