@@ -15,7 +15,7 @@
 
                 <div class="card mb-3">
                     <div class="card-header">
-                        Registration
+                        <?php echo REGISTER; ?>
                     </div>
                     <div class="card-body">
                         <form method="post" action="registration.php" autocomplete="off">
@@ -23,39 +23,39 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="first_name">First Name</label>
-                                        <input type="text" class="form-control" id="first_name" name="first_name">
+                                        <input type="text" class="form-control" id="first_name" name="first_name" placeholder="<?php echo FIRST_NAME; ?>">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="last_name">Last Name</label>
-                                        <input type="text" class="form-control" id="last_name" name="last_name">
+                                        <input type="text" class="form-control" id="last_name" name="last_name" placeholder="<?php echo LAST_NAME; ?>">
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="username">Username</label>
-                                <input type="text" class="form-control" id="username" name="username">
+                                <input type="text" class="form-control" id="username" name="username" placeholder="<?php echo USERNAME; ?>">
                             </div>
                             <div class="form-group">
                                 <label for="email">E-Mail</label>
-                                <input type="email" class="form-control" id="email" name="email">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="<?php echo EMAIL; ?>">
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input type="password" class="form-control" id="password" name="password">
+                                <input type="password" class="form-control" id="password" name="password" placeholder="<?php echo PASSWORD; ?>">
                             </div>
                             <div class="form-group">
                                 <label for="confirm_password">Confirm Password</label>
-                                <input type="password" class="form-control" id="confirm_password" name="confirm_password">
+                                <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="<?php echo CONFIRM_PASSWORD; ?>">
                             </div>
                             <div class="form-group form-check">
                                 <input type="checkbox" class="form-check-input" id="rememberMe" name="rememberMe">
                                 <label class="form-check-label" for="rememberMe">
-                                    I agree terms and conditions.
+                                    <?php echo I_AGREE; ?>
                                 </label>
                             </div>
-                            <button type="submit" name="submit" class="btn btn-primary btn-sm">Registration</button>
+                            <button type="submit" name="submit" class="btn btn-primary btn-sm"><?php echo REGISTER; ?></button>
                         </form>
                     </div>
                 </div>

@@ -8,9 +8,15 @@
 <script src="dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
+    // Page Loader
     var divBox = '<div class="load-screen"><div class="loading"></div></div>';
     $("body").prepend(divBox);
     $(".load-screen").delay(300).fadeOut(200, function () {
         $(this).remove();
     });
+
+    // Language
+    function changeLanguage() {
+        document.getElementById('langFrm').submit();
+    }
 </script>
