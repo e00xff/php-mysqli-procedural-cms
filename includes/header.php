@@ -47,15 +47,15 @@
                     <?php
                 }
                 ?>
-<!--                <li class="nav-item dropdown">-->
-<!--                    <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-<!--                        English-->
-<!--                    </a>-->
-<!--                    <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions">-->
-<!--                        <a class="dropdown-item active" href="?lang=en">English</a>-->
-<!--                        <a class="dropdown-item" href="?lang=ru">Russian</a>-->
-<!--                    </div>-->
-<!--                </li>-->
+                <li class="nav-item dropdown">
+                    <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        English
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions">
+                        <a class="dropdown-item <?php echo isset($_SESSION['lang']) && $_SESSION['lang'] == 'en' ? 'active' : '' ?>" href="?lang=en" name="en">English</a>
+                        <a class="dropdown-item <?php echo isset($_SESSION['lang']) && $_SESSION['lang'] == 'ru' ? 'active' : '' ?>" href="?lang=ru" name="ru">Russian</a>
+                    </div>
+                </li>
             </ul>
 
             <form method="get" id="langFrm" action="" class="form-inline mt-2 mt-md-0">
